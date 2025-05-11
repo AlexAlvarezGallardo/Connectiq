@@ -1,0 +1,16 @@
+[
+  {
+    "id": "f13a1f4a-2c22-4b6e-989b-1f1d4d7c7f01",
+    "name": "Carlos García",
+    "address": "Avenida del Sol 45, Madrid",
+    "phone": "+34 610 222 333",
+    "email": "carlos.garcia@empresa.com"
+  },
+  {
+    "id": "7d422a0e-3b1c-4706-bb45-d4c6719e332d",
+    "name": "Lucía Martínez",
+    "address": "Calle Luna 12, Barcelona",
+    "phone": "+34 620 555 777",
+    "email": "lucia.martinez@empresa.com"
+  }
+]
