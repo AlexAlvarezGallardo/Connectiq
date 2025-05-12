@@ -1,4 +1,4 @@
-﻿namespace PersistenceWorker.Infrastructure.Entities;
+﻿namespace Connectiq.Contracts.Customer;
 
 public class CustomerEntity
 {

@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Connectiq.Contracts.Customer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersistenceWorker.Infrastructure.Entities;
 
 namespace PersistenceWorker.Infrastructure.Configurations;
 

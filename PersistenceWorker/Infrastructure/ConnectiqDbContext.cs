@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PersistenceWorker.Infrastructure.Entities;
+﻿using Connectiq.Contracts.Customer;
+using Microsoft.EntityFrameworkCore;
 
 namespace PersistenceWorker.Infrastructure;
 
