@@ -24,7 +24,7 @@ public class DbSeeder<TContext, TEntity>(
 
         var entityName = typeof(TEntity).Name;
 
-        if (!_options.Value.JsonPaths.TryGetValue(entityName, out var jsonPath))
+        if (!_options.Value.EntityFilePaths.TryGetValue(entityName, out var jsonPath))
         {
             _logger.LogWarning("No se encontró ruta de seed configurada para {Entity}", entityName);
             return;

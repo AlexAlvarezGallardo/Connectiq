@@ -1,20 +1,18 @@
-using Connectiq.GrpcCustomers;
 using DatabaseWorker.Domain.DbSeeder;
-using DatabaseWorker.Extensions;
 using DatabaseWorker.Services;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using PersistenceWorker.Infrastructure;
+using PersistenceWorker.Infrastructure.Entities;
 
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Services.Configure<DbSeederOptions>(builder.Configuration.GetSection("SeedData"));
-builder.Services.AddTransient<IDbSeeder<ConnectiqDbContext>, DbSeeder<ConnectiqDbContext, Customer>>();
+builder.Services.Configure<DbSeederOptions>(builder.Configuration.GetSection("SeedData:DbSeederOptions"));
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddMigrations<DbContext>(new Type[] { typeof(ConnectiqDbContext) });
+builder.Services.AddMigration<ConnectiqDbContext, DbSeeder<ConnectiqDbContext, CustomerEntity>>();
 
 var host = builder.Build();
 

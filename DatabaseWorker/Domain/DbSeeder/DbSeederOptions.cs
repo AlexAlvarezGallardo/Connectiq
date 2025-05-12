@@ -2,5 +2,5 @@
 
 public class DbSeederOptions
 {
-    public Dictionary<string, string> JsonPaths { get; set; } = new();
+    public Dictionary<string, string> EntityFilePaths { get; set; }
 }

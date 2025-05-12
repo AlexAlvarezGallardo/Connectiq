@@ -14,8 +14,9 @@ var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
     .WithReference(postgresDb)
     .WaitFor(postgresDb);
 
-//builder.AddProject<Projects.CustomerWorker>("customerworker")
-//    .WithReference(rabbitMQ);
+builder.AddProject<Projects.CustomerWorker>("customerworker")
+    .WithReference(rabbitMQ)
+    .WaitForCompletion(dbWorker);
 
 builder.AddProject<Projects.PersistenceWorker>("persistenceworker")
     .WithReference(rabbitMQ)
