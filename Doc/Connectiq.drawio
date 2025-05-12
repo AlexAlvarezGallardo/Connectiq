@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="26.2.14">
+  <diagram name="Página-1" id="pWlgdW1GZOckTlYGqCNN">
+    <mxGraphModel dx="2505" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-1" value="Customer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;" vertex="1" parent="1">
+          <mxGeometry x="110" y="250" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-2" value="Users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;gradientColor=#7ea6e0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="390" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-3" value="Invoice" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6d0de;strokeColor=#996185;gradientColor=#d5739d;" vertex="1" parent="1">
+          <mxGeometry x="321" y="390" width="186" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-4" value="Orders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;gradientColor=#ffd966;" vertex="1" parent="1">
+          <mxGeometry x="110" y="110" width="183" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-5" value="Products" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;gradientColor=#b3b3b3;" vertex="1" parent="1">
+          <mxGeometry x="322.5" y="250" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-6" value="Connectiq.ApiGateway" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;gradientColor=#ea6b66;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="530" y="110" width="140" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-8" value="Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="687" y="110" width="140" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-9" value="Connectiq.Monitoring" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#cdeb8b;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="530" width="950" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-10" value="Notification" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-107" y="390" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-11" value="Persistence" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-110" y="250" width="183" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-12" value="Deliveries" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0a30a;strokeColor=#BD7000;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="319.5" y="110" width="183" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-13" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="-310" y="100" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="huwNuZi8xY0Ur6frYeUo-16" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn3.iconfinder.com/data/icons/animals-105/150/icon_animal_coelho-128.png" vertex="1" parent="1">
+          <mxGeometry x="-250" y="98" width="68" height="68" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
