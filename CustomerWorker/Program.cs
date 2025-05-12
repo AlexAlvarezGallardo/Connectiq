@@ -1,21 +1,12 @@
 using CustomerWorker;
-using MassTransit;
 
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
 
-builder.Services.AddMassTransit(busConfiguration =>
-{
-    busConfiguration.SetKebabCaseEndpointNameFormatter();
-
-    busConfiguration.UsingRabbitMq((context, configurator) => 
-    {
-        configurator.Host(builder.Configuration.GetConnectionString("rabbitmq"));
-        configurator.ConfigureEndpoints(context);
-    });
-});
+builder.Services.AddValidators();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var host = builder.Build();
 host.Run();
