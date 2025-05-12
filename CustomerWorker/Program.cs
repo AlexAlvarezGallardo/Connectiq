@@ -6,7 +6,7 @@ builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddValidators();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddMessagingServices(builder.Configuration);
 
 var host = builder.Build();
 host.Run();
