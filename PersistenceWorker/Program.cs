@@ -6,7 +6,7 @@ builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddMassTransitServices(builder.Configuration);
+builder.Services.AddMessagingServices(builder.Configuration);
 
 var host = builder.Build();
 host.Run();

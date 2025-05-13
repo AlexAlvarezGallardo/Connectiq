@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Connectiq.API\Connectiq.API.csproj" />
     <ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\DatabaseWorker\DatabaseWorker.csproj" />
     <ProjectReference Include="..\PersistenceWorker\PersistenceWorker.csproj" />

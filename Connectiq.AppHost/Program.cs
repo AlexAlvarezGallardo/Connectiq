@@ -16,11 +16,17 @@ var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
 
 builder.AddProject<Projects.CustomerWorker>("customerworker")
     .WithReference(rabbitMQ)
-    .WaitForCompletion(dbWorker);
+    .WaitForCompletion(dbWorker)
+    .WaitFor(rabbitMQ);
 
 builder.AddProject<Projects.PersistenceWorker>("persistenceworker")
     .WithReference(rabbitMQ)
     .WithReference(postgresDb)
-    .WaitForCompletion(dbWorker);
+    .WaitForCompletion(dbWorker)
+    .WaitFor(rabbitMQ);
+
+builder.AddProject<Projects.Connectiq_API>("connectiq-api")
+    .WithReference(rabbitMQ)
+    .WaitFor(rabbitMQ);
 
 builder.Build().Run();
