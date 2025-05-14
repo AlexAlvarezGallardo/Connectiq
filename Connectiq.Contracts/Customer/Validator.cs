@@ -1,11 +1,11 @@
-﻿using GrpcCustomer = Connectiq.GrpcCustomers.Customer;
+﻿using Connectiq.Contracts.Customer;
 using FluentValidation;
 
 namespace CustomerWorker.Domain.Customer.Validators;
 
-public class CustomerValidator : AbstractValidator<GrpcCustomer>
+public class CustomerCreatedValidator : AbstractValidator<CustomerCreated>
 {
-    public CustomerValidator()
+    public CustomerCreatedValidator()
     {
         RuleFor(c => c.Name)
             .NotEmpty()

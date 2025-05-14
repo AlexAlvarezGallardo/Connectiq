@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <Protobuf Include="..\Connectiq.Contracts\Customer\model.proto" GrpcServices="None" />
+	  <Protobuf Include="..\Connectiq.Contracts\Customer\Customer.proto" GrpcServices="None" />
   </ItemGroup>
 
 </Project>
