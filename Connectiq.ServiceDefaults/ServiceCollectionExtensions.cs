@@ -6,14 +6,19 @@ namespace Microsoft.Extensions.Hosting;
 
 public static partial class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMessagingServices(this IServiceCollection services, IConfiguration configuration)
-        => services.AddMassTransit(x =>
-        {
-            x.UsingRabbitMq((ctx, cfg) =>
+    public static IServiceCollection AddMessagingServices(
+        this IServiceCollection services, 
+        IConfiguration configuration, 
+        Action<IBusRegistrationConfigurator>? consumers = null)
+            => services.AddMassTransit(x =>
             {
-                cfg.Host(configuration.GetConnectionString("rabbitmq"));
-                cfg.ConfigureEndpoints(ctx);
+                consumers?.Invoke(x);
+
+                x.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(configuration.GetConnectionString("rabbitmq"));
+                    cfg.ConfigureEndpoints(ctx);
+                });
             });
-        });
 }
 

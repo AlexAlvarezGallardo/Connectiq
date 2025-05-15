@@ -7,7 +7,8 @@ namespace DatabaseWorker.Services;
 
 public class DbSeeder<TContext, TEntity>(
     ILogger<DbSeeder<TContext, TEntity>> _logger,
-    IOptions<DbSeederOptions> _options
+    IOptions<DbSeederOptions> _options,
+    JsonSerializerOptions _jsonSerializerOptions
 ) : IDbSeeder<TContext>
     where TContext : DbContext
     where TEntity : class
@@ -37,10 +38,7 @@ public class DbSeeder<TContext, TEntity>(
         }
 
         var json = await File.ReadAllTextAsync(jsonPath);
-        var entities = JsonSerializer.Deserialize<List<TEntity>>(json, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        });
+        var entities = JsonSerializer.Deserialize<List<TEntity>>(json, _jsonSerializerOptions);
 
         if (entities is not null && entities.Any())
         {

@@ -2,5 +2,5 @@
 
 public class DbSeederOptions
 {
-    public Dictionary<string, string> EntityFilePaths { get; set; }
+    public required Dictionary<string, string> EntityFilePaths { get; set; }
 }

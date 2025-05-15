@@ -12,12 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.30.2" />
-    <PackageReference Include="Grpc.Tools" Version="2.49.0">
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MassTransit" Version="8.4.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.0" />
+    <PackageReference Include="MassTransit" Version="8.4.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
   </ItemGroup>
@@ -25,10 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-	  <Protobuf Include="..\Connectiq.Contracts\Customer\Customer.proto" GrpcServices="None" />
   </ItemGroup>
 
 </Project>
