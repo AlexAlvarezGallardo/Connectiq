@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <PublishAot>true</PublishAot>
+    <PublishAot>false</PublishAot>
     <UserSecretsId>dotnet-PersistenceWorker-45d04b48-9d45-4809-8a73-64b36860338e</UserSecretsId>
   </PropertyGroup>
 
@@ -16,12 +16,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
-	<PackageReference Include="MassTransit" Version="8.4.0" />
-	<PackageReference Include="MassTransit.RabbitMQ" Version="8.4.0" />
+	<PackageReference Include="MassTransit" Version="8.4.1" />
+	<PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
   </ItemGroup>
 </Project>

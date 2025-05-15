@@ -11,7 +11,7 @@ public class Worker<TContext>(
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _serviceProvider.MigrateDbContextAsync(_seeder, stoppingToken);
+        await _serviceProvider.MigrateDbContextAsync(_seeder);
         _host.StopApplication();
     }
 }

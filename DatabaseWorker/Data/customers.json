@@ -1,156 +1,156 @@
 [
   {
-    "id": "e7b5d1a2-9c02-4a8b-9e44-45c0c1c0e1a1",
     "name": "Juan Pérez",
     "address": "Calle 123, Ciudad de México",
     "phone": "+52 55 1234 5678",
-    "email": "juan.perez@example.com"
+    "email": "juan.perez@example.com",
+    "isActive": true
   },
   {
-    "id": "b2f1e402-29f3-4f6f-ae4f-f0d0adffe1de",
     "name": "María López",
     "address": "Av. Reforma 456, Ciudad de México",
     "phone": "+52 55 2345 6789",
-    "email": "maria.lopez@example.com"
+    "email": "maria.lopez@example.com",
+    "isActive": true
   },
   {
-    "id": "1b8b4e9a-c1b1-4e44-a0ab-661a2edc20f9",
     "name": "Carlos Sánchez",
     "address": "Blvd. Independencia 789, Monterrey",
     "phone": "+52 81 1122 3344",
-    "email": "carlos.sanchez@example.com"
+    "email": "carlos.sanchez@example.com",
+    "isActive": true
   },
   {
-    "id": "e89d7c60-5016-4a9a-b983-cdb328d1aebf",
     "name": "Ana Gómez",
     "address": "Calle Morelos 234, Guadalajara",
     "phone": "+52 33 2233 4455",
-    "email": "ana.gomez@example.com"
+    "email": "ana.gomez@example.com",
+    "isActive": true
   },
   {
-    "id": "9f1263b3-34b2-46f8-9c4a-76be3e9377e9",
     "name": "Luis Fernández",
     "address": "Av. Universidad 321, Toluca",
     "phone": "+52 722 334 5566",
-    "email": "luis.fernandez@example.com"
+    "email": "luis.fernandez@example.com",
+    "isActive": true
   },
   {
-    "id": "ca81b241-e7c7-48f5-bb0e-9e6b1c6442f9",
     "name": "Sofía Ramírez",
     "address": "Paseo de la Reforma 123, CDMX",
     "phone": "+52 55 3344 5566",
-    "email": "sofia.ramirez@example.com"
+    "email": "sofia.ramirez@example.com",
+    "isActive": true
   },
   {
-    "id": "33dd9e4d-c580-4dd3-b4ae-c3f66a75a26a",
     "name": "Daniel Torres",
     "address": "Calle Hidalgo 456, León",
     "phone": "+52 477 445 6677",
-    "email": "daniel.torres@example.com"
+    "email": "daniel.torres@example.com",
+    "isActive": false
   },
   {
-    "id": "a3cbe9a2-7a0b-4c89-b37d-88f27ff0e3f4",
     "name": "Lucía Martínez",
     "address": "Calle Juárez 567, Puebla",
     "phone": "+52 222 556 7788",
-    "email": "lucia.martinez@example.com"
+    "email": "lucia.martinez@example.com",
+    "isActive": true
   },
   {
-    "id": "a4d0e0f2-c8e2-42ad-bca7-2334fe6727c6",
     "name": "Miguel Herrera",
     "address": "Av. Insurgentes Sur 890, CDMX",
     "phone": "+52 55 6677 8899",
-    "email": "miguel.herrera@example.com"
+    "email": "miguel.herrera@example.com",
+    "isActive": true
   },
   {
-    "id": "5f2fcfb1-1cd3-4ea5-80bc-b4b04d8053c3",
     "name": "Elena Ruiz",
     "address": "Calle Colón 345, Mérida",
     "phone": "+52 999 778 8899",
-    "email": "elena.ruiz@example.com"
+    "email": "elena.ruiz@example.com",
+    "isActive": true
   },
   {
-    "id": "3eae7baf-0cfb-4a9b-bab2-81f30ff9d7a7",
     "name": "Pedro Jiménez",
     "address": "Calle Central 123, Querétaro",
     "phone": "+52 442 889 9900",
-    "email": "pedro.jimenez@example.com"
+    "email": "pedro.jimenez@example.com",
+    "isActive": true
   },
   {
-    "id": "5fae159b-fc39-4a04-a3b7-3931f5936f92",
     "name": "Valeria Castro",
     "address": "Av. Juárez 200, Chihuahua",
     "phone": "+52 614 123 4567",
-    "email": "valeria.castro@example.com"
+    "email": "valeria.castro@example.com",
+    "isActive": true
   },
   {
-    "id": "7fd49e4d-e659-4f00-82b6-cc18a5cf0b1e",
     "name": "Héctor Moreno",
     "address": "Calle Victoria 88, Saltillo",
     "phone": "+52 844 321 4321",
-    "email": "hector.moreno@example.com"
+    "email": "hector.moreno@example.com",
+    "isActive": true
   },
   {
-    "id": "6e3f476b-0b73-4664-8f58-65a0893c6b5b",
     "name": "Adriana Díaz",
     "address": "Blvd. Díaz Ordaz 543, Tijuana",
     "phone": "+52 664 789 0123",
-    "email": "adriana.diaz@example.com"
+    "email": "adriana.diaz@example.com",
+    "isActive": true
   },
   {
-    "id": "4f6ed87a-6c3e-4419-bbf8-d4efc183e19f",
     "name": "Jorge Ríos",
     "address": "Av. Revolución 999, CDMX",
     "phone": "+52 55 8765 4321",
-    "email": "jorge.rios@example.com"
+    "email": "jorge.rios@example.com",
+    "isActive": true
   },
   {
-    "id": "a9508e39-2d4d-4323-8ce2-45f02e7b393d",
     "name": "Renata Aguilar",
     "address": "Calle Lago 456, Cancún",
     "phone": "+52 998 765 4321",
-    "email": "renata.aguilar@example.com"
+    "email": "renata.aguilar@example.com",
+    "isActive": true
   },
   {
-    "id": "59d49cf0-13d1-49f1-b9d2-36e71c083d72",
     "name": "Arturo Paredes",
     "address": "Av. Central 123, Aguascalientes",
     "phone": "+52 449 556 7788",
-    "email": "arturo.paredes@example.com"
+    "email": "arturo.paredes@example.com",
+    "isActive": true
   },
   {
-    "id": "0a88a9e1-46f0-4b91-b79b-01cdb08f6f10",
     "name": "Camila Ortega",
     "address": "Calle de la Rosa 111, Oaxaca",
     "phone": "+52 951 334 5566",
-    "email": "camila.ortega@example.com"
+    "email": "camila.ortega@example.com",
+    "isActive": true
   },
   {
-    "id": "8ae7e7c1-9517-40f3-8933-29a6f7e43788",
     "name": "Alonso Cárdenas",
     "address": "Calle Palma 210, Colima",
     "phone": "+52 312 223 4455",
-    "email": "alonso.cardenas@example.com"
+    "email": "alonso.cardenas@example.com",
+    "isActive": true
   },
   {
-    "id": "3bc28f7a-9be2-4e8a-a58d-012a3f3be1e2",
     "name": "Isabela Mendoza",
     "address": "Av. del Mar 123, Mazatlán",
     "phone": "+52 669 112 2334",
-    "email": "isabela.mendoza@example.com"
+    "email": "isabela.mendoza@example.com",
+    "isActive": true
   },
   {
-    "id": "c5b2644b-2eb2-43e5-84e0-9a6bcb2b9a93",
     "name": "Fernando Lara",
     "address": "Calle Laguna 789, Torreón",
     "phone": "+52 871 998 8877",
-    "email": "fernando.lara@example.com"
+    "email": "fernando.lara@example.com",
+    "isActive": true
   },
   {
-    "id": "1121cb12-10c2-457e-abc2-d54f342e2363",
     "name": "Natalia Mejía",
     "address": "Av. del Trabajo 345, Hermosillo",
     "phone": "+52 662 221 3344",
-    "email": "natalia.mejia@example.com"
+    "email": "natalia.mejia@example.com",
+    "isActive": true
   }
 ]

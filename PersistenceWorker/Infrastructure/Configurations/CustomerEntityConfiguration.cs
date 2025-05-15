@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Connectiq.Contracts.Customer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PersistenceWorker.Infrastructure.Entities;
 
 namespace PersistenceWorker.Infrastructure.Configurations;
 
@@ -13,7 +13,8 @@ public class CustomerEntityConfiguration : IEntityTypeConfiguration<CustomerEnti
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.Id)
-            .IsRequired();
+            .IsRequired()
+            .ValueGeneratedOnAdd();
 
         builder.Property(c => c.Name)
             .IsRequired()
@@ -27,5 +28,11 @@ public class CustomerEntityConfiguration : IEntityTypeConfiguration<CustomerEnti
 
         builder.Property(c => c.Email)
             .HasMaxLength(100);
+
+        builder.Property(c => c.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        builder.Property(c => c.IsActive)
+            .HasDefaultValue(true);
     }
 }

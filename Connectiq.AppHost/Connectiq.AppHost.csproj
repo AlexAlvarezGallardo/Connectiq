@@ -15,9 +15,14 @@
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.1" />
     <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.2.1" />
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.2.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Connectiq.API\Connectiq.API.csproj" />
     <ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\DatabaseWorker\DatabaseWorker.csproj" />
     <ProjectReference Include="..\PersistenceWorker\PersistenceWorker.csproj" />
