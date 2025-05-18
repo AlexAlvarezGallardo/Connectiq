@@ -1,0 +1,9 @@
+{
+  "CustomerData": {
+    "Name": "Bob",
+    "Address": "Avenida 9",
+    "Phone": "789-000",
+    "Email": "bob@email.com"
+  },
+  "IsActive": true
+}
