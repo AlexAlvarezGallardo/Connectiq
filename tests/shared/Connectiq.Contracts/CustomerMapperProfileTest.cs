@@ -15,10 +15,10 @@ public class CustomerMapperProfileTest(IMapper _mapper)
         var result = _mapper.Map<CustomerCreated>(input);
 
         result.CustomerData.Should().NotBeNull();
-        result.CustomerData.Name.Should().Be("Ana");
-        result.CustomerData.Address.Should().Be("Main St");
-        result.CustomerData.Phone.Should().Be("123-456");
-        result.CustomerData.Email.Should().Be("ana@mail.com");
+        result.CustomerData.Name.Should().Be("Juan");
+        result.CustomerData.Address.Should().Be("Calle 123");
+        result.CustomerData.Phone.Should().Be("555-1234");
+        result.CustomerData.Email.Should().Be("juan@email.com");
     }
 
     [Fact]

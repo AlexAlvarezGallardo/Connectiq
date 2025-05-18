@@ -5,5 +5,6 @@
     "Phone": "789-000",
     "Email": "bob@email.com"
   },
-  "IsActive": true
+  "IsActive": true,
+  "EventId": "1234567890"
 }
