@@ -1,6 +1,6 @@
 using FluentAssertions;
 
-namespace Connectiq.CustomerWorker;
+namespace Connectiq.CustomerWorker.Tests;
 
 public class UnitTest1
 {

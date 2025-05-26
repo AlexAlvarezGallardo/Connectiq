@@ -9,9 +9,9 @@ public class MapperFixture
 
     public MapperFixture()
     {
-        var config = new MapperConfiguration(cfg => 
-        { 
-            cfg.AddProfile<CustomerMapperProfile>(); 
+        var config = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<CustomerMapperProfile>();
         });
         Mapper = config.CreateMapper();
     }

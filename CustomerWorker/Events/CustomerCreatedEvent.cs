@@ -8,7 +8,7 @@ namespace CustomerWorker.Events;
 internal class CustomerCreatedEvent(
     ILogger<CustomerCreatedEvent> _logger,
     IMapper _mapper,
-    IValidator<CustomerValidated> _validator, 
+    IValidator<CustomerValidated> _validator,
     IPublishEndpoint _bus) : IConsumer<CustomerCreated>
 {
     public async Task Consume(ConsumeContext<CustomerCreated> context)
@@ -16,7 +16,8 @@ internal class CustomerCreatedEvent(
         var message = context.Message;
         var validatedCustomer = _mapper.Map<CustomerValidated>(message) with
         {
-            CustomerCreated = message with {
+            CustomerCreated = message with
+            {
                 EventId = context.MessageId?.ToString() ?? Guid.NewGuid().ToString(),
                 IsActive = true
             }
@@ -40,6 +41,6 @@ internal class CustomerCreatedEvent(
         }
 
         _logger.LogInformation("Customer received {EventId} - {Name}", validatedCustomer.CustomerCreated.EventId, validatedCustomer.CustomerCreated.CustomerData.Name);
-        await _bus.Publish(validatedCustomer, context.CancellationToken);        
+        await _bus.Publish(validatedCustomer, context.CancellationToken);
     }
 }

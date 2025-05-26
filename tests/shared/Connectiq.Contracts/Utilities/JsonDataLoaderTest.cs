@@ -19,7 +19,7 @@ public class JsonDataLoaderTest
     }
 
     [Fact]
-    public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException() 
+    public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException()
     {
         var path = Path.Combine("NotExist", "CreateCustomerInput.json");
 
@@ -27,7 +27,7 @@ public class JsonDataLoaderTest
 
         act.Should()
             .Throw<FileNotFoundException>()
-            .WithMessage($"Test data file not found: {Path.Combine(Directory.GetCurrentDirectory(), path)}");   
+            .WithMessage($"Test data file not found: {Path.Combine(Directory.GetCurrentDirectory(), path)}");
     }
 
     [Fact]
@@ -39,5 +39,17 @@ public class JsonDataLoaderTest
 
         act.Should()
             .Throw<JsonException>();
+    }
+
+    [Fact]
+    public void LoadFromFile_ShouldDeserializeJson_Throw_InvalidOperationException()
+    {
+        var path = Path.Combine("TestData", "Customers", "NullLiteral.json");
+
+        var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
+
+        act.Should()
+            .Throw<InvalidOperationException>()
+            .WithMessage("Deserialization returned null");
     }
 }

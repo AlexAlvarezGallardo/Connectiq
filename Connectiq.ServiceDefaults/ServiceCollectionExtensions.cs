@@ -7,8 +7,8 @@ namespace Microsoft.Extensions.Hosting;
 public static partial class ServiceCollectionExtensions
 {
     public static IServiceCollection AddMessagingServices(
-        this IServiceCollection services, 
-        IConfiguration configuration, 
+        this IServiceCollection services,
+        IConfiguration configuration,
         Action<IBusRegistrationConfigurator>? consumers = null)
             => services.AddMassTransit(x =>
             {
