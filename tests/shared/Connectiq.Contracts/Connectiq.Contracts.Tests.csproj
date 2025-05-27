@@ -22,13 +22,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\TestUtilities\Connectiq.Tests.Utilities.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="TestData\**\*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
+	  <ProjectReference Include="..\TestUtilities\Connectiq.Tests.Utilities.csproj" />
 	</ItemGroup>
 
 </Project>
