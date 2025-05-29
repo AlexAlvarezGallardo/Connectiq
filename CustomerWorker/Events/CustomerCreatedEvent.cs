@@ -5,7 +5,7 @@ using MassTransit;
 
 namespace CustomerWorker.Events;
 
-internal class CustomerCreatedEvent(
+public class CustomerCreatedEvent(
     ILogger<CustomerCreatedEvent> _logger,
     IMapper _mapper,
     IValidator<CustomerValidated> _validator,

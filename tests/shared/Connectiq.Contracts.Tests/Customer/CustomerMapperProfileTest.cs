@@ -8,7 +8,6 @@ namespace Connectiq.Contracts.Tests.Customer;
 
 public class CustomerMapperProfileTest
 {
-    readonly string _basePath = Path.Combine("TestData", "Customers");
     readonly IMapper _mapper;
 
     public CustomerMapperProfileTest()
@@ -23,7 +22,7 @@ public class CustomerMapperProfileTest
     [Fact]
     public void Map_CreateCustomerInput_To_CustomerCreated_ShouldMapCorrectly()
     {
-        var inputPath = Path.Combine(_basePath, "CreateCustomerInput.json");
+        var inputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerCreated>(input);
 
@@ -37,7 +36,7 @@ public class CustomerMapperProfileTest
     [Fact]
     public void Map_CustomerCreated_To_CustomerValidated_ShouldMapCorrectly()
     {
-        var inputPath = Path.Combine(_basePath, "CustomerCreated.json");
+        var inputPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
         var result = _mapper.Map<CustomerValidated>(input);
 
@@ -49,7 +48,7 @@ public class CustomerMapperProfileTest
     [Fact]
     public void Map_CustomerCreated_To_CustomerNotValidated_ShouldMapCorrectly()
     {
-        var inputPath = Path.Combine(_basePath, "CustomerCreated.json");
+        var inputPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
         var result = _mapper.Map<CustomerNotValidated>(input);
 
@@ -62,7 +61,7 @@ public class CustomerMapperProfileTest
     [Fact]
     public void Map_CustomerValidated_To_CustomerEntity_ShouldMapCorrectly()
     {
-        var inputPath = Path.Combine(_basePath, "CustomerValidatedToEntity.json");
+        var inputPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
 
         var result = _mapper.Map<CustomerEntity>(input);

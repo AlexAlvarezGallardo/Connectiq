@@ -15,4 +15,10 @@ public static class JsonDataLoader
         return JsonSerializer.Deserialize<TOutput>(json)
                ?? throw new InvalidOperationException("Deserialization returned null");
     }
+
+    public static string GetDataPath(string jsonName)
+    {
+        var basePath = Directory.GetCurrentDirectory();
+        return Path.Combine(basePath, "TestData", "Customers", jsonName);
+    }
 }

@@ -11,8 +11,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson()
     {
-        var path = Path.Combine("TestData", "Customers", "CreateCustomerInput.json");
-
+        var path = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
         var result = JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
         result.Should().NotBeNull();
@@ -20,8 +19,8 @@ public class JsonDataLoaderTest
 
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException()
-    {
-        var path = Path.Combine("NotExist", "CreateCustomerInput.json");
+    {   
+        var path = JsonDataLoader.GetDataPath("NotExist.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
@@ -33,7 +32,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_JsonException()
     {
-        var path = Path.Combine("TestData", "Customers", "InvalidCustomerInput.json");
+        var path = JsonDataLoader.GetDataPath("InvalidCustomerInput.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
@@ -44,7 +43,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_InvalidOperationException()
     {
-        var path = Path.Combine("TestData", "Customers", "NullLiteral.json");
+        var path = JsonDataLoader.GetDataPath("NullLiteral.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 

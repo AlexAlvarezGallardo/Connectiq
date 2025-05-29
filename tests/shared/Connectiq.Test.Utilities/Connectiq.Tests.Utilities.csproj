@@ -10,4 +10,14 @@
     <ProjectReference Include="..\..\..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Include="TestData\**\*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
 </Project>
