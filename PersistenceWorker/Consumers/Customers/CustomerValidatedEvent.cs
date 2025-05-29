@@ -5,7 +5,7 @@ using PersistenceWorker.Repository;
 
 namespace PersistenceWorker.Consumers.Customers;
 
-internal class CustomerValidatedEvent(
+public class CustomerValidatedEvent(
     IRepository<CustomerEntity> _dbRepository,
     IMapper _mapper) : IConsumer<CustomerValidated>
 {

@@ -22,6 +22,7 @@ public class CreateCustomerCommandHandler(
             return false;
 
         await _publisher.Publish(customerCreated, cancellationToken);
+
         return true;
     }
 }

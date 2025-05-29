@@ -1,22 +1,19 @@
 using AutoMapper;
 using Connectiq.Contracts.Customer;
 using Connectiq.Tests.Utilities;
+using Connectiq.Tests.Utilities.Fixtures;
 using FluentAssertions;
 using Xunit;
 
 namespace Connectiq.Contracts.Tests.Customer;
 
-public class CustomerMapperProfileTest
+public class CustomerMapperProfileTest : IClassFixture<MapperFixture>
 {
     readonly IMapper _mapper;
 
-    public CustomerMapperProfileTest()
+    public CustomerMapperProfileTest(MapperFixture fixture)
     {
-        var config = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<CustomerMapperProfile>();
-        });
-        _mapper = config.CreateMapper();
+        _mapper = fixture.Mapper;
     }
 
     [Fact]
