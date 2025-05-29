@@ -34,7 +34,6 @@ public class CustomerCreatedEventTests
     [Fact]
     public async Task Consume_ShouldPublishValidatedCustomer_WhenValidationSucceeds()
     {
-        // Arrange
         var customerCreatedPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
         var customerValidatedPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
 
