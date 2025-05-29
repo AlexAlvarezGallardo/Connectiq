@@ -14,7 +14,11 @@ jobs:
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'Connectiq.sln'
-
+      
+    permissions: 
+      checks: write
+      statuses: write
+    
     runs-on: ubuntu-latest
 
     steps:
