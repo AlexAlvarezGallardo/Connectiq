@@ -31,9 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workers", "workers", "{FD60
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{9C9F40AE-F011-48EF-B192-B4BA1574E53B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.Contracts.Tests", "tests\shared\Connectiq.Contracts\Connectiq.Contracts.Tests.csproj", "{574D4CAE-1AB3-4E4A-BA87-D3842EDAFC7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.Contracts.Tests", "tests\shared\Connectiq.Contracts.Tests\Connectiq.Contracts.Tests.csproj", "{574D4CAE-1AB3-4E4A-BA87-D3842EDAFC7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.Tests.Utilities", "tests\shared\TestUtilities\Connectiq.Tests.Utilities.csproj", "{5EB7447E-8A71-7DF9-8CEA-B4B61732F7C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.Tests.Utilities", "tests\shared\Connectiq.Test.Utilities\Connectiq.Tests.Utilities.csproj", "{5EB7447E-8A71-7DF9-8CEA-B4B61732F7C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

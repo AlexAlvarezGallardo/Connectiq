@@ -4,14 +4,27 @@ using Connectiq.Tests.Utilities;
 using FluentAssertions;
 using Xunit;
 
-namespace Connectiq.Contracts.Tests;
+namespace Connectiq.Contracts.Tests.Customer;
 
-public class CustomerMapperProfileTest(IMapper _mapper)
+public class CustomerMapperProfileTest
 {
+    readonly string _basePath = Path.Combine("TestData", "Customers");
+    readonly IMapper _mapper;
+
+    public CustomerMapperProfileTest()
+    {
+        var config = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<CustomerMapperProfile>();
+        });
+        _mapper = config.CreateMapper();
+    }
+
     [Fact]
     public void Map_CreateCustomerInput_To_CustomerCreated_ShouldMapCorrectly()
     {
-        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>("TestData/Customers/CreateCustomerInput.json");
+        var inputPath = Path.Combine(_basePath, "CreateCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerCreated>(input);
 
         result.CustomerData.Should().NotBeNull();
@@ -24,7 +37,8 @@ public class CustomerMapperProfileTest(IMapper _mapper)
     [Fact]
     public void Map_CustomerCreated_To_CustomerValidated_ShouldMapCorrectly()
     {
-        var input = JsonDataLoader.LoadFromFile<CustomerCreated>("TestData/Customers/CustomerCreated.json");
+        var inputPath = Path.Combine(_basePath, "CustomerCreated.json");
+        var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
         var result = _mapper.Map<CustomerValidated>(input);
 
         result.CustomerCreated.Should().BeEquivalentTo(input);
@@ -35,7 +49,8 @@ public class CustomerMapperProfileTest(IMapper _mapper)
     [Fact]
     public void Map_CustomerCreated_To_CustomerNotValidated_ShouldMapCorrectly()
     {
-        var input = JsonDataLoader.LoadFromFile<CustomerCreated>("TestData/Customers/CustomerCreated.json");
+        var inputPath = Path.Combine(_basePath, "CustomerCreated.json");
+        var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
         var result = _mapper.Map<CustomerNotValidated>(input);
 
         result.CustomerCreated.Should().BeEquivalentTo(input);
@@ -47,7 +62,9 @@ public class CustomerMapperProfileTest(IMapper _mapper)
     [Fact]
     public void Map_CustomerValidated_To_CustomerEntity_ShouldMapCorrectly()
     {
-        var input = JsonDataLoader.LoadFromFile<CustomerValidated>("TestData/Customers/CustomerValidatedToEntity.json");
+        var inputPath = Path.Combine(_basePath, "CustomerValidatedToEntity.json");
+        var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
+
         var result = _mapper.Map<CustomerEntity>(input);
 
         result.Name.Should().Be("John");
