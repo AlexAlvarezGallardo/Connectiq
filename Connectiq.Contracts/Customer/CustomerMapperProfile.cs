@@ -2,9 +2,9 @@
 
 namespace Connectiq.Contracts.Customer;
 
-public class CustomerMappingProfile : Profile
+public class CustomerMapperProfile : Profile
 {
-    public CustomerMappingProfile()
+    public CustomerMapperProfile()
     {
         CreateMap<CreateCustomerInput, CustomerCreated>()
             .ForMember(dest => dest.CustomerData, opt => opt.MapFrom(src => src.Customer));

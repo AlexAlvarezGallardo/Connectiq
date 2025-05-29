@@ -7,7 +7,7 @@ builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddMessagingServices(builder.Configuration, x => 
+builder.Services.AddMessagingServices(builder.Configuration, x =>
 {
     x.AddConsumer<CustomerValidatedEvent>();
 });

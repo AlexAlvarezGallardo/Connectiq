@@ -30,7 +30,7 @@ internal static class MigrateDbContextExtensions
         return services.AddMigration<TContext>((context, sp) => sp.GetRequiredService<IDbSeeder<TContext>>().SeedAsync(context));
     }
 
-    internal static async Task MigrateDbContextAsync<TContext>(this IServiceProvider services, Func<TContext, IServiceProvider, Task> seeder) 
+    internal static async Task MigrateDbContextAsync<TContext>(this IServiceProvider services, Func<TContext, IServiceProvider, Task> seeder)
         where TContext : DbContext
     {
         using var scope = services.CreateScope();
@@ -44,8 +44,8 @@ internal static class MigrateDbContextExtensions
         {
             logger.LogInformation("Migrating database associated with context {DbContextName}", typeof(TContext).Name);
 
-            if (context is null) 
-            { 
+            if (context is null)
+            {
                 logger.LogCritical("DbContext {DbContextName} not found in the service provider", typeof(TContext).Name);
                 throw new InvalidOperationException($"DbContext {typeof(TContext).Name} not found in the service provider");
             }
