@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.PersistenceWorker
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.API.UnitTests", "tests\Connectiq.API.UnitTests\Connectiq.API.UnitTests.csproj", "{4E3E90B9-0A69-48D6-9D77-EB01F7AA2006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ArchitectureTests", "tests\Connectiq.ArchitectureTests\Connectiq.ArchitectureTests.csproj", "{8C9CC088-A140-4DCD-9CBC-3B2567971C3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{4E3E90B9-0A69-48D6-9D77-EB01F7AA2006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E3E90B9-0A69-48D6-9D77-EB01F7AA2006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E3E90B9-0A69-48D6-9D77-EB01F7AA2006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9CC088-A140-4DCD-9CBC-3B2567971C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9CC088-A140-4DCD-9CBC-3B2567971C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9CC088-A140-4DCD-9CBC-3B2567971C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9CC088-A140-4DCD-9CBC-3B2567971C3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

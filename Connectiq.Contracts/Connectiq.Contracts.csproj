@@ -17,4 +17,10 @@
   <ItemGroup>
 	<Protobuf Include="Customer\Customer.proto" GrpcServices="None" />
   </ItemGroup>
+
+	<ItemGroup>
+		<None Update="Customer\*.proto">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>
