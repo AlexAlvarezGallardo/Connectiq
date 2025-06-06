@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Connectiq.AppHost\Connectiq.AppHost.csproj" />
     <ProjectReference Include="..\..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
+    <ProjectReference Include="..\..\PersistenceWorker\PersistenceWorker.csproj" />
   </ItemGroup>
 
   <ItemGroup>

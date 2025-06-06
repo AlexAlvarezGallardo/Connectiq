@@ -1,16 +1,19 @@
 using Connectiq.Contracts.Customer;
 using FluentAssertions;
 using NetArchTest.Rules;
+using System.Reflection;
 
-namespace Connectiq.ArchitectureTests;
+namespace Connectiq.ArchitectureTests.shared.Connectiq.Contracts;
 
 public class ContractsArchitectureTests 
 {
+    private readonly Assembly _assembly = Assembly.Load("Connectiq.Contracts");
+
     [Fact]
     public void Contracts_Should_Not_Have_Dependencies_On_Other_Projects()
     {
         var result = Types
-            .InAssembly(typeof(CustomerEntity).Assembly)
+            .InAssembly(_assembly)
             .ShouldNot()
             .HaveDependencyOn("CustomerWorker")
             .And()
@@ -32,7 +35,7 @@ public class ContractsArchitectureTests
         ArgumentNullException.ThrowIfNull(folderName);
 
         var allTypes = Types
-            .InAssembly(typeof(CustomerEntity).Assembly)
+            .InAssembly(_assembly)
             .That()
             .ResideInNamespaceMatching("Connectiq.Contracts.*")
             .GetTypes();
