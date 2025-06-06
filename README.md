@@ -1,7 +1,7 @@
 ﻿# 🚀 Connectiq Application
 
-![✅ Build Status](https://img.shields.io/github/actions/workflow/status/alexalvarezgallardo/connectiq/ci.yml?branch=main)  
-![📄 License](https://img.shields.io/github/license/alexalvarezgallardo/connectiq)  
+![✅ Build Status](https://img.shields.io/github/actions/workflow/status/AlexAlvarezGallardo/connectiq/ci.yml?branch=main)  
+![📄 License](https://img.shields.io/github/license/AlexAlvarezGallardo/connectiq)  
 ![🟣 .NET](https://img.shields.io/badge/.NET-8.0-blue)
 
 ---
