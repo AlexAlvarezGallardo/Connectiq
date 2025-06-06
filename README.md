@@ -1,102 +1,117 @@
-# Connectiq Application
+﻿# 🚀 Connectiq Application
 
-## Overview
+![✅ Build Status](https://img.shields.io/github/actions/workflow/status/alexalvarezgallardo/connectiq/ci.yml?branch=main)  
+![📄 License](https://img.shields.io/github/license/alexalvarezgallardo/connectiq)  
+![🟣 .NET](https://img.shields.io/badge/.NET-8.0-blue)
+
+---
+
+## 📋 Overview
 
 Connectiq is a modular, scalable microservices application designed to manage customer data efficiently with modern architectural patterns and technologies.
 
 ---
 
-## Architecture
+## 🏗 Architecture
 
 The system is built following a **microservices architecture** with clear separation of concerns:
 
-- **Connectiq.AppHost:**  
+- **🖥️ Connectiq.AppHost:**  
   The main service acting as the application host. It integrates core components and connects to infrastructure services.
 
-- **Connectiq.Contracts:**  
+- **📜 Connectiq.Contracts:**  
   Defines the domain contracts and messages exchanged between services using **gRPC** for strongly-typed and efficient communication.
 
-- **CustomerWorker:**  
+- **👤 CustomerWorker:**  
   Handles customer-specific business logic including validation and processing of customer data.
 
-- **DatabaseWorker & PersistenceWorker:**  
+- **💾 DatabaseWorker & PersistenceWorker:**  
   Responsible for database migrations, seeding, and maintaining schema consistency automatically throughout development and deployment.
 
 ---
 
-## Communication and Messaging
+## 🔗 Communication and Messaging
 
-- **gRPC:**  
+- **⚡ gRPC:**  
   Used within `Connectiq.Contracts` to define service contracts and enable fast, type-safe RPC communication between services.
 
-- **RabbitMQ:**  
+- **🐰 RabbitMQ:**  
   Manages asynchronous messaging and event-driven communication between microservices ensuring loose coupling and scalability.
 
-- **CQRS (Command Query Responsibility Segregation):**  
+- **📐 CQRS (Command Query Responsibility Segregation):**  
   Command and query responsibilities are separated, improving scalability and maintainability.
 
-- **AutoMapper:**  
+- **🛠 AutoMapper:**  
   Used to simplify object-to-object mapping across DTOs, entities, and event messages.
 
 ---
 
-## Technologies Used
+## 🛠 Technologies Used
 
-- **.NET 8:**  
+- **🟣 .NET 8:**  
   Modern cross-platform framework powering the services.
 
-- **PostgreSQL:**  
+- **🐘 PostgreSQL:**  
   The relational database management system for persisting customer data.
 
-- **RabbitMQ:**  
+- **🐰 RabbitMQ:**  
   Message broker for event-driven asynchronous communication.
 
-- **gRPC:**  
+- **⚡ gRPC:**  
   Protocol for efficient communication and contract definition between services.
 
-- **AutoMapper:**  
+- **🛠 AutoMapper:**  
   Simplifies mapping between domain models and DTOs.
 
-- **MassTransit:**  
+- **📩 MassTransit:**  
   Abstraction over RabbitMQ to facilitate message handling.
 
-- **FluentValidation:**  
+- **✅ FluentValidation:**  
   For enforcing business rules and input validation on incoming data.
 
-- **GitHub Actions:**  
+- **⚙️ GitHub Actions:**  
   For CI/CD workflows and ensuring code quality through tests and coverage (planned).
 
 ---
 
-## What We've Implemented So Far
+## 📈 What We've Implemented So Far
 
-- Setup of PostgreSQL and RabbitMQ for persistence and messaging.
-- Defined domain contracts and messages with gRPC.
-- Implemented customer management microservice (`CustomerWorker`) with validation and event handling.
-- Automated database migrations and seeding with `DatabaseWorker` and `PersistenceWorker`.
-- Applied CQRS pattern separating commands and queries.
-- Configured object mapping using AutoMapper for clean DTO conversions.
+- Setup of PostgreSQL and RabbitMQ for persistence and messaging.  
+- Defined domain contracts and messages with gRPC.  
+- Implemented customer management microservice (`CustomerWorker`) with validation and event handling.  
+- Automated database migrations and seeding with `DatabaseWorker` and `PersistenceWorker`.  
+- Applied CQRS pattern separating commands and queries.  
+- Configured object mapping using AutoMapper for clean DTO conversions.  
 - Established a foundation for testing and code coverage to ensure quality and performance.
 
 ---
 
-## Next Steps
+## 🎯 Next Steps
 
-- Implement comprehensive unit and integration tests with coverage.
-- Add benchmark tests to measure performance.
-- Configure branch protections and CI/CD pipelines.
+- Implement comprehensive unit and integration tests with coverage.  
+- Add benchmark tests to measure performance.  
+- Configure branch protections and CI/CD pipelines.  
 - Extend microservices and communication contracts as needed.
 
 ---
 
-## How to Run
+## 🚀 How to Run
 
-1. Make sure you have PostgreSQL and RabbitMQ services running and accessible.
-2. The application uses **Aspire** for automatic configuration, so no manual `appsettings.json` setup is needed.
-3. Build and run the services using `dotnet run` or via Docker containers.
+1. Make sure you have PostgreSQL and RabbitMQ services running and accessible.  
+2. The application uses **Aspire** for automatic configuration, so no manual `appsettings.json` setup is needed.  
+3. Build and run the services using `dotnet run` or via Docker containers.  
 4. Interact with the services through the provided gRPC clients or API endpoints.
 
 ---
 
-Feel free to explore the repository and reach out for any questions or collaborations!
+## 🤝 Contributing
 
+Contributions are welcome! If you want to help improve Connectiq:
+
+- Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.  
+- Open issues to discuss features or bugs.  
+- Fork the repository and submit pull requests with clear descriptions and tests.
+
+---
+
+Feel free to explore the repository and reach out for any questions or collaborations!
