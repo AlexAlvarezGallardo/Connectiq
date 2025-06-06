@@ -1,0 +1,26 @@
+name: 🛠 Task
+description: Technical or refactoring task for the team
+title: "[Task] "
+labels: [task]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Task Summary
+      placeholder: "Refactor CustomerEventHandler"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Where is the code? Why is this being worked on?
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: Define when the task is done.
+      placeholder: |
+        - [ ] Refactor applied
+        - [ ] Tests updated
+        - [ ] No regressions
