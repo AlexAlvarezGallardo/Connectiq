@@ -11,7 +11,7 @@ using Moq;
 using Xunit;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace Connectiq.CustomerWorker.Tests.Events;
+namespace Connectiq.CustomerWorker.UnitTests.Events;
 
 public class CustomerCreatedEventTests
 {
@@ -19,6 +19,7 @@ public class CustomerCreatedEventTests
     readonly Mock<IMapper> _mapperMock = new();
     readonly Mock<IValidator<CustomerValidated>> _validatorMock = new();
     readonly Mock<IPublishEndpoint> _busMock = new();
+    readonly string _jsonDataEntity = typeof(GrpcCustomers.Customer).Name;
 
     readonly CustomerCreatedEvent _consumer;
 
@@ -34,8 +35,8 @@ public class CustomerCreatedEventTests
     [Fact]
     public async Task Consume_ShouldPublishValidatedCustomer_WhenValidationSucceeds()
     {
-        var customerCreatedPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
-        var customerValidatedPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
+        var customerCreatedPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerCreated.json");
+        var customerValidatedPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerValidated.json");
 
         var customerCreated = JsonDataLoader.LoadFromFile<CustomerCreated>(customerCreatedPath);
         var expectedValidated = JsonDataLoader.LoadFromFile<CustomerValidated>(customerValidatedPath);
@@ -79,9 +80,9 @@ public class CustomerCreatedEventTests
     [Fact]
     public async Task Consume_ShouldPublishNotValidatedCustomer_WhenValidationFails()
     {
-        var customerCreatedPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
-        var customerValidatedPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
-        var customerNotValidatedPath = JsonDataLoader.GetDataPath("CustomerNotValidated.json");
+        var customerCreatedPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerCreated.json");
+        var customerValidatedPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerValidated.json");
+        var customerNotValidatedPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerNotValidated.json");
 
         var customerCreated = JsonDataLoader.LoadFromFile<CustomerCreated>(customerCreatedPath);
         var customerValidated = JsonDataLoader.LoadFromFile<CustomerValidated>(customerValidatedPath);
@@ -95,10 +96,10 @@ public class CustomerCreatedEventTests
         _mapperMock.Setup(m => m.Map<CustomerNotValidated>(customerCreated)).Returns(expectedNotValidated);
 
         _validatorMock.Setup(x => x.ValidateAsync(It.IsAny<CustomerValidated>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new ValidationResult(new List<ValidationFailure>
+            .ReturnsAsync(new ValidationResult
             {
-            new ValidationFailure("Name", "Name is required")
-            }));
+                Errors = { new ValidationFailure("Name", "Name is required") }
+            });
 
         CustomerNotValidated? actualPublished = null;
         _busMock.Setup(b => b.Publish(It.IsAny<CustomerNotValidated>(), It.IsAny<CancellationToken>()))

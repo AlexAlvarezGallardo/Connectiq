@@ -17,6 +17,7 @@ public class CreateCustomerCommandHandlerTests
     private readonly Mock<IPublishEndpoint> _publisherMock = new();
     private readonly Mock<IValidator<CustomerCreated>> _validatorMock = new();
     private readonly Mock<IMapper> _mapperMock = new();
+    readonly string _jsonDataEntity = typeof(GrpcCustomers.Customer).Name;
 
     private readonly CreateCustomerCommandHandler _handler;
 
@@ -32,7 +33,7 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnTrue_And_Publish_When_Validation_Succeeds()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var customerInputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
         var command = new CreateCustomerCommand(input);
@@ -59,7 +60,7 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnFalse_AndNotPublish_When_Validation_Fails()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var customerInputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
         var command = new CreateCustomerCommand(input);

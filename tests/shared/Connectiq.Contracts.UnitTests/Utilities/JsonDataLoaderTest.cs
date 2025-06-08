@@ -4,14 +4,16 @@ using FluentAssertions;
 using System.Text.Json;
 using Xunit;
 
-namespace Connectiq.Contracts.Tests.Utilities;
+namespace Connectiq.Contracts.UnitTests.Utilities;
 
 public class JsonDataLoaderTest
 {
+    readonly string _jsonDataEntity = typeof(GrpcCustomers.Customer).Name;
+
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson()
     {
-        var path = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var path = JsonDataLoader.GetDataPath(_jsonDataEntity, "CreateCustomerInput.json");
         var result = JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
         result.Should().NotBeNull();
@@ -20,7 +22,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException()
     {   
-        var path = JsonDataLoader.GetDataPath("NotExist.json");
+        var path = JsonDataLoader.GetDataPath(_jsonDataEntity, "NotExist.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
@@ -32,7 +34,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_JsonException()
     {
-        var path = JsonDataLoader.GetDataPath("InvalidCustomerInput.json");
+        var path = JsonDataLoader.GetDataPath(_jsonDataEntity, "InvalidCustomerInput.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
@@ -43,7 +45,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_InvalidOperationException()
     {
-        var path = JsonDataLoader.GetDataPath("NullLiteral.json");
+        var path = JsonDataLoader.GetDataPath(_jsonDataEntity, "NullLiteral.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 

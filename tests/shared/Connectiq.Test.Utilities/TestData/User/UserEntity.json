@@ -1,0 +1,9 @@
+{
+  "Id": "4f6d9a88-3f32-4d48-b2a8-5f4db9d43f1c",
+  "Username": "anotheruser",
+  "PasswordHash": "securehash",
+  "Email": "another@example.com",
+  "CreatedAt": "2025-06-06T12:00:00Z",
+  "IsActive": false,
+  "Roles": [ 1, 3 ]
+}

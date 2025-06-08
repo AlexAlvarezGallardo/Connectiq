@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Google.Protobuf;
+using System.Text.Json;
 
 namespace Connectiq.Tests.Utilities;
 
@@ -16,9 +17,9 @@ public static class JsonDataLoader
                ?? throw new InvalidOperationException("Deserialization returned null");
     }
 
-    public static string GetDataPath(string jsonName)
+    public static string GetDataPath(string entity, string jsonName)
     {
         var basePath = Directory.GetCurrentDirectory();
-        return Path.Combine(basePath, "TestData", "Customers", jsonName);
+        return Path.Combine(basePath, "TestData", entity, jsonName);
     }
 }

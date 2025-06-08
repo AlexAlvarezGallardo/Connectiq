@@ -8,23 +8,19 @@ using Moq;
 using PersistenceWorker.Consumers.Customers;
 using PersistenceWorker.Repository;
 
-namespace Connectiq.PersistenceWorker.Tests.Consumers.Customers;
+namespace Connectiq.PersistenceWorker.UnitTests.Consumers.Customers;
 
-public class CustomerValidatedEventTests : IClassFixture<MapperFixture>
+public class CustomerValidatedEventTests(MapperFixture fixture) : IClassFixture<MapperFixture>
 {
     readonly Mock<IRepository<CustomerEntity>> _repositoryMock = new();
     readonly Mock<ConsumeContext<CustomerValidated>> _contextMock = new();
-    readonly IMapper _mapper;
-
-    public CustomerValidatedEventTests(MapperFixture fixture)
-    {
-        _mapper = fixture.Mapper;
-    }
+    readonly IMapper _mapper = fixture.Mapper;
+    readonly string _jsonDataEntity = typeof(GrpcCustomers.Customer).Name;
 
     [Fact]
     public async Task Consume_Should_Map_And_Insert_CustomerEntity()
     {
-        var jsonPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
+        var jsonPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "CustomerValidated.json");
         var customerValidated = JsonDataLoader.LoadFromFile<CustomerValidated>(jsonPath);
 
         var expectedEntity = _mapper.Map<CustomerEntity>(customerValidated);

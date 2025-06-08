@@ -26,6 +26,7 @@
     <ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\DatabaseWorker\DatabaseWorker.csproj" />
     <ProjectReference Include="..\PersistenceWorker\PersistenceWorker.csproj" />
+    <ProjectReference Include="..\UserWorker\UserWorker.csproj" />
   </ItemGroup>
 
 </Project>

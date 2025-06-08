@@ -1,0 +1,12 @@
+{
+  "createdAt": "2025-06-08T14:30:00Z",
+  "email": "alex.doe@example.com",
+  "id": "6fa459ea-ee8a-3ca4-894e-db77e160355e",
+  "isActive": true,
+  "passwordHash": "hashedPassword123",
+  "roles": [
+    "ADMIN",
+    "USER"
+  ],
+  "username": "alex"
+}

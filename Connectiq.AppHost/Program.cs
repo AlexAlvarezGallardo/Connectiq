@@ -29,4 +29,6 @@ builder.AddProject<Projects.Connectiq_API>("connectiq-api")
     .WithReference(rabbitMQ)
     .WaitFor(rabbitMQ);
 
+builder.AddProject<Projects.UserWorker>("userworker");
+
 builder.Build().Run();
