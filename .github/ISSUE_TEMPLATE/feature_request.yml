@@ -25,6 +25,14 @@ body:
     validations:
       required: true
   - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: Define the conditions that must be met for this feature to be complete.
+      placeholder: "- Criteria 1\n- Criteria 2"
+    validations:
+      required: true
+  - type: textarea
     id: alternatives
     attributes:
       label: Alternatives considered
@@ -38,3 +46,7 @@ body:
       description: Add any other context or screenshots about the feature request here.
     validations:
       required: false
+  - type: hidden
+    id: status
+    attributes:
+      value: "Todo"
