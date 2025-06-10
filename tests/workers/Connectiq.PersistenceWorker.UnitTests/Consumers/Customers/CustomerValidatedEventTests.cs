@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Connectiq.Contracts.Customer;
+using Connectiq.Contracts.Interfaces;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
 using FluentAssertions;
 using MassTransit;
 using Moq;
 using PersistenceWorker.Consumers.Customers;
-using PersistenceWorker.Repository;
 
 namespace Connectiq.PersistenceWorker.UnitTests.Consumers.Customers;
 

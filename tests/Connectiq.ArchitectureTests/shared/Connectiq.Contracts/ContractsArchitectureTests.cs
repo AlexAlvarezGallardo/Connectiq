@@ -29,7 +29,7 @@ public class ContractsArchitectureTests
 
     [Theory]
     [InlineData(typeof(CustomerEntity), "Customer")]
-    public void Every_Folder_Should_Contain_Entity_Validator_MapperProfile_And_Proto(Type entityType, string folderName)
+    public void Every_Domain_Folder_Should_Contain_Entity_Validator_MapperProfile_And_Proto(Type entityType, string folderName)
     {
         ArgumentNullException.ThrowIfNull(entityType);
         ArgumentNullException.ThrowIfNull(folderName);
@@ -42,6 +42,7 @@ public class ContractsArchitectureTests
 
         var byFolder = allTypes
             .GroupBy(t => t.Namespace?.Split('.').Last())
+            .Where(g => g.Key != "Interfaces")
             .ToList();
 
         foreach (var folder in byFolder)
@@ -56,7 +57,7 @@ public class ContractsArchitectureTests
                 .Contain(t => t.Name.EndsWith("MapperProfile"), $"The folder {folderName} must contain at least one class ending with 'MapperProfile'.");
 
             var baseDir = Path.Combine(AppContext.BaseDirectory, folderName!);
-            var protoFiles = Directory.Exists(baseDir) ? Directory.GetFiles(baseDir, "*.proto") : Array.Empty<string>();
+            var protoFiles = Directory.Exists(baseDir) ? Directory.GetFiles(baseDir, "*.proto") : [];
             
             protoFiles
                 .Should()

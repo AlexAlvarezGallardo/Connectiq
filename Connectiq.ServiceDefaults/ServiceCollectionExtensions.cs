@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,5 +21,15 @@ public static partial class ServiceCollectionExtensions
                     cfg.ConfigureEndpoints(ctx);
                 });
             });
+
+    public static IServiceCollection AddInfrastructureServices<TContext>(this IServiceCollection services, IConfiguration configuration, string dbName)
+        where TContext : DbContext
+    {
+        return services
+            .AddDbContext<TContext>(options =>
+            {
+                options.UseNpgsql(configuration.GetConnectionString(dbName));
+            });
+    }
 }
 

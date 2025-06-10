@@ -1,4 +1,5 @@
 ﻿using Connectiq.Contracts.Customer;
+using Connectiq.Contracts.Interfaces;
 using PersistenceWorker.Repository;
 
 namespace Microsoft.Extensions.DependencyInjection;

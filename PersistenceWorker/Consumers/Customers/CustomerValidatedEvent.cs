@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Connectiq.Contracts.Customer;
+using Connectiq.Contracts.Interfaces;
 using MassTransit;
-using PersistenceWorker.Repository;
 
 namespace PersistenceWorker.Consumers.Customers;
 

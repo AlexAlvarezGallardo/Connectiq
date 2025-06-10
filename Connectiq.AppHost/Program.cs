@@ -4,15 +4,18 @@ var postgresServer = builder
     .AddPostgres("postgres")
     .WithPgWeb();
 
-var postgresDb = postgresServer
+var connectiqDb = postgresServer
     .AddDatabase("connectiq");
+
+var usersDb = postgresServer
+    .AddDatabase("users");
 
 var rabbitMQ = builder.AddRabbitMQ("rabbitmq")
     .WithManagementPlugin();
 
 var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
-    .WithReference(postgresDb)
-    .WaitFor(postgresDb);
+    .WithReference(connectiqDb)
+    .WaitFor(connectiqDb);
 
 builder.AddProject<Projects.CustomerWorker>("customerworker")
     .WithReference(rabbitMQ)
@@ -21,7 +24,7 @@ builder.AddProject<Projects.CustomerWorker>("customerworker")
 
 builder.AddProject<Projects.PersistenceWorker>("persistenceworker")
     .WithReference(rabbitMQ)
-    .WithReference(postgresDb)
+    .WithReference(connectiqDb)
     .WaitForCompletion(dbWorker)
     .WaitFor(rabbitMQ);
 
@@ -29,6 +32,8 @@ builder.AddProject<Projects.Connectiq_API>("connectiq-api")
     .WithReference(rabbitMQ)
     .WaitFor(rabbitMQ);
 
-builder.AddProject<Projects.UserWorker>("userworker");
+builder.AddProject<Projects.UserWorker>("userworker")
+    .WithReference(usersDb)
+    .WaitFor(usersDb);
 
 builder.Build().Run();

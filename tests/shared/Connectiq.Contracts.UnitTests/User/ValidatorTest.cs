@@ -1,4 +1,5 @@
-﻿using Connectiq.Contracts.User;
+﻿using Connectiq.Contracts.Customer;
+using Connectiq.Contracts.User;
 using Connectiq.GrpcUsers;
 using FluentValidation.Validators;
 using FluentValidation.Validators.UnitTestExtension.Composer;
@@ -10,42 +11,58 @@ namespace Connectiq.Contracts.UnitTests.User;
 
 public class ValidatorTest
 {
-    readonly UserValidator userValidator = new();
+    readonly CreateUserInputValidator _createUserInputValidator = new();
+    readonly CreateUserValidator _createUserValidator = new();
 
     [Fact]
-    public void When_UserValidatorConstructing_Then_5PropertiesShouldHaveRules()
+    public void When_CreateUserInputValidatorConstructing_Then_3PropertiesShouldHaveRules()
     {
-        userValidator.ShouldHaveRulesCount(5);
+        _createUserInputValidator.ShouldHaveRulesCount(3);
     }
 
     [Fact]
-    public void When_UserValidatorConstructing_Then_RulesAreConfiguredCorrectly()
+    public void When_CreateUserInputValidatorConstructing_Then_RulesAreConfiguredCorrectly()
     {
-        userValidator.ShouldHaveRules(x => x.Username,
+        _createUserInputValidator.ShouldHaveRules(x => x.User.Username,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<GrpcUsers.User, string>>()
-             .AddPropertyValidatorVerifier<LengthValidator<GrpcUsers.User>>(3, 50)
+             .AddPropertyValidatorVerifier<NotEmptyValidator<CreateUserInput, string>>()
+             .AddPropertyValidatorVerifier<LengthValidator<CreateUserInput>>(3, 50)
              .Create());
 
-        userValidator.ShouldHaveRules(x => x.PasswordHash,
+        _createUserInputValidator.ShouldHaveRules(x => x.User.Password,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<GrpcUsers.User, string>>()
+             .AddPropertyValidatorVerifier<NotEmptyValidator<CreateUserInput, string>>()
              .Create());
 
-        userValidator.ShouldHaveRules(x => x.Email,
+        _createUserInputValidator.ShouldHaveRules(x => x.User.Roles,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<GrpcUsers.User, string>>()
-             .AddPropertyValidatorVerifier<AspNetCoreCompatibleEmailValidator<GrpcUsers.User>>()
+             .AddPropertyValidatorVerifier<NotNullValidator<CreateUserInput, RepeatedField<Role>>>()
+             .Create());
+    }
+
+    [Fact]
+    public void When_CreateUserValidatorConstructing_Then_4PropertiesShouldHaveRules()
+    {
+        _createUserValidator.ShouldHaveRulesCount(4);
+    }
+
+    [Fact]
+    public void When_CreateUserValidatorConstructing_Then_RulesAreConfiguredCorrectly()
+    {
+        _createUserValidator.ShouldHaveRules(x => x.EventId,
+            BaseVerifiersSetComposer.Build()
+             .AddPropertyValidatorVerifier<NotEmptyValidator<CreateUser, string>>()
              .Create());
 
-        userValidator.ShouldHaveRules(x => x.Roles,
+        _createUserValidator.ShouldHaveRules(x => x.IsActive,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotNullValidator<GrpcUsers.User, RepeatedField<Role>>>()
+             .AddPropertyValidatorVerifier<NotNullValidator<CreateUser, bool>>()
              .Create());
 
-        userValidator.ShouldHaveRules(x => x.CreatedAt.ToDateTimeOffset(),
+        _createUserValidator.ShouldHaveRules(x => x.UserValidated.CreatedAt,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<LessThanOrEqualValidator<GrpcUsers.User, DateTimeOffset>>()
-             .Create());
+                .AddPropertyValidatorVerifier<NotNullValidator<CreateUser, DateTimeOffset>>()
+                .AddPropertyValidatorVerifier<LessThanOrEqualValidator<CreateUser, DateTimeOffset>>()
+                .Create());
     }
 }

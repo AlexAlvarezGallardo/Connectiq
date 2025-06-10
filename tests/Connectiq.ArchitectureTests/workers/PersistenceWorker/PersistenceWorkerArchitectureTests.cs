@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
+﻿using Connectiq.Contracts.Interfaces;
+using FluentAssertions;
 using NetArchTest.Rules;
-using PersistenceWorker.Repository;
 using System.Reflection;
 
-namespace Connectiq.ArchitectureTests;
+namespace Connectiq.ArchitectureTests.workers.PersistenceWorker;
 
 public class PersistenceWorkerArchitectureTests
 {

@@ -5,8 +5,6 @@ using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
 using FluentAssertions;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
-using System.IO;
 using Xunit;
 
 namespace Connectiq.Contracts.UnitTests.User;
@@ -17,41 +15,49 @@ public class UserMapperProfileTest(MapperFixture fixture) : IClassFixture<Mapper
     readonly string _jsonDataEntity = typeof(GrpcUsers.User).Name;
 
     [Fact]
-    public void Should_Map_User_To_UserEntity()
+    public void Should_Map_CreateUserInput_To_UserValidated()
     {
         var inputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "User.json");
-        var json = File.ReadAllText(inputPath);
-        var input = JsonParser.Default.Parse<GrpcUsers.User>(json);
-        var result = _mapper.Map<UserEntity>(input);
+        var user = GrpcUsers.User.Parser.ParseJson(File.ReadAllText(inputPath));
+        var input = _mapper.Map<CreateUserInput>(user);
+        var result = _mapper.Map<UserValidated>(input);
 
-        result.Id.Should().Be(Guid.Parse("6fa459ea-ee8a-3ca4-894e-db77e160355e"));
-        result.Username.Should().Be("alex");
-        result.PasswordHash.Should().Be("hashedPassword123");
-        result.Email.Should().Be("alex.doe@example.com");
-        result.CreatedAt.Should().Be(DateTimeOffset.Parse("2025-06-08T14:30:00Z"));
-        result.IsActive.Should().BeTrue();
+        result.CreateUserInput.User.Username.Should().Be("Alex");
+        result.CreateUserInput.User.Password.Should().Be("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6");
         var expectedRoles = new List<Role> { Role.Admin, Role.User };
-        result.Roles.Should().BeEquivalentTo(expectedRoles);
+        result.CreateUserInput.User.Roles.Should().BeEquivalentTo(expectedRoles);
+        result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
+        result.IsValid.Should().BeTrue();
     }
 
     [Fact]
-    public void Should_Map_UserEntity_To_User()
+    public void Should_Map_CreateUserInput_To_UserNotValidated()
     {
-        var inputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "UserEntity.json");
-        var userEntity = JsonDataLoader.LoadFromFile<UserEntity>(inputPath);
+        var inputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "User.json");
+        var user = GrpcUsers.User.Parser.ParseJson(File.ReadAllText(inputPath));
+        var input = _mapper.Map<CreateUserInput>(user);
+        var result = _mapper.Map<UserNotValidated>(input);
 
-        var result = _mapper.Map<GrpcUsers.User>(userEntity);
+        result.CreateUserInput.User.Username.Should().Be("Alex");
+        result.CreateUserInput.User.Password.Should().Be("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6");
+        var expectedRoles = new List<Role> { Role.Admin, Role.User };
+        result.CreateUserInput.User.Roles.Should().BeEquivalentTo(expectedRoles);
+        result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
+        result.IsValid.Should().BeFalse();
+    }
 
-        result.Id.Should().Be("4f6d9a88-3f32-4d48-b2a8-5f4db9d43f1c");
-        result.Username.Should().Be("anotheruser");
-        result.PasswordHash.Should().Be("securehash");
-        result.Email.Should().Be("another@example.com");
-        
-        var expectedTimestamp = Timestamp.FromDateTime(DateTime.Parse("2025-06-06T12:00:00Z").ToUniversalTime());
-        result.CreatedAt.Should().Be(expectedTimestamp);
-        result.IsActive.Should().BeFalse();
+    [Fact]
+    public void Should_Map_UserValidated_To_CreateUser()
+    {
+        var inputPath = JsonDataLoader.GetDataPath(_jsonDataEntity, "UserValidated.json");
+        var createUser = JsonDataLoader.LoadFromFile<UserValidated>(inputPath);
 
-        var expectedRoles = new[] { Role.User, Role.SuperAdmin };
-        result.Roles.Should().BeEquivalentTo(expectedRoles);
+        var result = _mapper.Map<CreateUser>(createUser);
+
+        result.UserValidated.CreateUserInput.User.Username.Should().Be("Alex");
+        result.UserValidated.CreateUserInput.User.Password.Should().Be("otraHashDePasswordXYZ");
+        result.UserValidated.CreatedAt.Should().Be(DateTimeOffset.Parse("2025-06-10T16:01:09.1234567+02:00"));
+        result.UserValidated.IsValid.Should().BeTrue();
+        result.IsActive.Should().BeTrue();
     }
 }

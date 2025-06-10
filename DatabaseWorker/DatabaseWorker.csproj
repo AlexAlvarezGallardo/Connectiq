@@ -21,5 +21,6 @@
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
     <ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\PersistenceWorker\PersistenceWorker.csproj" />
+    <ProjectReference Include="..\UserWorker\UserWorker.csproj" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿using PersistenceWorker.Infrastructure;
+﻿using Connectiq.Contracts.Interfaces;
+using PersistenceWorker.Infrastructure;
 
 namespace PersistenceWorker.Repository;
 

@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ArchitectureTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserWorker", "UserWorker\UserWorker.csproj", "{3B0D7EFA-78CE-4849-918A-48A7FD1AAD0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ProjectDefaults", "Connectiq.ProjectDefaults\Connectiq.ProjectDefaults.csproj", "{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{3B0D7EFA-78CE-4849-918A-48A7FD1AAD0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B0D7EFA-78CE-4849-918A-48A7FD1AAD0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B0D7EFA-78CE-4849-918A-48A7FD1AAD0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{4E3E90B9-0A69-48D6-9D77-EB01F7AA2006} = {943C1A0B-48D0-4A86-9F3E-8DFEF5405D1B}
 		{8C9CC088-A140-4DCD-9CBC-3B2567971C3A} = {943C1A0B-48D0-4A86-9F3E-8DFEF5405D1B}
 		{3B0D7EFA-78CE-4849-918A-48A7FD1AAD0E} = {753A0980-A4E9-420C-8468-591BC6C838A9}
+		{19A0F5BE-8006-4D91-B9ED-25FC68BE3B3E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53A7E3C7-3F03-4DD5-8D64-FF05E316E7D7}

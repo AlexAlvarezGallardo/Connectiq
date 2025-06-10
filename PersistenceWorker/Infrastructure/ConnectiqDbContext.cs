@@ -6,6 +6,8 @@ namespace PersistenceWorker.Infrastructure;
 public class ConnectiqDbContext(DbContextOptions<ConnectiqDbContext> options)
     : DbContext(options)
 {
+    public static string SchemaName { get; } = "connectiq";
+
     public DbSet<CustomerEntity> Customers => Set<CustomerEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
