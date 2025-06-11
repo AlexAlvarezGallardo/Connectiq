@@ -15,7 +15,9 @@ var rabbitMQ = builder.AddRabbitMQ("rabbitmq")
 
 var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
     .WithReference(connectiqDb)
-    .WaitFor(connectiqDb);
+    .WithReference(usersDb)
+    .WaitFor(connectiqDb)
+    .WaitFor(usersDb);
 
 builder.AddProject<Projects.CustomerWorker>("customerworker")
     .WithReference(rabbitMQ)
@@ -34,6 +36,7 @@ builder.AddProject<Projects.Connectiq_API>("connectiq-api")
 
 builder.AddProject<Projects.UserWorker>("userworker")
     .WithReference(usersDb)
+    .WaitForCompletion(dbWorker)
     .WaitFor(usersDb);
 
 builder.Build().Run();

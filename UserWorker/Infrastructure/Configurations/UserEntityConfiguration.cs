@@ -1,6 +1,7 @@
 ﻿using Connectiq.Contracts.User;
 using Connectiq.GrpcUsers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace UserWorker.Infrastructure.Configurations;
@@ -26,10 +27,15 @@ public class UserEntityConfiguration : IEntityTypeConfiguration<UserEntity>
 
         builder.Property(c => c.Roles)
             .HasConversion(
-                v => v.Select(r => r.ToString()).ToArray(),
-                v => v.Select(s => Enum.Parse<Role>(s)).ToList()
+                v => v.Select(r => r.ToString()).ToArray(),                   
+                v => v.Select(s => Enum.Parse<Role>(s)).ToArray()            
             )
-            .HasColumnType("text[]");
+            .HasColumnType("text[]")
+            .Metadata.SetValueComparer(new ValueComparer<Role[]>(
+                (c1, c2) => c1!.SequenceEqual(c2!),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToArray()
+            ));
 
         builder.Property(c => c.EventId)
             .IsRequired();

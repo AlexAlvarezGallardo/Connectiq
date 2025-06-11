@@ -1,3 +1,122 @@
-{
-
-}
+[
+  {
+    "Username": "user01",
+    "PasswordHash": "hash_01",
+    "CreatedAt": "2025-06-01T10:00:00Z",
+    "IsActive": true,
+    "EventId": "f66e2974-1d57-4eb0-b51f-720b0cf11c25",
+    "Roles": [ 1 ]
+  },
+  {
+    "Username": "user02",
+    "PasswordHash": "hash_02",
+    "CreatedAt": "2025-06-01T10:10:00Z",
+    "IsActive": true,
+    "EventId": "9d972eec-9a56-4a6c-bc17-1e2c3a948b9f",
+    "Roles": [ 2 ]
+  },
+  {
+    "Username": "user03",
+    "PasswordHash": "hash_03",
+    "CreatedAt": "2025-06-01T10:20:00Z",
+    "IsActive": false,
+    "EventId": "f3c51df1-6225-47f5-8b3c-27ec7fdac4c3",
+    "Roles": [ 1 ]
+  },
+  {
+    "Username": "user04",
+    "PasswordHash": "hash_04",
+    "CreatedAt": "2025-06-01T10:30:00Z",
+    "IsActive": true,
+    "EventId": "c682ce28-464b-42c2-8b35-9b7606b33932",
+    "Roles": [ 3 ]
+  },
+  {
+    "Username": "user05",
+    "PasswordHash": "hash_05",
+    "CreatedAt": "2025-06-01T10:40:00Z",
+    "IsActive": false,
+    "EventId": "b3b3fcb6-0b17-487a-a6d9-51a9e3245d2d",
+    "Roles": [ 0 ]
+  },
+  {
+    "Username": "user06",
+    "PasswordHash": "hash_06",
+    "CreatedAt": "2025-06-01T10:50:00Z",
+    "IsActive": true,
+    "EventId": "5e3a20a9-0503-4d6c-8e3c-10a4cd8c86b5",
+    "Roles": [ 1, 2 ]
+  },
+  {
+    "Username": "user07",
+    "PasswordHash": "hash_07",
+    "CreatedAt": "2025-06-01T11:00:00Z",
+    "IsActive": true,
+    "EventId": "73ce1e25-1988-4fd5-94fa-28ea662f6a2e",
+    "Roles": [ 1 ]
+  },
+  {
+    "Username": "user08",
+    "PasswordHash": "hash_08",
+    "CreatedAt": "2025-06-01T11:10:00Z",
+    "IsActive": false,
+    "EventId": "fe93f8c7-b201-4203-97b7-39a5388726cc",
+    "Roles": [ 2 ]
+  },
+  {
+    "Username": "user09",
+    "PasswordHash": "hash_09",
+    "CreatedAt": "2025-06-01T11:20:00Z",
+    "IsActive": true,
+    "EventId": "da9a86fc-d206-4e68-9b25-984c6b0f05f7",
+    "Roles": [ 1 ]
+  },
+  {
+    "Username": "user10",
+    "PasswordHash": "hash_10",
+    "CreatedAt": "2025-06-01T11:30:00Z",
+    "IsActive": true,
+    "EventId": "0f2a061b-fba1-42d0-964b-2680f1637cf9",
+    "Roles": [ 2, 3 ]
+  },
+  {
+    "Username": "user11",
+    "PasswordHash": "hash_11",
+    "CreatedAt": "2025-06-01T11:40:00Z",
+    "IsActive": false,
+    "EventId": "3e89a63b-9c57-463e-bdb1-4f9a51276e1b",
+    "Roles": [ 1 ]
+  },
+  {
+    "Username": "user12",
+    "PasswordHash": "hash_12",
+    "CreatedAt": "2025-06-01T11:50:00Z",
+    "IsActive": true,
+    "EventId": "2747ef38-48c0-4a59-b6a8-22cb493b9f3b",
+    "Roles": []
+  },
+  {
+    "Username": "user13",
+    "PasswordHash": "hash_13",
+    "CreatedAt": "2025-06-01T12:00:00Z",
+    "IsActive": true,
+    "EventId": "6c172b2c-e3d4-4f9b-a3dc-85c9e1f9eb46",
+    "Roles": [ 3 ]
+  },
+  {
+    "Username": "user14",
+    "PasswordHash": "hash_14",
+    "CreatedAt": "2025-06-01T12:10:00Z",
+    "IsActive": false,
+    "EventId": "54eab8fa-0177-4e4e-b95b-c7233e947b2a",
+    "Roles": [ 1, 2 ]
+  },
+  {
+    "Username": "user15",
+    "PasswordHash": "hash_15",
+    "CreatedAt": "2025-06-01T12:20:00Z",
+    "IsActive": true,
+    "EventId": "229db948-fd7e-4d4e-8c43-d6e45d7cfbe7",
+    "Roles": [ 0 ]
+  }
+]

@@ -10,5 +10,5 @@ public class UserEntity
     public required DateTimeOffset CreatedAt { get; set; }
     public required bool IsActive { get; set; }
     public required Guid EventId { get; set; }
-    public required ICollection<Role> Roles { get; set; } = Enumerable.Empty<Role>().ToList();
+    public required Role[] Roles { get; set; } = [];
 }
