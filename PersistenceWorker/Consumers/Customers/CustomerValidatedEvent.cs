@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain;
+using CustomerWorker.Domain.Commands;
 using MassTransit;
 using PersistenceWorker.Repository;
 

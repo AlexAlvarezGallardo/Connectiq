@@ -1,4 +1,4 @@
-﻿namespace Connectiq.Contracts.Customer;
+﻿namespace CustomerWorker.Domain.Commands;
 
 public record CustomerData
 {

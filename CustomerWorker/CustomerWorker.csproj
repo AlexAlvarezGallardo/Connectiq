@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Queries\" />
+  </ItemGroup>
+
 </Project>

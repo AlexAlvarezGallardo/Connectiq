@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Connectiq.Contracts.Customer;
+﻿namespace CustomerWorker.Domain;
 
 public class CustomerCreatedValidator : AbstractValidator<CustomerCreated>
 {

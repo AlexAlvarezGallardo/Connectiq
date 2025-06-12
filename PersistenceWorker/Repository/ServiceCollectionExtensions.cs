@@ -1,4 +1,4 @@
-﻿using Connectiq.Contracts.Customer;
+﻿using CustomerWorker.Domain;
 using PersistenceWorker.Repository;
 
 namespace Microsoft.Extensions.DependencyInjection;

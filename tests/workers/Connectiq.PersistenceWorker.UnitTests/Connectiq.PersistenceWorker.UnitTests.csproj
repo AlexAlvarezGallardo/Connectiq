@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\..\..\PersistenceWorker\PersistenceWorker.csproj" />
     <ProjectReference Include="..\..\shared\Connectiq.Test.Utilities\Connectiq.Tests.Utilities.csproj" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain;
 using Connectiq.Tests.Utilities;
 using FluentAssertions;
 using FluentValidation;
@@ -8,6 +8,7 @@ using FluentValidation.Results;
 using MassTransit;
 using Moq;
 using ValidationResult = FluentValidation.Results.ValidationResult;
+using CustomerWorker.Domain.Commands;
 
 namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 

@@ -1,4 +1,4 @@
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain;
 using FluentAssertions;
 using NetArchTest.Rules;
 using System.Reflection;
@@ -56,7 +56,7 @@ public class ContractsArchitectureTests
                 .Contain(t => t.Name.EndsWith("MapperProfile"), $"The folder {folderName} must contain at least one class ending with 'MapperProfile'.");
 
             var baseDir = Path.Combine(AppContext.BaseDirectory, folderName!);
-            var protoFiles = Directory.Exists(baseDir) ? Directory.GetFiles(baseDir, "*.proto") : Array.Empty<string>();
+            var protoFiles = Directory.Exists(baseDir) ? Directory.GetFiles(baseDir, "*.proto") : [];
             
             protoFiles
                 .Should()

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\CustomerWorker\CustomerWorker.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

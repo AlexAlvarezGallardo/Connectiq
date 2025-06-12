@@ -1,6 +1,3 @@
-using CustomerWorker;
-using CustomerWorker.Events;
-
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();

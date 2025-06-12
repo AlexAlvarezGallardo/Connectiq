@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain.Commands;
 using FluentValidation;
 using MassTransit;
 using MediatR;

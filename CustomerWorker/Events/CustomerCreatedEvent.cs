@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using Connectiq.Contracts.Customer;
-using FluentValidation;
-using MassTransit;
-
-namespace CustomerWorker.Events;
+﻿namespace CustomerWorker.Events;
 
 public class CustomerCreatedEvent(
     ILogger<CustomerCreatedEvent> _logger,

@@ -1,10 +1,10 @@
-﻿using Connectiq.Contracts.Customer;
-using Connectiq.Tests.Utilities;
+﻿using Connectiq.Tests.Utilities;
+using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using System.Text.Json;
 using Xunit;
 
-namespace Connectiq.Contracts.Tests.Utilities;
+namespace Connectiq.Contracts.UnitTests.Utilities;
 
 public class JsonDataLoaderTest
 {

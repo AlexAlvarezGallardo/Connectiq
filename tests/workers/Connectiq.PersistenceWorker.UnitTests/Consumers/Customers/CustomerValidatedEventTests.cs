@@ -1,25 +1,22 @@
 ﻿using AutoMapper;
-using Connectiq.Contracts.Customer;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
+using CustomerWorker.Domain;
+using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using MassTransit;
 using Moq;
 using PersistenceWorker.Consumers.Customers;
 using PersistenceWorker.Repository;
 
-namespace Connectiq.PersistenceWorker.Tests.Consumers.Customers;
+namespace Connectiq.PersistenceWorker.UnitTests.Consumers.Customers;
 
-public class CustomerValidatedEventTests : IClassFixture<MapperFixture>
+public class CustomerValidatedEventTests(MapperFixture fixture) : IClassFixture<MapperFixture>
 {
     readonly Mock<IRepository<CustomerEntity>> _repositoryMock = new();
     readonly Mock<ConsumeContext<CustomerValidated>> _contextMock = new();
-    readonly IMapper _mapper;
+    readonly IMapper _mapper = fixture.Mapper;
 
-    public CustomerValidatedEventTests(MapperFixture fixture)
-    {
-        _mapper = fixture.Mapper;
-    }
 
     [Fact]
     public async Task Consume_Should_Map_And_Insert_CustomerEntity()

@@ -1,5 +1,5 @@
 ﻿using Connectiq.API.Application.Customer.Commands;
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain.Commands;
 using MediatR;
 
 namespace Connectiq.API.GraphQL.Customer;

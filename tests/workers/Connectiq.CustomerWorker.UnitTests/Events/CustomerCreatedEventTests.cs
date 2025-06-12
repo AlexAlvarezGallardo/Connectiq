@@ -1,6 +1,6 @@
 using AutoMapper;
-using Connectiq.Contracts.Customer;
 using Connectiq.Tests.Utilities;
+using CustomerWorker.Domain.Commands;
 using CustomerWorker.Events;
 using FluentAssertions;
 using FluentValidation;
@@ -11,7 +11,7 @@ using Moq;
 using Xunit;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace Connectiq.CustomerWorker.Tests.Events;
+namespace Connectiq.CustomerWorker.UnitTests.Events;
 
 public class CustomerCreatedEventTests
 {

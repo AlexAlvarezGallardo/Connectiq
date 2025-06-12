@@ -1,4 +1,4 @@
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain;
 using DatabaseWorker.Domain.DbSeeder;
 using DatabaseWorker.Services;
 using Microsoft.AspNetCore.Hosting;

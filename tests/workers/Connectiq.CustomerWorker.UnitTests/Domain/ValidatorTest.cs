@@ -1,10 +1,9 @@
-﻿using Connectiq.Contracts.Customer;
+﻿using CustomerWorker.Domain;
+using CustomerWorker.Domain.Commands;
 using FluentValidation.Validators;
-using FluentValidation.Validators.UnitTestExtension.Composer;
-using FluentValidation.Validators.UnitTestExtension.Core;
 using Xunit;
 
-namespace Connectiq.Contracts.Tests.Customer;
+namespace Connectiq.Contracts.UnitTests.Customer;
 
 public class ValidatorTest
 {

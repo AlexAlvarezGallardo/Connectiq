@@ -1,4 +1,4 @@
-﻿using Connectiq.Contracts.Customer;
+﻿using CustomerWorker.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace PersistenceWorker.Infrastructure;

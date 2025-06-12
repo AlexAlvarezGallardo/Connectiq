@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Connectiq.Contracts.Customer;
+﻿namespace CustomerWorker.Domain.Commands;
 
 public class CustomerMapperProfile : Profile
 {
