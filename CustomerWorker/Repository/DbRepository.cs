@@ -1,8 +1,6 @@
-﻿using PersistenceWorker.Infrastructure;
+﻿namespace CustomerWorker.Repository;
 
-namespace PersistenceWorker.Repository;
-
-internal class DbRepository<TEntity>(ConnectiqDbContext _connectiqDbContext) : IRepository<TEntity>
+public class DbRepository<TEntity>(CustomerDbContext _connectiqDbContext) : IRepository<TEntity>
     where TEntity : class
 {
     public async Task<bool> InsertAsync(TEntity entity)

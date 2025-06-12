@@ -1,15 +1,11 @@
 {
-  "CustomerCreated": {
-    "CustomerData": {
-      "Name": "''",
-      "Address": "Elm Street",
-      "Phone": "111-222",
-      "Email": "john@email.com"
-    },
-    "IsActive": true,
-    "EventId": "1234567890"
+  "Customer": {
+    "Name": "John",
+    "Address": "Elm Street",
+    "Phone": "111-222",
+    "Email": "john@email.com"
   },
-  "CreatedAt": "2024-05-15T10:00:00+00:00",
-  "IsValid": false,
+  "IsActive": false,
+  "EventId": "1234567890",
   "NotValidatedMessage": "Customer data is not validated yet."
 }

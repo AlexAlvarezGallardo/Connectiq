@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PersistenceWorker.Migrations
+namespace CustomerWorker.Migrations
 {
     /// <inheritdoc />
     public partial class InitialProject : Migration

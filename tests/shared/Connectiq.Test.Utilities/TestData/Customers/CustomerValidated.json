@@ -1,14 +1,10 @@
 {
-  "CustomerCreated": {
-    "CustomerData": {
-      "Name": "John",
-      "Address": "Elm Street",
-      "Phone": "111-222",
-      "Email": "john@email.com"
-    },
-    "IsActive": true,
-    "EventId": "1234567890"
+  "Customer": {
+    "Name": "John",
+    "Address": "Elm Street",
+    "Phone": "111-222",
+    "Email": "john@email.com"
   },
-  "CreatedAt": "2024-05-15T10:00:00+00:00",
+  "CreatedAt": "2025-05-15T10:00:00+00:00",
   "IsValid": true
 }

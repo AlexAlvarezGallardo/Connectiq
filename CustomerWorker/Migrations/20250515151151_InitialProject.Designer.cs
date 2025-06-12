@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using PersistenceWorker.Infrastructure;
+using CustomerWorker.Infrastructure;
 
 #nullable disable
 
-namespace PersistenceWorker.Migrations
+namespace CustomerWorker.Migrations
 {
-    [DbContext(typeof(ConnectiqDbContext))]
-    partial class ConnectiqDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CustomerDbContext))]
+    [Migration("20250515151151_InitialProject")]
+    partial class InitialProject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

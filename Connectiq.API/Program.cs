@@ -13,8 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddGraphQLServices();
-builder.Services.AddContractsValidators();
-builder.Services.AddContractsAutoMapper();
+builder.Services.AddValidators<CustomerWorker.Worker>();
+builder.Services.AddAutoMapper<CustomerWorker.Worker>();
 builder.Services.AddMessagingServices(builder.Configuration);
 
 var app = builder.Build();

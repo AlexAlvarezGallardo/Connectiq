@@ -1,73 +1,75 @@
 using AutoMapper;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
+using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using Xunit;
 
-namespace Connectiq.Contracts.Tests.Customer;
+namespace Connectiq.CustomerWorker.UnitTests.Domain;
 
-public class CustomerMapperProfileTest : IClassFixture<MapperFixture>
+public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<MapperFixture>
 {
-    readonly IMapper _mapper;
-
-    public CustomerMapperProfileTest(MapperFixture fixture)
-    {
-        _mapper = fixture.Mapper;
-    }
+    readonly IMapper _mapper =  fixture.Mapper;
 
     [Fact]
-    public void Map_CreateCustomerInput_To_CustomerCreated_ShouldMapCorrectly()
+    public void Map_CreateCustomerInput_To_CustomerValidated_ShouldMapCorrectly()
     {
         var inputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
-        var result = _mapper.Map<CustomerCreated>(input);
-
-        result.CustomerData.Should().NotBeNull();
-        result.CustomerData.Name.Should().Be("Juan");
-        result.CustomerData.Address.Should().Be("Calle 123");
-        result.CustomerData.Phone.Should().Be("555-1234");
-        result.CustomerData.Email.Should().Be("juan@email.com");
-    }
-
-    [Fact]
-    public void Map_CustomerCreated_To_CustomerValidated_ShouldMapCorrectly()
-    {
-        var inputPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
-        var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
         var result = _mapper.Map<CustomerValidated>(input);
 
-        result.CustomerCreated.Should().BeEquivalentTo(input);
-        result.IsValid.Should().BeTrue();
+        result.Customer.Should().NotBeNull();
+        result.Customer.Name.Should().Be("Juan");
+        result.Customer.Address.Should().Be("Calle 123");
+        result.Customer.Phone.Should().Be("555-1234");
+        result.Customer.Email.Should().Be("juan@email.com");
         result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
+        result.IsValid.Should().BeTrue();
     }
 
     [Fact]
-    public void Map_CustomerCreated_To_CustomerNotValidated_ShouldMapCorrectly()
+    public void Map_CreateCustomerInput_To_CustomerNotValidated_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath("CustomerCreated.json");
-        var input = JsonDataLoader.LoadFromFile<CustomerCreated>(inputPath);
+        var inputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerNotValidated>(input);
 
-        result.CustomerCreated.Should().BeEquivalentTo(input);
-        result.CreatedAt.Should().Be(default);
-        result.IsValid.Should().Be(default);
-        result.NotValidatedMessage.Should().BeNull();
+        result.Customer.Should().NotBeNull();
+        result.Customer.Name.Should().Be("Juan");
+        result.Customer.Address.Should().Be("Calle 123");
+        result.Customer.Phone.Should().Be("555-1234");
+        result.Customer.Email.Should().Be("juan@email.com");
+        result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
+        result.IsValid.Should().BeFalse();
     }
 
     [Fact]
-    public void Map_CustomerValidated_To_CustomerEntity_ShouldMapCorrectly()
+    public void Map_CustomerValidated_To_CustomerCreate_ShouldMapCorrectly()
     {
         var inputPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
+        var result = _mapper.Map<CustomerCreate>(input);
 
+        result.CustomerValidated.Customer.Name.Should().Be("John");
+        result.CustomerValidated.Customer.Address.Should().Be("Elm Street");
+        result.CustomerValidated.Customer.Phone.Should().Be("111-222");
+        result.CustomerValidated.Customer.Email.Should().Be("john@email.com");
+        result.CustomerValidated.CreatedAt.Should().Be(DateTimeOffset.Parse("2025-05-15T10:00:00+00:00"));
+        result.CustomerValidated.IsValid.Should().BeTrue();
+        result.IsActive.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Map_CustomerCreate_To_CustomerEntity_ShouldMapCorrectly()
+    {
+        var inputPath = JsonDataLoader.GetDataPath("CustomerCreate.json");
+        var input = JsonDataLoader.LoadFromFile<CustomerCreate>(inputPath);
         var result = _mapper.Map<CustomerEntity>(input);
 
         result.Name.Should().Be("John");
         result.Address.Should().Be("Elm Street");
         result.Phone.Should().Be("111-222");
         result.Email.Should().Be("john@email.com");
-        result.IsActive.Should().BeTrue();
-        result.CreatedAt.Should().Be(input.CreatedAt);
     }
 }

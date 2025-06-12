@@ -11,7 +11,7 @@ public class MapperFixture
     {
         var config = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<CustomerMapperProfile>();
+            cfg.AddProfile<MapperProfile>();
         });
 
         Mapper = config.CreateMapper();

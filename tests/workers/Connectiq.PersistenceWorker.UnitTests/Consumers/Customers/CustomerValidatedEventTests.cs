@@ -3,11 +3,10 @@ using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
+using CustomerWorker.Domain.Interfaces;
 using FluentAssertions;
 using MassTransit;
 using Moq;
-using PersistenceWorker.Consumers.Customers;
-using PersistenceWorker.Repository;
 
 namespace Connectiq.PersistenceWorker.UnitTests.Consumers.Customers;
 

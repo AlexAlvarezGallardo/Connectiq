@@ -1,4 +1,4 @@
-﻿namespace PersistenceWorker.Repository;
+﻿namespace CustomerWorker.Domain.Interfaces;
 
 public interface IRepository<TEntity> where TEntity : class
 {

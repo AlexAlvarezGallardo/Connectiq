@@ -1,75 +1,82 @@
 ﻿using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
 using FluentValidation.Validators;
+using FluentValidation.Validators.UnitTestExtension.Composer;
+using FluentValidation.Validators.UnitTestExtension.Core;
 using Xunit;
 
-namespace Connectiq.Contracts.UnitTests.Customer;
+namespace Connectiq.CustomerWorker.UnitTests.Domain;
 
 public class ValidatorTest
 {
-    readonly CustomerCreatedValidator customerCreatedValidator = new();
+    readonly CustomerCreateValidator customerCreateValidator = new();
     readonly CustomerValidatedValidator customerValidatedValidator = new();
 
     [Fact]
-    public void When_CustomerCreatedValidatorConstructing_Then_4PropertiesShouldHaveRules()
+    public void When_CustomerCreateValidatorConstructing_Then_3PropertiesShouldHaveRules()
     {
-        customerCreatedValidator.ShouldHaveRulesCount(4);
+        customerCreateValidator.ShouldHaveRulesCount(3);
     }
 
     [Fact]
-    public void When_CustomerCreatedValidatorConstructing_Then_RulesAreConfiguredCorrectly()
+    public void When_CustomerCreateValidatorConstructing_Then_RulesAreConfiguredCorrectly()
     {
-        customerCreatedValidator.ShouldHaveRules(x => x.CustomerData.Name,
+        customerCreateValidator.ShouldHaveRules(x => x.CustomerValidated,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreated, string>>()
+                .AddChildValidatorVerifier<CustomerValidatedValidator, CustomerCreate, CustomerValidated>()
+                .Create());
+
+        customerCreateValidator.ShouldHaveRules(x => x.EventId,
+            BaseVerifiersSetComposer.Build()
+             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreate, string>>()
              .Create());
 
-        customerCreatedValidator.ShouldHaveRules(x => x.CustomerData.Address,
+        customerCreateValidator.ShouldHaveRules(x => x.IsActive,
             BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreated, string>>()
-             .Create());
-
-        customerCreatedValidator.ShouldHaveRules(x => x.CustomerData.Email,
-            BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreated, string>>()
-             .AddPropertyValidatorVerifier<AspNetCoreCompatibleEmailValidator<CustomerCreated>>()
-             .Create());
-
-        customerCreatedValidator.ShouldHaveRules(x => x.CustomerData.Phone,
-            BaseVerifiersSetComposer.Build()
-             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreated, string>>()
-             .AddPropertyValidatorVerifier<RegularExpressionValidator<CustomerCreated>>()
+             .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerCreate, bool>>()
              .Create());
     }
 
     [Fact]
-    public void When_CustomerValidatedValidatorConstructing_Then_4PropertiesShouldHaveRules()
+    public void When_CustomerValidatedValidatorConstructing_Then_6PropertiesShouldHaveRules()
     {
-        customerValidatedValidator.ShouldHaveRulesCount(4);
+        customerValidatedValidator.ShouldHaveRulesCount(6);
     }
 
     [Fact]
     public void When_CustomerValidatedValidatorConstructing_Then_RulesAreConfiguredCorrectly()
     {
-        customerValidatedValidator.ShouldHaveRules(x => x.CustomerCreated,
-            BaseVerifiersSetComposer.Build()
-                .AddChildValidatorVerifier<CustomerCreatedValidator, CustomerValidated, CustomerCreated>()
-                .Create());
-
-        customerValidatedValidator.ShouldHaveRules(x => x.CustomerCreated.EventId,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Name,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
                 .Create());
 
-        customerValidatedValidator.ShouldHaveRules(x => x.CustomerCreated.IsActive,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Address,
             BaseVerifiersSetComposer.Build()
-                .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, bool>>()
+                .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
+                .Create());
+
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Email,
+            BaseVerifiersSetComposer.Build()
+                .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
+                .AddPropertyValidatorVerifier<AspNetCoreCompatibleEmailValidator<CustomerValidated>>()
+                .Create());
+
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Phone,
+            BaseVerifiersSetComposer.Build()
+                .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
+                .AddPropertyValidatorVerifier<RegularExpressionValidator<CustomerValidated>>()
                 .Create());
 
         customerValidatedValidator.ShouldHaveRules(x => x.CreatedAt,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, DateTimeOffset>>()
                 .AddPropertyValidatorVerifier<PredicateValidator<CustomerValidated, DateTimeOffset>>()
+                .Create());
+
+        customerValidatedValidator.ShouldHaveRules(x => x.IsValid,
+            BaseVerifiersSetComposer.Build()
+                .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, bool>>()
                 .Create());
     }
 }
