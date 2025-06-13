@@ -8,10 +8,12 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src));
 
         CreateMap<CreateCustomerInput, CustomerValidated>()
+            .ForPath(dest => dest.Customer, opt => opt.MapFrom(src => src.Details))
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTimeOffset.UtcNow))
             .ForMember(dest => dest.IsValid, opt => opt.MapFrom(_ => true));
 
         CreateMap<CreateCustomerInput, CustomerNotValidated>()
+            .ForPath(dest => dest.Customer, opt => opt.MapFrom(src => src.Details))
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTimeOffset.UtcNow))
             .ForMember(dest => dest.IsValid, opt => opt.MapFrom(_ => false));
 

@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using CustomerWorker.Domain.Commands;
-using FluentValidation;
-using MassTransit;
-using MediatR;
-
-namespace Connectiq.API.Application.Customer.Commands;
+﻿namespace Connectiq.API.Application.Customer.Commands;
 
 public record CreateCustomerCommand(CreateCustomerInput Input) : IRequest<bool>;
 

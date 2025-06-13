@@ -1,5 +1,5 @@
 ﻿global using AutoMapper;
-global using Connectiq.GrpcCustomers;
+global using Customers;
 global using CustomerWorker;
 global using CustomerWorker.Domain.Commands;
 global using CustomerWorker.Events;

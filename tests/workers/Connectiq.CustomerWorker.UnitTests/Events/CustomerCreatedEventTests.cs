@@ -1,5 +1,5 @@
 using AutoMapper;
-using Connectiq.GrpcCustomers;
+using Customers;
 using Connectiq.Tests.Utilities.Fixtures;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;

@@ -1,10 +1,5 @@
 ﻿namespace CustomerWorker.Domain.Commands;
 
-public record CreateCustomerInput
-{
-    public required Customer Customer { get; init; }
-}
-
 public record CustomerValidated
 {
     public required Customer Customer { get; init; }

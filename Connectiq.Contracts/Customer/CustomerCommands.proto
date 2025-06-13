@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package customers;
+
+import "Customer/Customer.proto";
+
+message CreateCustomerInput {
+  CustomerDetails details = 1;
+}

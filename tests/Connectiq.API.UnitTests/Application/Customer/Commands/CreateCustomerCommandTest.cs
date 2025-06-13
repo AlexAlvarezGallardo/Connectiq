@@ -1,14 +1,14 @@
 using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
-using CustomerWorker.Domain;
 using Connectiq.Tests.Utilities;
+using Customers;
+using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using MassTransit;
 using Moq;
 using ValidationResult = FluentValidation.Results.ValidationResult;
-using CustomerWorker.Domain.Commands;
 
 namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 
@@ -40,7 +40,7 @@ public class CreateCustomerCommandHandlerTests
 
         var customerValidated = new CustomerValidated
         {
-            Customer = input.Customer,
+            Customer = new Customers.Customer() { Details = input.Details },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };
@@ -67,7 +67,7 @@ public class CreateCustomerCommandHandlerTests
 
         var customerValidated = new CustomerValidated
         {
-            Customer = input.Customer,
+            Customer = new Customers.Customer() { Details = input.Details },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };

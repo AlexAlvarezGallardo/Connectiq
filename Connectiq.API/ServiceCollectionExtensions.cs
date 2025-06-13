@@ -1,6 +1,4 @@
-﻿using Connectiq.API.GraphQL.Customer;
-
-namespace Microsoft.Extensions.DependencyInjection;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions
 {

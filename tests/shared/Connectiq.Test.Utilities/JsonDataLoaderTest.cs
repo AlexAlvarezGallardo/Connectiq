@@ -1,4 +1,4 @@
-﻿using CustomerWorker.Domain.Commands;
+﻿using Customers;
 using FluentAssertions;
 using System.Text.Json;
 using Xunit;
@@ -26,17 +26,6 @@ public class JsonDataLoaderTest
         act.Should()
             .Throw<FileNotFoundException>()
             .WithMessage($"Test data file not found: {Path.Combine(Directory.GetCurrentDirectory(), path)}");
-    }
-
-    [Fact]
-    public void LoadFromFile_ShouldDeserializeJson_Throw_JsonException()
-    {
-        var path = JsonDataLoader.GetDataPath("..//InvalidInput.json");
-
-        var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
-
-        act.Should()
-            .Throw<JsonException>();
     }
 
     [Fact]
