@@ -1,7 +1,8 @@
 using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
-using Connectiq.Contracts.Customer;
 using Connectiq.Tests.Utilities;
+using Customers;
+using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
@@ -15,7 +16,7 @@ namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 public class CreateCustomerCommandHandlerTests
 {
     private readonly Mock<IPublishEndpoint> _publisherMock = new();
-    private readonly Mock<IValidator<CustomerCreated>> _validatorMock = new();
+    private readonly Mock<IValidator<CustomerValidated>> _validatorMock = new();
     private readonly Mock<IMapper> _mapperMock = new();
 
     private readonly CreateCustomerCommandHandler _handler;
@@ -37,23 +38,23 @@ public class CreateCustomerCommandHandlerTests
 
         var command = new CreateCustomerCommand(input);
 
-        var customerCreated = new CustomerCreated
+        var customerValidated = new CustomerValidated
         {
-            CustomerData = input.Customer,
-            EventId = "event-1",
-            IsActive = true
+            Customer = new Customers.Customer() { Details = input.Details },
+            CreatedAt = DateTimeOffset.UtcNow,
+            IsValid = true
         };
 
-        _mapperMock.Setup(m => m.Map<CustomerCreated>(input)).Returns(customerCreated);
-        _validatorMock.Setup(v => v.ValidateAsync(customerCreated, It.IsAny<CancellationToken>()))
+        _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
+        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
-        _publisherMock.Setup(p => p.Publish(customerCreated, It.IsAny<CancellationToken>()))
+        _publisherMock.Setup(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
         result.Should().BeTrue();
-        _publisherMock.Verify(p => p.Publish(customerCreated, It.IsAny<CancellationToken>()), Times.Once);
+        _publisherMock.Verify(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -64,21 +65,21 @@ public class CreateCustomerCommandHandlerTests
 
         var command = new CreateCustomerCommand(input);
 
-        var customerCreated = new CustomerCreated
+        var customerValidated = new CustomerValidated
         {
-            CustomerData = input.Customer,
-            EventId = "event-1",
-            IsActive = true
+            Customer = new Customers.Customer() { Details = input.Details },
+            CreatedAt = DateTimeOffset.UtcNow,
+            IsValid = true
         };
 
         var failures = new[] { new ValidationFailure("Field", "Error") };
-        _mapperMock.Setup(m => m.Map<CustomerCreated>(input)).Returns(customerCreated);
-        _validatorMock.Setup(v => v.ValidateAsync(customerCreated, It.IsAny<CancellationToken>()))
+        _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
+        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(failures));
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
         result.Should().BeFalse();
-        _publisherMock.Verify(p => p.Publish(It.IsAny<CustomerCreated>(), It.IsAny<CancellationToken>()), Times.Never);
+        _publisherMock.Verify(p => p.Publish(It.IsAny<CustomerCreate>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 }

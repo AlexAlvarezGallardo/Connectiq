@@ -1,8 +1,4 @@
-﻿using Connectiq.API.Application.Customer.Commands;
-using Connectiq.Contracts.Customer;
-using MediatR;
-
-namespace Connectiq.API.GraphQL.Customer;
+﻿namespace Connectiq.API.GraphQL.Customer;
 
 public class CustomerMutation
 {

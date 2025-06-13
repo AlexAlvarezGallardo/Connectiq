@@ -1,0 +1,12 @@
+﻿global using AutoMapper;
+global using Customers;
+global using CustomerWorker;
+global using CustomerWorker.Domain.Commands;
+global using CustomerWorker.Events;
+global using FluentValidation;
+global using MassTransit;
+global using CustomerWorker.Domain;
+global using Microsoft.EntityFrameworkCore;
+global using CustomerWorker.Infrastructure;
+global using CustomerWorker.Repository;
+global using CustomerWorker.Domain.Interfaces;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Connectiq.Contracts.Customer;
+using CustomerWorker.Domain.Commands;
 
 namespace Connectiq.Tests.Utilities.Fixtures;
 
@@ -11,7 +11,7 @@ public class MapperFixture
     {
         var config = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<CustomerMapperProfile>();
+            cfg.AddProfile<MapperProfile>();
         });
 
         Mapper = config.CreateMapper();

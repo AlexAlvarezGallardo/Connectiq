@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using FluentValidation;
+using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,5 +21,11 @@ public static partial class ServiceCollectionExtensions
                     cfg.ConfigureEndpoints(ctx);
                 });
             });
+
+    public static IServiceCollection AddValidators<T>(this IServiceCollection services)
+    => services.AddValidatorsFromAssembly(typeof(T).Assembly);
+
+    public static IServiceCollection AddAutoMapper<T>(this IServiceCollection services)
+        => services.AddAutoMapper(x => { x.DisableConstructorMapping(); }, typeof(T).Assembly);
 }
 

@@ -7,7 +7,5 @@
       "Phone": "111-222",
       "Email": "john@email.com"
     }
-  },
-  "CreatedAt": "2025-05-15T10:00:00+00:00",
-  "IsValid": true
+  }
 }
