@@ -8,7 +8,7 @@ public class CustomerCreatedEvent(
     public async Task Consume(ConsumeContext<CustomerValidated> context)
     {
         var message = context.Message;
-        _logger.LogInformation("Received CustomerCreatedEvent with EventId: {EventId}", message.Customer.Name);
+        _logger.LogInformation("Received CustomerCreatedEvent with EventId: {EventId}", message.Customer.Details.Name);
 
         var customerCreate = _mapper.Map<CustomerCreate>(message) with
         {

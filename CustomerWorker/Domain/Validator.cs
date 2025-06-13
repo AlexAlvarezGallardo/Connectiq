@@ -4,19 +4,19 @@ public class CustomerValidatedValidator : AbstractValidator<CustomerValidated>
 {
     public CustomerValidatedValidator()
     {
-        RuleFor(c => c.Customer.Name)
+        RuleFor(c => c.Customer.Details.Name)
             .NotEmpty()
             .WithMessage("El nombre es obligatorio");
 
-        RuleFor(c => c.Customer.Address)
+        RuleFor(c => c.Customer.Details.Address)
             .NotEmpty()
             .WithMessage("La dirección es obligatoria");
 
-        RuleFor(c => c.Customer.Email)
+        RuleFor(c => c.Customer.Details.Email)
             .NotEmpty().WithMessage("El email es obligatorio")
             .EmailAddress().WithMessage("Formato de email inválido");
 
-        RuleFor(c => c.Customer.Phone)
+        RuleFor(c => c.Customer.Details.Phone)
             .NotEmpty().WithMessage("El teléfono es obligatorio")
             .Matches(@"^\+\d{2} \d{3} \d{3} \d{3}$")
             .WithMessage("Formato de teléfono inválido (+34 600 123 456)");

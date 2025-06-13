@@ -31,7 +31,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_JsonException()
     {
-        var path = JsonDataLoader.GetDataPath("InvalidCustomerInput.json");
+        var path = JsonDataLoader.GetDataPath("..//InvalidInput.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
@@ -42,7 +42,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_InvalidOperationException()
     {
-        var path = JsonDataLoader.GetDataPath("NullLiteral.json");
+        var path = JsonDataLoader.GetDataPath("..//NullLiteral.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 

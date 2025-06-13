@@ -46,23 +46,23 @@ public class ValidatorTest
     [Fact]
     public void When_CustomerValidatedValidatorConstructing_Then_RulesAreConfiguredCorrectly()
     {
-        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Name,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Details.Name,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
                 .Create());
 
-        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Address,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Details.Address,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
                 .Create());
 
-        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Email,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Details.Email,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
                 .AddPropertyValidatorVerifier<AspNetCoreCompatibleEmailValidator<CustomerValidated>>()
                 .Create());
 
-        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Phone,
+        customerValidatedValidator.ShouldHaveRules(x => x.Customer.Details.Phone,
             BaseVerifiersSetComposer.Build()
                 .AddPropertyValidatorVerifier<NotEmptyValidator<CustomerValidated, string>>()
                 .AddPropertyValidatorVerifier<RegularExpressionValidator<CustomerValidated>>()

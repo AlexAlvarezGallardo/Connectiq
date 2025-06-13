@@ -33,53 +33,53 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnTrue_And_Publish_When_Validation_Succeeds()
     {
-        //var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
-        //var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
+        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
-        //var command = new CreateCustomerCommand(input);
+        var command = new CreateCustomerCommand(input);
 
-        ////var customerCreated = new CustomerCreate
-        ////{
-        ////    CustomerData = input.Customer,
-        ////    EventId = "event-1",
-        ////    IsActive = true
-        ////};
+        var customerValidated = new CustomerValidated
+        {
+            Customer = input.Customer,
+            CreatedAt = DateTimeOffset.UtcNow,
+            IsValid = true
+        };
 
-        //_mapperMock.Setup(m => m.Map<CustomerCreate>(input)).Returns(customerCreated);
-        //_validatorMock.Setup(v => v.ValidateAsync(customerCreated, It.IsAny<CancellationToken>()))
-        //    .ReturnsAsync(new ValidationResult());
-        //_publisherMock.Setup(p => p.Publish(customerCreated, It.IsAny<CancellationToken>()))
-        //    .Returns(Task.CompletedTask);
+        _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
+        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new ValidationResult());
+        _publisherMock.Setup(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()))
+            .Returns(Task.CompletedTask);
 
-        //var result = await _handler.Handle(command, CancellationToken.None);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
-        //result.Should().BeTrue();
-        //_publisherMock.Verify(p => p.Publish(customerCreated, It.IsAny<CancellationToken>()), Times.Once);
+        result.Should().BeTrue();
+        _publisherMock.Verify(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
     public async Task Handle_ShouldReturnFalse_AndNotPublish_When_Validation_Fails()
     {
-        //var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
-        //var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
+        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
-        //var command = new CreateCustomerCommand(input);
+        var command = new CreateCustomerCommand(input);
 
-        //var customerCreated = new CustomerCreate
-        //{
-        //    CustomerData = input.Customer,
-        //    EventId = "event-1",
-        //    IsActive = true
-        //};
+        var customerValidated = new CustomerValidated
+        {
+            Customer = input.Customer,
+            CreatedAt = DateTimeOffset.UtcNow,
+            IsValid = true
+        };
 
-        //var failures = new[] { new ValidationFailure("Field", "Error") };
-        //_mapperMock.Setup(m => m.Map<CustomerCreate>(input)).Returns(customerCreated);
-        //_validatorMock.Setup(v => v.ValidateAsync(customerCreated, It.IsAny<CancellationToken>()))
-        //    .ReturnsAsync(new ValidationResult(failures));
+        var failures = new[] { new ValidationFailure("Field", "Error") };
+        _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
+        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new ValidationResult(failures));
 
-        //var result = await _handler.Handle(command, CancellationToken.None);
+        var result = await _handler.Handle(command, CancellationToken.None);
 
-        //result.Should().BeFalse();
-        //_publisherMock.Verify(p => p.Publish(It.IsAny<CustomerCreate>(), It.IsAny<CancellationToken>()), Times.Never);
+        result.Should().BeFalse();
+        _publisherMock.Verify(p => p.Publish(It.IsAny<CustomerCreate>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 }

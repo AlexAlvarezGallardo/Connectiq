@@ -1,10 +1,13 @@
 {
   "CustomerValidated": {
     "Customer": {
-      "Name": "John",
-      "Address": "Elm Street",
-      "Phone": "111-222",
-      "Email": "john@email.com"
+      "Id": "1234567890",
+      "Details": {
+        "Name": "John",
+        "Address": "Elm Street",
+        "Phone": "111-222",
+        "Email": "john@email.com"
+      }
     },
     "CreatedAt": "2025-05-15T10:00:00+00:00",
     "IsValid": true

@@ -1,8 +1,11 @@
 {
   "Customer": {
-    "Name": "Juan",
-    "Address": "Calle 123",
-    "Phone": "555-1234",
-    "Email": "juan@email.com"
+    "Id": "1234567890",
+    "Details": {
+      "Name": "John",
+      "Address": "Elm Street",
+      "Phone": "111-222",
+      "Email": "john@email.com"
+    }
   }
 }

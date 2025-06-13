@@ -4,6 +4,9 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
+        CreateMap<CustomerDetails, Customer>()
+            .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src));
+
         CreateMap<CreateCustomerInput, CustomerValidated>()
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTimeOffset.UtcNow))
             .ForMember(dest => dest.IsValid, opt => opt.MapFrom(_ => true));
@@ -17,10 +20,10 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
 
         CreateMap<CustomerCreate, CustomerEntity>()
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Name))
-            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Email))
-            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Address))
-            .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Phone))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Details.Name))
+            .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Details.Email))
+            .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Details.Address))
+            .ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.CustomerValidated.Customer.Details.Phone))
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CustomerValidated.CreatedAt));
     }
 }

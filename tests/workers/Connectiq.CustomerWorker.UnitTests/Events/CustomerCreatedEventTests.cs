@@ -23,7 +23,7 @@ public class CustomerCreatedEventTests : IClassFixture<MapperFixture>
     {
         var customerValidated = new CustomerValidated
         {
-            Customer = new Customer { Name = "Test Customer" },
+            Customer = new Customer { Details = new CustomerDetails { Name = "Test" } },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };
@@ -59,7 +59,7 @@ public class CustomerCreatedEventTests : IClassFixture<MapperFixture>
             l => l.Log(
                 LogLevel.Information,
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Received CustomerCreatedEvent")),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Received CustomerCreatedEvent")),
                 null,
                 It.IsAny<Func<It.IsAnyType, Exception, string>>()!),
             Times.Once);
@@ -67,7 +67,7 @@ public class CustomerCreatedEventTests : IClassFixture<MapperFixture>
             l => l.Log(
                 LogLevel.Information,
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Customer created with Id")),
+                It.Is<It.IsAnyType>((v, t) => v.ToString()!.Contains("Customer created with Id")),
                 null,
                 It.IsAny<Func<It.IsAnyType, Exception, string>>()!),
             Times.Once);

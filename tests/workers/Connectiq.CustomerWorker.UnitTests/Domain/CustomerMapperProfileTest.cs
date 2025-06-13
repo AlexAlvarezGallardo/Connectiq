@@ -20,10 +20,10 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
         var result = _mapper.Map<CustomerValidated>(input);
 
         result.Customer.Should().NotBeNull();
-        result.Customer.Name.Should().Be("Juan");
-        result.Customer.Address.Should().Be("Calle 123");
-        result.Customer.Phone.Should().Be("555-1234");
-        result.Customer.Email.Should().Be("juan@email.com");
+        result.Customer.Details.Name.Should().Be("John");
+        result.Customer.Details.Address.Should().Be("Elm Street");
+        result.Customer.Details.Phone.Should().Be("111-222");
+        result.Customer.Details.Email.Should().Be("john@email.com");
         result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
         result.IsValid.Should().BeTrue();
     }
@@ -36,10 +36,10 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
         var result = _mapper.Map<CustomerNotValidated>(input);
 
         result.Customer.Should().NotBeNull();
-        result.Customer.Name.Should().Be("Juan");
-        result.Customer.Address.Should().Be("Calle 123");
-        result.Customer.Phone.Should().Be("555-1234");
-        result.Customer.Email.Should().Be("juan@email.com");
+        result.Customer.Details.Name.Should().Be("John");
+        result.Customer.Details.Address.Should().Be("Elm Street");
+        result.Customer.Details.Phone.Should().Be("111-222");
+        result.Customer.Details.Email.Should().Be("john@email.com");
         result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
         result.IsValid.Should().BeFalse();
     }
@@ -51,10 +51,10 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
         var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
         var result = _mapper.Map<CustomerCreate>(input);
 
-        result.CustomerValidated.Customer.Name.Should().Be("John");
-        result.CustomerValidated.Customer.Address.Should().Be("Elm Street");
-        result.CustomerValidated.Customer.Phone.Should().Be("111-222");
-        result.CustomerValidated.Customer.Email.Should().Be("john@email.com");
+        result.CustomerValidated.Customer.Details.Name.Should().Be("John");
+        result.CustomerValidated.Customer.Details.Address.Should().Be("Elm Street");
+        result.CustomerValidated.Customer.Details.Phone.Should().Be("111-222");
+        result.CustomerValidated.Customer.Details.Email.Should().Be("john@email.com");
         result.CustomerValidated.CreatedAt.Should().Be(DateTimeOffset.Parse("2025-05-15T10:00:00+00:00"));
         result.CustomerValidated.IsValid.Should().BeTrue();
         result.IsActive.Should().BeTrue();
