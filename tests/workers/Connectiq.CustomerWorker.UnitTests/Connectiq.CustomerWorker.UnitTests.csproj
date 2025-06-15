@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CustomerWorker\CustomerWorker.csproj" />
     <ProjectReference Include="..\..\shared\Connectiq.Test.Utilities\Connectiq.Tests.Utilities.csproj" />
   </ItemGroup>
 
@@ -40,4 +39,7 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".."/>
+	</ItemGroup>
 </Project>

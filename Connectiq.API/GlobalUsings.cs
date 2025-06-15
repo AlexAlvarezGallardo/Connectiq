@@ -1,7 +1,7 @@
 ﻿global using AutoMapper;
 global using Connectiq.API.Application.Customer.Commands;
 global using Connectiq.API.GraphQL.Customer;
-global using Customers;
+global using Customers.Commands;
 global using CustomerWorker.Domain.Commands;
 global using FluentValidation;
 global using MassTransit;

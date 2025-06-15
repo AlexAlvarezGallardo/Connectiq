@@ -1,5 +1,6 @@
 ﻿global using AutoMapper;
 global using Customers;
+global using Customers.Commands;
 global using CustomerWorker;
 global using CustomerWorker.Domain.Commands;
 global using CustomerWorker.Events;

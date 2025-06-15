@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package customers;
+package customers.commands;
 
 import "Customer/Customer.proto";
 

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package customers.queries; 
+
+import "shared/Contracts/Customer/Customer.proto";
+
+message CustomerFilters {
+	string name = 1;
+	string address = 2;
+	string phone = 3;
+	string email = 4;
+}
+
+message GetCustomersInput {
+  int32 page = 1;
+  int32 pageSize = 2;
+  CustomerFilters filters = 3;
+}
+
+message GetCustomersResponse {
+  repeated customers.Customer customers = 1;
+  int32 totalCount = 2;
+}

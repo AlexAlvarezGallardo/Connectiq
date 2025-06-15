@@ -1,6 +1,5 @@
-﻿using Customers;
+﻿using Customers.Commands;
 using FluentAssertions;
-using System.Text.Json;
 using Xunit;
 
 namespace Connectiq.Tests.Utilities;

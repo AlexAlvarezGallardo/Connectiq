@@ -1,7 +1,7 @@
 using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
 using Connectiq.Tests.Utilities;
-using Customers;
+using Customers.Commands;
 using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using FluentValidation;

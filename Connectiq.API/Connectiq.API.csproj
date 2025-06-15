@@ -21,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
 	<ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
 	<ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
   </ItemGroup>
-	
+
 </Project>

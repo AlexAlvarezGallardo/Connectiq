@@ -2,5 +2,5 @@
 
 public class CustomerQuery
 {
-    public string Hello() => "world";
+    
 }

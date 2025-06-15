@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.30.2" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.49.0" />
     <PackageReference Include="Grpc.Tools" Version="2.72.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,12 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
   </ItemGroup>
-
+	
   <ItemGroup>
-    <Folder Include="Domain\Queries\" />
-  </ItemGroup>
+	  <Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".." />
+  </ItemGroup> 
 
-</Project>
+  </Project>

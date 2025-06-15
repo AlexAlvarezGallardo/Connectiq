@@ -1,7 +1,7 @@
 using AutoMapper;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
-using Customers;
+using Customers.Commands;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
 using FluentAssertions;

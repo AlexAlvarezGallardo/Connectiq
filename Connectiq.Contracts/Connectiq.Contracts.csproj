@@ -17,6 +17,7 @@
   <ItemGroup>
 	  <Protobuf Include="Customer\Customer.proto" GrpcServices="None" />
 	  <Protobuf Include="Customer\CustomerCommands.proto" GrpcServices="None" />
+	  <Protobuf Include="Customer\CustomerQueries.proto" GrpcServices="None" />
   </ItemGroup>
 
 	<ItemGroup>
