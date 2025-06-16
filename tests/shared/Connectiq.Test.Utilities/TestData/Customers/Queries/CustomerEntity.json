@@ -1,0 +1,9 @@
+{
+  "Id": "34f1fa5d-e996-4918-b196-da0caec905b6",
+  "Name": "John Doe",
+  "Email": "john@gmail.com",
+  "Phone": "123-456-7890",
+  "Address": "123 Main St, Springfield, IL 62701",
+  "CreatedAt": "2023-01-01T00:00:00",
+  "IsActive": true
+}

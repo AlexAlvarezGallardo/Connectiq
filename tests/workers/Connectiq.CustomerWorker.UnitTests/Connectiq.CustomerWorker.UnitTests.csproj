@@ -40,6 +40,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".."/>
+		<Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".." />
 	</ItemGroup>
 </Project>

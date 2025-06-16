@@ -17,7 +17,14 @@ message GetCustomersInput {
   CustomerFilters filters = 3;
 }
 
+message CustomerDto {
+	customers.Customer customer = 1;
+	string createdAt = 2; 
+	string eventId = 3;
+	bool isActive = 4;
+}
+
 message GetCustomersResponse {
-  repeated customers.Customer customers = 1;
+  repeated CustomerDto customers = 1;
   int32 totalCount = 2;
 }

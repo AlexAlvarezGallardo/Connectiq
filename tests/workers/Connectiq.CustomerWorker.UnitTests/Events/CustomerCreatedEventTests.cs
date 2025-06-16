@@ -23,7 +23,7 @@ public class CustomerCreatedEventTests : IClassFixture<MapperFixture>
     {
         var customerValidated = new CustomerValidated
         {
-            Customer = new Customer { Details = new CustomerDetails { Name = "Test" } },
+            Customer = new Customers.Customer { Details = new CustomerDetails { Name = "Test" } },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };

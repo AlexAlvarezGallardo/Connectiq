@@ -27,8 +27,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
   </ItemGroup>
+
+    <ItemGroup>
+	    <None Remove="**/*.proto" />
+    </ItemGroup>
 	
   <ItemGroup>
+	  <Protobuf Include="../CustomerWorker/Service/CustomerQueryService.proto" GrpcServices="Server" ProtoRoot=".." />
 	  <Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".." />
   </ItemGroup> 
 

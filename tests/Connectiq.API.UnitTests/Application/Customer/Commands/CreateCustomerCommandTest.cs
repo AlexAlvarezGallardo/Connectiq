@@ -12,14 +12,14 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 
-
 public class CreateCustomerCommandHandlerTests
 {
-    private readonly Mock<IPublishEndpoint> _publisherMock = new();
-    private readonly Mock<IValidator<CustomerValidated>> _validatorMock = new();
-    private readonly Mock<IMapper> _mapperMock = new();
+    readonly Mock<IPublishEndpoint> _publisherMock = new();
+    readonly Mock<IValidator<CustomerValidated>> _validatorMock = new();
+    readonly Mock<IMapper> _mapperMock = new();
+    readonly CreateCustomerCommandHandler _handler;
 
-    private readonly CreateCustomerCommandHandler _handler;
+    readonly string _basePath = "Customers/Commands";
 
     public CreateCustomerCommandHandlerTests()
     {
@@ -33,7 +33,7 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnTrue_And_Publish_When_Validation_Succeeds()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var customerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
         var command = new CreateCustomerCommand(input);
@@ -60,7 +60,7 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnFalse_AndNotPublish_When_Validation_Fails()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var customerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
 
         var command = new CreateCustomerCommand(input);

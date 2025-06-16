@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.3" />
     <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
@@ -25,4 +27,7 @@
 	<ProjectReference Include="..\CustomerWorker\CustomerWorker.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Protobuf Include="../CustomerWorker/Service/CustomerQueryService.proto" GrpcServices="Client" ProtoRoot=".." />
+	</ItemGroup>
 </Project>

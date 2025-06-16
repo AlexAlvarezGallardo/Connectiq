@@ -1,4 +1,4 @@
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();
@@ -8,10 +8,15 @@ builder.Services.AddAutoMapper<Program>();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddRepositories();
 
+builder.Services.AddGrpc();
+
 builder.Services.AddMessagingServices(builder.Configuration, x =>
 {
     x.AddConsumer<CustomerCreatedEvent>();
 });
 
-var host = builder.Build();
-host.Run();
+var app = builder.Build();
+
+app.MapGrpcService<CustomerQuery>();
+
+app.Run();

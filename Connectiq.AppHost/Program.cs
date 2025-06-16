@@ -14,7 +14,7 @@ var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
     .WithReference(customersDb)
     .WaitFor(customersDb);
 
-builder.AddProject<Projects.CustomerWorker>("customerworker")
+var customerWorker = builder.AddProject<Projects.CustomerWorker>("customerworker")
     .WithReference(rabbitMQ)
     .WithReference(customersDb)
     .WaitForCompletion(dbWorker)
@@ -22,6 +22,8 @@ builder.AddProject<Projects.CustomerWorker>("customerworker")
 
 builder.AddProject<Projects.Connectiq_API>("connectiq-api")
     .WithReference(rabbitMQ)
+    .WithReference(customerWorker)
+    .WaitFor(customerWorker)
     .WaitFor(rabbitMQ);
 
 builder.Build().Run();

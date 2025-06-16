@@ -1,3 +1,6 @@
+using Customer.Queries.Service;
+using static Customer.Queries.Service.CustomerQueryService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -14,6 +17,11 @@ builder.Services.AddGraphQLServices();
 builder.Services.AddValidators<CustomerWorker.Worker>();
 builder.Services.AddAutoMapper<CustomerWorker.Worker>();
 builder.Services.AddMessagingServices(builder.Configuration);
+
+builder.Services.AddGrpcClient<CustomerQueryServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["Grpc:CustomerQuery:Address"]!);
+});
 
 var app = builder.Build();
 
