@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{3C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ProjectDefaults", "Connectiq.ProjectDefaults\Connectiq.ProjectDefaults.csproj", "{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ProjectDefaultsUnitTest", "Connectiq.ProjectDefaultsUnitTest\Connectiq.ProjectDefaultsUnitTest.csproj", "{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{C4805C14-4860-4EFC-9F57-3596B21D241E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{3C59C1A1-7676-404C-B995-889EF13BFD1D} = {C4805C14-4860-4EFC-9F57-3596B21D241E}
 		{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A} = {9C9F40AE-F011-48EF-B192-B4BA1574E53B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53A7E3C7-3F03-4DD5-8D64-FF05E316E7D7}
