@@ -1,4 +1,7 @@
-﻿namespace CustomerWorker.Repository;
+﻿using LinqKit;
+using LinqKit.Core;
+
+namespace CustomerWorker.Repository;
 
 public class DbRepository<TEntity>(
     CustomerDbContext _connectiqDbContext,
@@ -13,9 +16,21 @@ public class DbRepository<TEntity>(
         return result > 0;
     }
 
-    public async Task<ICollection<TOutput>> GetAllAsync<TOutput>()
+    public async Task<ICollection<TOutput>> GetAllAsync<TOutput>(
+        int? page = null, 
+        int? pageSize = null,
+        Expression<Func<TEntity, bool>>? filter = null)
     {
-        var entities = await _connectiqDbContext.Set<TEntity>().ToListAsync();
+        var query = _connectiqDbContext.Set<TEntity>().AsExpandableEFCore();
+
+        if (filter is not null)
+            query = query.Where(filter);
+
+        if (page.HasValue && pageSize.HasValue && page > 0 && pageSize > 0)
+            query = query.Skip((page.Value - 1) * pageSize.Value).Take(pageSize.Value);
+
+        var entities = await query.ToListAsync();
+
         return _mapper.Map<ICollection<TOutput>>(entities);
     }
 }

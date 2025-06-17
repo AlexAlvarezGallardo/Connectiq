@@ -1,3 +1,5 @@
+using Aspire.Hosting;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var postgresServer = builder
@@ -15,6 +17,7 @@ var dbWorker = builder.AddProject<Projects.DatabaseWorker>("databaseworker")
     .WaitFor(customersDb);
 
 var customerWorker = builder.AddProject<Projects.CustomerWorker>("customerworker")
+    .WithEndpoint(name: "customer-worker", scheme: "https")
     .WithReference(rabbitMQ)
     .WithReference(customersDb)
     .WaitForCompletion(dbWorker)

@@ -15,3 +15,4 @@ global using Grpc.Core;
 global using MassTransit;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.EntityFrameworkCore;
+global using System.Linq.Expressions;

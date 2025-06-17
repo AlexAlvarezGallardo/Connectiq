@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Connectiq.ProjectDefaults\Connectiq.ProjectDefaults.csproj" />
     <ProjectReference Include="..\Connectiq.ServiceDefaults\Connectiq.ServiceDefaults.csproj" />
   </ItemGroup>
 
