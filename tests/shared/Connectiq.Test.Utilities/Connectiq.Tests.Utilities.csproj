@@ -12,7 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Connectiq.Contracts\Connectiq.Contracts.csproj" />
     <ProjectReference Include="..\..\..\CustomerWorker\CustomerWorker.csproj" />
   </ItemGroup>
    
@@ -35,6 +34,10 @@
 		<None Include="TestData\**\*.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="../shared/Contracts/Customer/*.proto" GrpcServices="None" ProtoRoot=".." />
 	</ItemGroup>
 
 </Project>

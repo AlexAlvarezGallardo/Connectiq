@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package customer.queries.service;
+
+import public "shared/Contracts/Customer/Customer.proto";
+import public "shared/Contracts/Customer/CustomerQueries.proto";
+
+service CustomerQueryService {
+  rpc GetAllCustomers(customers.queries.GetAllFiltersInput) returns (customers.queries.GetCustomersResponse);
+}

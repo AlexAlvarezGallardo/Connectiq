@@ -1,10 +1,10 @@
 ﻿namespace CustomerWorker.Domain.Commands;
 
-public class MapperProfile : Profile
+public class CustomerCommandMapperProfile : Profile
 {
-    public MapperProfile()
+    public CustomerCommandMapperProfile()
     {
-        CreateMap<CustomerDetails, Customer>()
+        CreateMap<CustomerDetails, Customers.Customer>()
             .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src));
 
         CreateMap<CreateCustomerInput, CustomerValidated>()

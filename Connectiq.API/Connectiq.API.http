@@ -1,6 +1,9 @@
 @Connectiq.API_HostAddress = http://localhost:5282
 
-GET {{Connectiq.API_HostAddress}}/weatherforecast/
-Accept: application/json
+// Get all customers with pagination and filters
+POST {{Connectiq.API_HostAddress}}/graphql
+Content-Type: application/json
 
-###
+{
+  "query": "query CustomerQuery { allCustomers(input: { filters: { name : "Juan" }, page: 1, pageSize: 10 }) { calculateSize totalCount customers { calculateSize createdAt eventId isActive customer { calculateSize id details { address calculateSize email name phone } } } } }"
+}

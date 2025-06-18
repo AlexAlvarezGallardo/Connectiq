@@ -5,7 +5,7 @@ using FluentValidation.Validators.UnitTestExtension.Composer;
 using FluentValidation.Validators.UnitTestExtension.Core;
 using Xunit;
 
-namespace Connectiq.CustomerWorker.UnitTests.Domain;
+namespace Connectiq.CustomerWorker.UnitTests.Domain.Commands;
 
 public class ValidatorTest
 {

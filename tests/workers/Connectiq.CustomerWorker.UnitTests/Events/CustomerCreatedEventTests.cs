@@ -1,9 +1,9 @@
 using AutoMapper;
-using Customers;
+using Connectiq.ProjectDefaults;
 using Connectiq.Tests.Utilities.Fixtures;
+using Customers;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
-using CustomerWorker.Domain.Interfaces;
 using CustomerWorker.Events;
 using MassTransit;
 using Microsoft.Extensions.Logging;
@@ -23,7 +23,7 @@ public class CustomerCreatedEventTests : IClassFixture<MapperFixture>
     {
         var customerValidated = new CustomerValidated
         {
-            Customer = new Customer { Details = new CustomerDetails { Name = "Test" } },
+            Customer = new Customers.Customer { Details = new CustomerDetails { Name = "Test" } },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };

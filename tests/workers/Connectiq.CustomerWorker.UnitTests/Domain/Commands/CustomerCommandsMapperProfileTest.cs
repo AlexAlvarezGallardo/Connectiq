@@ -1,22 +1,23 @@
 using AutoMapper;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
-using Customers;
+using Customers.Commands;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
 using FluentAssertions;
 using Xunit;
 
-namespace Connectiq.CustomerWorker.UnitTests.Domain;
+namespace Connectiq.CustomerWorker.UnitTests.Domain.Commands;
 
-public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<MapperFixture>
+public class CustomerCommandsMapperProfileTest(MapperFixture fixture) : IClassFixture<MapperFixture>
 {
     readonly IMapper _mapper =  fixture.Mapper;
+    readonly string _basePath = "Customers/Commands";
 
     [Fact]
     public void Map_CreateCustomerInput_To_CustomerValidated_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerValidated>(input);
 
@@ -32,7 +33,7 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
     [Fact]
     public void Map_CreateCustomerInput_To_CustomerNotValidated_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerNotValidated>(input);
 
@@ -48,7 +49,7 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
     [Fact]
     public void Map_CustomerValidated_To_CustomerCreate_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath("CustomerValidated.json");
+        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CustomerValidated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
         var result = _mapper.Map<CustomerCreate>(input);
 
@@ -64,7 +65,7 @@ public class CustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<Ma
     [Fact]
     public void Map_CustomerCreate_To_CustomerEntity_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath("CustomerCreate.json");
+        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CustomerCreate.json");
         var input = JsonDataLoader.LoadFromFile<CustomerCreate>(inputPath);
         var result = _mapper.Map<CustomerEntity>(input);
 

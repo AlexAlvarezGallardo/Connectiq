@@ -7,5 +7,6 @@ public static partial class ServiceCollectionExtensions
             .AddDbContext<CustomerDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("customers"));
-            });
+            })
+        .AddScoped<DbContext>(provider => provider.GetRequiredService<CustomerDbContext>());
 }

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package customers.commands;
+
+import "shared/Contracts/Customer/Customer.proto";
+
+message CreateCustomerInput {
+  customers.CustomerDetails details = 1;
+}

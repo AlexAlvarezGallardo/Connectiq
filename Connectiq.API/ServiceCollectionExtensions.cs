@@ -1,4 +1,6 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Connectiq.API.InputType;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -7,7 +9,8 @@ public static partial class ServiceCollectionExtensions
         services
             .AddGraphQLServer()
             .AddQueryType<CustomerQuery>()
-            .AddMutationType<CustomerMutation>();
+            .AddMutationType<CustomerMutation>()
+            .AddType<CustomerFiltersInputType>();
 
         return services;
     }

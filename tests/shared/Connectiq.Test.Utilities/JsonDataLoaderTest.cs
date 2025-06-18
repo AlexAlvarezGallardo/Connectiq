@@ -1,16 +1,17 @@
-﻿using Customers;
+﻿using Customers.Commands;
 using FluentAssertions;
-using System.Text.Json;
 using Xunit;
 
 namespace Connectiq.Tests.Utilities;
 
 public class JsonDataLoaderTest
 {
+    readonly string _basePath = "Customers/Commands";
+
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson()
     {
-        var path = JsonDataLoader.GetDataPath("CreateCustomerInput.json");
+        var path = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
         var result = JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
         result.Should().NotBeNull();
@@ -31,7 +32,7 @@ public class JsonDataLoaderTest
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_InvalidOperationException()
     {
-        var path = JsonDataLoader.GetDataPath("..//NullLiteral.json");
+        var path = JsonDataLoader.GetDataPath("NullLiteral.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);
 
