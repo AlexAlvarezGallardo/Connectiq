@@ -1,9 +1,9 @@
 using AutoMapper;
-using Customers;
+using Connectiq.ProjectDefaults;
 using Connectiq.Tests.Utilities.Fixtures;
+using Customers;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
-using CustomerWorker.Domain.Interfaces;
 using CustomerWorker.Events;
 using MassTransit;
 using Microsoft.Extensions.Logging;
