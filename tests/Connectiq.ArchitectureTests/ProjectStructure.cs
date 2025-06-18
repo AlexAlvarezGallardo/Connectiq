@@ -6,8 +6,7 @@ public class ProjectStructure
     {
         "Domain",
         "Events",
-        "Infrastructure",
-        "Repository"
+        "Infrastructure"
     };
 
     [Theory]
