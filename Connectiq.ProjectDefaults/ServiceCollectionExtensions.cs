@@ -1,4 +1,5 @@
-﻿using Connectiq.ProjectDefaults.LinqExtensions;
+﻿using Connectiq.ProjectDefaults;
+using Connectiq.ProjectDefaults.LinqExtensions;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ public static class ServiceCollectionExtensions
         where TEntity : class 
     {
         return services
-            .AddScoped<ILinqExtensions<TEntity>, LinqExtensions<TEntity>>();
+            .AddScoped<ILinqExtensions<TEntity>, LinqExtensions<TEntity>>()
+            .AddScoped<IRepository<TEntity>, DbRepository<TEntity>>();
     }
 }

@@ -1,17 +1,19 @@
-﻿using LinqKit;
-using LinqKit.Core;
+﻿using AutoMapper;
+using LinqKit;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
-namespace CustomerWorker.Repository;
+namespace Connectiq.ProjectDefaults;
 
 public class DbRepository<TEntity>(
-    CustomerDbContext _connectiqDbContext,
+    DbContext _dbContext,
     IMapper _mapper) : IRepository<TEntity>
     where TEntity : class
 {
     public async Task<bool> InsertAsync(TEntity entity)
     {
-        await _connectiqDbContext.Set<TEntity>().AddAsync(entity);
-        var result = await _connectiqDbContext.SaveChangesAsync();
+        await _dbContext.Set<TEntity>().AddAsync(entity);
+        var result = await _dbContext.SaveChangesAsync();
 
         return result > 0;
     }
@@ -21,7 +23,7 @@ public class DbRepository<TEntity>(
         int? pageSize = null,
         Expression<Func<TEntity, bool>>? filter = null)
     {
-        var query = _connectiqDbContext.Set<TEntity>().AsExpandableEFCore();
+        var query = _dbContext.Set<TEntity>().AsExpandableEFCore();
 
         if (filter is not null)
             query = query.Where(filter);

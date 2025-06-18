@@ -6,7 +6,6 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddValidators<Program>();
 builder.Services.AddAutoMapper<Program>();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddRepositories();
 builder.Services.AddConnectiqProjectDefaults<CustomerEntity>();
 
 builder.Services.AddGrpc();

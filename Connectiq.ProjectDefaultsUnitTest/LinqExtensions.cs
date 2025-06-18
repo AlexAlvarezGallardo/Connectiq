@@ -5,14 +5,14 @@ using Xunit;
 
 public class CustomerEntity
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
 }
 
 public class CustomerFilter
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
 }
 
 public class LinqExtensionsTests
@@ -21,7 +21,7 @@ public class LinqExtensionsTests
     public void Build_NullFilter_ReturnsTruePredicate()
     {
         var linq = new LinqExtensions<CustomerEntity>();
-        var predicate = linq.Build<CustomerFilter>(null);
+        var predicate = linq.Build<CustomerFilter>(null!);
 
         var customer = new CustomerEntity { Name = "A", Email = "B" };
         Assert.True(predicate.Compile()(customer));
@@ -31,10 +31,10 @@ public class LinqExtensionsTests
     public void Build_FilterByName_ReturnsPredicateThatMatchesName()
     {
         var linq = new LinqExtensions<CustomerEntity>();
-        var filter = new CustomerFilter { Name = "John" };
+        var filter = new CustomerFilter { Name = "John", Email = "john@gmail.com" };
         var predicate = linq.Build(filter);
 
-        var match = new CustomerEntity { Name = "John", Email = "x" };
+        var match = new CustomerEntity { Name = "John", Email = "john@gmail.com" };
         var noMatch = new CustomerEntity { Name = "Jane", Email = "x" };
 
         Assert.True(predicate.Compile()(match));

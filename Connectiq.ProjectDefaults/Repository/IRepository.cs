@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace CustomerWorker.Domain.Interfaces;
+namespace Connectiq.ProjectDefaults;
 
 public interface IRepository<TEntity> where TEntity : class
 {
