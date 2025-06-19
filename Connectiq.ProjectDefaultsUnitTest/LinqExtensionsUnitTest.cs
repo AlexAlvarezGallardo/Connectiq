@@ -1,7 +1,6 @@
-namespace Connectiq.ProjectDefaultsUnitTest;
-
 using Connectiq.ProjectDefaults.LinqExtensions;
-using Xunit;
+
+namespace Connectiq.ProjectDefaultsUnitTest;
 
 public class CustomerEntity
 {
@@ -15,7 +14,7 @@ public class CustomerFilter
     public required string Email { get; set; }
 }
 
-public class LinqExtensionsTests
+public class LinqExtensionsUnitTests
 {
     [Fact]
     public void Build_NullFilter_ReturnsTruePredicate()

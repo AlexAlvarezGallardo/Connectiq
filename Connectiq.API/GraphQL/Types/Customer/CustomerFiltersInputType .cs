@@ -1,6 +1,6 @@
 ﻿using Customers.Queries;
 
-namespace Connectiq.API.InputType;
+namespace Connectiq.API.GraphQL.Types.Customer;
 
 public class CustomerFiltersInputType : InputObjectType<CustomerFilters>
 {

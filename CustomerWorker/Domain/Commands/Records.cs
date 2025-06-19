@@ -7,14 +7,6 @@ public record CustomerValidated
     public required bool IsValid { get; init; }
 }
 
-public record CustomerNotValidated
-{
-    public required Customers.Customer Customer { get; init; }
-    public required DateTimeOffset CreatedAt { get; init; }
-    public required bool IsValid { get; init; }
-    public required string NotValidatedMessage { get; init; }
-}
-
 public record CustomerCreate
 {
     public required CustomerValidated CustomerValidated { get; init; }

@@ -15,6 +15,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Get
 builder.Services.AddGraphQLServices();
 builder.Services.AddValidators<CustomerWorker.Worker>();
 builder.Services.AddAutoMapper<CustomerWorker.Worker>();
+builder.Services.AddResponseFactory<CustomerValidated>();
 builder.Services.AddMessagingServices(builder.Configuration);
 
 builder.Services.AddGrpcClient<CustomerQueryServiceClient>(options =>

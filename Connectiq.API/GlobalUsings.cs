@@ -7,3 +7,5 @@ global using FluentValidation;
 global using MassTransit;
 global using MediatR;
 global using System.Reflection;
+global using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+global using Connectiq.ProjectDefaults.Response.Factory;

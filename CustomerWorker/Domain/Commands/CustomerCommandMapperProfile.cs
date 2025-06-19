@@ -12,11 +12,6 @@ public class CustomerCommandMapperProfile : Profile
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTimeOffset.UtcNow))
             .ForMember(dest => dest.IsValid, opt => opt.MapFrom(_ => true));
 
-        CreateMap<CreateCustomerInput, CustomerNotValidated>()
-            .ForPath(dest => dest.Customer, opt => opt.MapFrom(src => src.Details))
-            .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTimeOffset.UtcNow))
-            .ForMember(dest => dest.IsValid, opt => opt.MapFrom(_ => false));
-
         CreateMap<CustomerValidated, CustomerCreate>()
             .ForMember(dest => dest.CustomerValidated, opt => opt.MapFrom(src => src))
             .ForMember(dest => dest.IsActive, opt => opt.MapFrom(_ => true));
