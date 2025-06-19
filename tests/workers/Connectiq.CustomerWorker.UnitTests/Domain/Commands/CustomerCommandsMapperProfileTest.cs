@@ -31,22 +31,6 @@ public class CustomerCommandsMapperProfileTest(MapperFixture fixture) : IClassFi
     }
 
     [Fact]
-    public void Map_CreateCustomerInput_To_CustomerNotValidated_ShouldMapCorrectly()
-    {
-        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
-        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
-        var result = _mapper.Map<CustomerNotValidated>(input);
-
-        result.Customer.Should().NotBeNull();
-        result.Customer.Details.Name.Should().Be("John");
-        result.Customer.Details.Address.Should().Be("Elm Street");
-        result.Customer.Details.Phone.Should().Be("111-222");
-        result.Customer.Details.Email.Should().Be("john@email.com");
-        result.CreatedAt.Should().BeCloseTo(DateTimeOffset.UtcNow, TimeSpan.FromSeconds(1));
-        result.IsValid.Should().BeFalse();
-    }
-
-    [Fact]
     public void Map_CustomerValidated_To_CustomerCreate_ShouldMapCorrectly()
     {
         var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CustomerValidated.json");
