@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace DatabaseWorker.Extensions;
+﻿namespace DatabaseWorker.Extensions;
 
 internal static class ActivityExtensions
 {
