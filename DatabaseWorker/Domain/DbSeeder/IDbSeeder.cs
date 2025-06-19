@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace DatabaseWorker.Domain.DbSeeder;
+﻿namespace DatabaseWorker.Domain.DbSeeder;
 
 public interface IDbSeeder<in TContext> where TContext : DbContext
 {

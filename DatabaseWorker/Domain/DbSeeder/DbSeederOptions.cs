@@ -2,5 +2,6 @@
 
 public class DbSeederOptions
 {
-    public required Dictionary<string, string> EntityFilePaths { get; set; }
+    public SeedEntityOptions Default { get; set; } = new();
+    public Dictionary<string, SeedEntityOptions> Entities { get; set; } = [];
 }

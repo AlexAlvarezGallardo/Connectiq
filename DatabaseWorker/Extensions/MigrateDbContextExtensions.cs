@@ -1,10 +1,4 @@
-﻿using DatabaseWorker.Domain.DbSeeder;
-using DatabaseWorker.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System.Diagnostics;
-
-namespace Microsoft.AspNetCore.Hosting;
+﻿namespace Microsoft.AspNetCore.Hosting;
 
 internal static class MigrateDbContextExtensions
 {

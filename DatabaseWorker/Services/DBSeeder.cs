@@ -1,50 +1,44 @@
-﻿using DatabaseWorker.Domain.DbSeeder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Text.Json;
+﻿namespace DatabaseWorker.Services.DbSeeder;
 
-namespace DatabaseWorker.Services;
-
-public class DbSeeder<TContext, TEntity>(
-    ILogger<DbSeeder<TContext, TEntity>> _logger,
+public class DbSeeder<TContext, TEntity, TSeedable>(
+    ILogger<DbSeeder<TContext, TEntity, TSeedable>> _logger,
     IOptions<DbSeederOptions> _options,
-    JsonSerializerOptions _jsonSerializerOptions
+    JsonSerializerOptions _jsonOptions
 ) : IDbSeeder<TContext>
     where TContext : DbContext
     where TEntity : class
+    where TSeedable : class, ISeedableEntity<TEntity>
 {
     public async Task SeedAsync(TContext context)
     {
         var dbSet = context.Set<TEntity>();
+        var entityName = typeof(TEntity).Name;
 
         if (await dbSet.AnyAsync())
         {
-            _logger.LogInformation("Ya existen datos en la tabla {Entity}. Seeder omitido.", typeof(TEntity).Name);
+            _logger.LogInformation("Ya existen datos en la tabla {Entity}, se omite el seed.", entityName);
             return;
         }
 
-        var entityName = typeof(TEntity).Name;
+        var config = _options.Value.Entities.GetValueOrDefault(entityName) ?? _options.Value.Default;
+        var number = config.Number ?? _options.Value.Default.Number;
 
-        if (!_options.Value.EntityFilePaths.TryGetValue(entityName, out var jsonPath))
+        IEnumerable<TEntity> entities = config.SeedDataSource switch
         {
-            _logger.LogWarning("No se encontró ruta de seed configurada para {Entity}", entityName);
+            SeedDataSourceType.Json => await TSeedable.LoadFromJsonAsync(config.EntityFilePath!, _jsonOptions),
+            SeedDataSourceType.Bogus => TSeedable.GenerateSeedData(number!.Value),
+            _ => Enumerable.Empty<TEntity>()
+        };
+
+        if (!entities.Any())
+        {
+            _logger.LogWarning("No se generaron datos para {Entity}", entityName);
             return;
         }
 
-        if (!File.Exists(jsonPath))
-        {
-            _logger.LogWarning("Archivo JSON no encontrado en {Path}", jsonPath);
-            return;
-        }
+        await dbSet.AddRangeAsync(entities);
+        await context.SaveChangesAsync();
 
-        var json = await File.ReadAllTextAsync(jsonPath);
-        var entities = JsonSerializer.Deserialize<List<TEntity>>(json, _jsonSerializerOptions);
-
-        if (entities is not null && entities.Any())
-        {
-            await dbSet.AddRangeAsync(entities);
-            await context.SaveChangesAsync();
-            _logger.LogInformation("Insertados {Count} registros en {Entity}", entities.Count, entityName);
-        }
+        _logger.LogInformation("Insertados {Count} registros en {Entity}", entities.Count(), entityName);
     }
 }
