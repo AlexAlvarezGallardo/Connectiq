@@ -1,17 +1,18 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Connectiq.Tests.Utilities;
 using Connectiq.Tests.Utilities.Fixtures;
 using Customers.Commands;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
+using CustomerWorker.Domain.Commands.CreateCustomerCommand;
 using FluentAssertions;
 using Xunit;
 
-namespace Connectiq.CustomerWorker.UnitTests.Domain.Commands;
+namespace Connectiq.CustomerWorker.UnitTests.Domain.Commands.CreateCustomerCommand;
 
-public class CustomerCommandsMapperProfileTest(MapperFixture fixture) : IClassFixture<MapperFixture>
+public class CreateCustomerMapperProfileTest(MapperFixture fixture) : IClassFixture<MapperFixture>
 {
-    readonly IMapper _mapper =  fixture.Mapper;
+    readonly IMapper _mapper = fixture.Mapper;
     readonly string _basePath = "Customers/Commands";
 
     [Fact]
@@ -35,7 +36,7 @@ public class CustomerCommandsMapperProfileTest(MapperFixture fixture) : IClassFi
     {
         var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CustomerValidated.json");
         var input = JsonDataLoader.LoadFromFile<CustomerValidated>(inputPath);
-        var result = _mapper.Map<CustomerCreate>(input);
+        var result = _mapper.Map<CreateCustomer>(input);
 
         result.CustomerValidated.Customer.Details.Name.Should().Be("John");
         result.CustomerValidated.Customer.Details.Address.Should().Be("Elm Street");
@@ -50,7 +51,7 @@ public class CustomerCommandsMapperProfileTest(MapperFixture fixture) : IClassFi
     public void Map_CustomerCreate_To_CustomerEntity_ShouldMapCorrectly()
     {
         var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CustomerCreate.json");
-        var input = JsonDataLoader.LoadFromFile<CustomerCreate>(inputPath);
+        var input = JsonDataLoader.LoadFromFile<CreateCustomer>(inputPath);
         var result = _mapper.Map<CustomerEntity>(input);
 
         result.Name.Should().Be("John");

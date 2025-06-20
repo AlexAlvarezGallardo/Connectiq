@@ -11,7 +11,6 @@ public static partial class ServiceCollectionExtensions
             .AddQueryType<CustomerQuery>()
             .AddMutationType<CustomerMutation>()
             .AddType<CustomerFiltersInputType>()
-            .AddType<CustomerValidatedType>()
             .AddType<CustomerValidatedResultType>();
 
         return services;

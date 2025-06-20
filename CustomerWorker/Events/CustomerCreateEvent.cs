@@ -1,7 +1,9 @@
-﻿namespace CustomerWorker.Events;
+﻿using CustomerWorker.Domain.Commands.CreateCustomerCommand;
 
-public class CustomerCreatedEvent(
-    ILogger<CustomerCreatedEvent> _logger,
+namespace CustomerWorker.Events;
+
+public class CustomerCreateEvent(
+    ILogger<CustomerCreateEvent> _logger,
     IMapper _mapper,
     IRepository<CustomerEntity> _repository) : IConsumer<CustomerValidated>
 {
@@ -10,7 +12,7 @@ public class CustomerCreatedEvent(
         var message = context.Message;
         _logger.LogInformation("Received CustomerCreatedEvent with EventId: {EventId}", message.Customer.Details.Name);
 
-        var customerCreate = _mapper.Map<CustomerCreate>(message) with
+        var customerCreate = _mapper.Map<CreateCustomer>(message) with
         {
             EventId = context.MessageId?.ToString() ?? Guid.NewGuid().ToString(),
             IsActive = true

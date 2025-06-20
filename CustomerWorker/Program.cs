@@ -12,7 +12,7 @@ builder.Services.AddGrpc();
 
 builder.Services.AddMessagingServices(builder.Configuration, x =>
 {
-    x.AddConsumer<CustomerCreatedEvent>();
+    x.AddConsumer<CustomerCreateEvent>();
 });
 
 var app = builder.Build();

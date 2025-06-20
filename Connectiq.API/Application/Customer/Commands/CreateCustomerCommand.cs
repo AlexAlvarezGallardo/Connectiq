@@ -14,7 +14,7 @@ public class CreateCustomerCommandHandler(
 
         var validatorResult = await _validator.ValidateAsync(customerValidated, cancellationToken);
 
-        if (!validatorResult.IsValid) 
+        if (!validatorResult.IsValid)
         {
             var invalidCustomer = customerValidated with { IsValid = false };
             return _responseFactory.Error(invalidCustomer, validatorResult.Errors, "Validation Error");
@@ -25,3 +25,12 @@ public class CreateCustomerCommandHandler(
     }
 }
 
+public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
+{
+    public CreateCustomerCommandValidator()
+    {
+        RuleFor(c => c.Input.Details)
+            .SetValidator(new CustomerDetailsValidator())
+            .WithMessage("Los datos del cliente son inválidos.");
+    }
+}

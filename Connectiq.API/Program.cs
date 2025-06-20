@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddGraphQLServices();
 builder.Services.AddValidators<CustomerWorker.Worker>();
+builder.Services.AddValidators<Program>();
 builder.Services.AddAutoMapper<CustomerWorker.Worker>();
 builder.Services.AddResponseFactory<CustomerValidated>();
 builder.Services.AddMessagingServices(builder.Configuration);
