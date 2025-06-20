@@ -4,32 +4,32 @@ public record CreateCustomerCommand(CreateCustomerInput Input) : IRequest<IMutat
 
 public class CreateCustomerCommandHandler(
     IPublishEndpoint _publisher,
-    IValidator<CustomerValidated> _validator,
+    IValidator<CreateCustomerInput> _validator,
     IMutationResultFactory _responseFactory,
     IMapper _mapper) : IRequestHandler<CreateCustomerCommand, IMutationResponse<CustomerValidated>>
 {
     public async Task<IMutationResponse<CustomerValidated>> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        var customerValidated = _mapper.Map<CustomerValidated>(request.Input);
+        var validatorResult = await _validator.ValidateAsync(request.Input, cancellationToken);
 
-        var validatorResult = await _validator.ValidateAsync(customerValidated, cancellationToken);
+        var customerValidated = _mapper.Map<CustomerValidated>(request.Input);
 
         if (!validatorResult.IsValid)
         {
             var invalidCustomer = customerValidated with { IsValid = false };
             return _responseFactory.Error(invalidCustomer, validatorResult.Errors, "Validation Error");
-        }
+        }        
 
         await _publisher.Publish(customerValidated, cancellationToken);
         return _responseFactory.Ok(customerValidated);
     }
 }
 
-public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
+public class CreateCustomerInputCommandValidator : AbstractValidator<CreateCustomerInput>
 {
-    public CreateCustomerCommandValidator()
+    public CreateCustomerInputCommandValidator()
     {
-        RuleFor(c => c.Input.Details)
+        RuleFor(c => c.Details)
             .SetValidator(new CustomerDetailsValidator())
             .WithMessage("Los datos del cliente son inválidos.");
     }
