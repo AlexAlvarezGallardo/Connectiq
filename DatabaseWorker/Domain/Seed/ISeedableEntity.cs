@@ -1,6 +1,6 @@
 ﻿namespace DatabaseWorker.Domain.Seed;
 
-public interface ISeedableEntity<TEntity> 
+public interface ISeedableEntity<TEntity>
     where TEntity : class
 {
     static abstract IEnumerable<TEntity> GenerateSeedData(int count);

@@ -1,5 +1,4 @@
-﻿using Customers;
-using CustomerWorker.Domain.Commands;
+﻿using CustomerWorker.Domain.Commands;
 using FluentValidation.Validators;
 using FluentValidation.Validators.UnitTestExtension.Composer;
 using FluentValidation.Validators.UnitTestExtension.Core;

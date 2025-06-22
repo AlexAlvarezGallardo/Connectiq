@@ -19,7 +19,7 @@ public class JsonDataLoaderTest
 
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException()
-    {   
+    {
         var path = JsonDataLoader.GetDataPath("NotExist.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);

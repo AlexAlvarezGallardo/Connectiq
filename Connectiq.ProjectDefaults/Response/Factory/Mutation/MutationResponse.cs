@@ -22,7 +22,7 @@ public class MutationResponse<T> : MutationResponse, IMutationResponse<T>
 {
     public T? Data { get; set; }
 
-    public static MutationResponse<T> Ok(T data, string? message = null) 
+    public static MutationResponse<T> Ok(T data, string? message = null)
         => new() { Success = true, Data = data, Message = message ?? string.Empty };
 
     public static MutationResponse<T> Error(T data, List<ValidationFailure>? errors = null, string? message = null, HttpStatusCode statusCode = HttpStatusCode.BadRequest)

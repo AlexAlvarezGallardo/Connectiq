@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+﻿using Connectiq.ProjectDefaults.Response.Factory.Mutation;
 using FluentAssertions;
 using FluentValidation.Results;
-using Xunit;
 
 namespace Connectiq.ProjectDefaultsUnitTest.Response;
 

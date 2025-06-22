@@ -12,11 +12,11 @@ using Xunit;
 
 namespace Connectiq.CustomerWorker.UnitTests.Events;
 
-public class CustomerCreatedEventTests
+public class CreatedCustomerEventTests
 {
     readonly Mock<IMapper> _mapperMock = new();
-    readonly Mock<IRepository<CustomerEntity>> _repositoryMock = new ();
-    readonly Mock<ILogger<CustomerCreateEvent>> _loggerMock = new ();
+    readonly Mock<IRepository<CustomerEntity>> _repositoryMock = new();
+    readonly Mock<ILogger<CreateCustomerEvent>> _loggerMock = new();
 
     [Fact]
     public async Task Consume_ValidCustomerValidated_InsertsCustomerEntityAndLogs()
@@ -27,11 +27,11 @@ public class CustomerCreatedEventTests
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };
-        var customerCreate = new CreateCustomer 
-        { 
+        var customerCreate = new CreateCustomer
+        {
             CustomerValidated = customerValidated,
-            EventId = "event-id", 
-            IsActive = false 
+            EventId = "event-id",
+            IsActive = false
         };
         var customerEntity = new CustomerEntity
         {
@@ -48,7 +48,7 @@ public class CustomerCreatedEventTests
         _mapperMock.Setup(m => m.Map<CreateCustomer>(customerValidated)).Returns(customerCreate);
         _mapperMock.Setup(m => m.Map<CustomerEntity>(It.IsAny<CreateCustomer>())).Returns(customerEntity);
 
-        var handler = new CustomerCreateEvent(_loggerMock.Object, _mapperMock.Object, _repositoryMock.Object);
+        var handler = new CreateCustomerEvent(_loggerMock.Object, _mapperMock.Object, _repositoryMock.Object);
 
         // Act
         await handler.Consume(contextMock.Object);

@@ -8,11 +8,11 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddConnectiqProjectDefaults<TEntity>(this IServiceCollection services)
-        where TEntity : class 
+        where TEntity : class
         => services
             .AddScoped<ILinqExtensions<TEntity>, LinqExtensions<TEntity>>()
             .AddScoped<IRepository<TEntity>, DbRepository<TEntity>>();
-    
+
     public static IServiceCollection AddResponseFactory<TValidated>(this IServiceCollection services)
         where TValidated : class
         => services

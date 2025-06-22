@@ -1,3 +1,4 @@
+using Connectiq.ProjectDefaults.EventBus;
 using static Customer.Queries.Service.CustomerQueryService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,23 @@ builder.Services.AddValidators<CustomerWorker.Worker>();
 builder.Services.AddAutoMapper<CustomerWorker.Worker>();
 
 builder.Services.AddResponseFactory<CustomerValidated>();
-builder.Services.AddMessagingServices(builder.Configuration);
+
+builder.Services.Configure<EventBusOptions>(builder.Configuration.GetSection("EventBus"));
+
+builder.Services.AddMassTransit(x => 
+{
+    x.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
+
+        cfg.Message<CustomerValidated>(x => x.SetEntityName("customer.events"));
+
+        cfg.Publish<CustomerValidated>(p => 
+        {
+            p.ExchangeType = "topic";
+        });
+    });
+});
 
 builder.Services.AddGrpcClient<CustomerQueryServiceClient>(options =>
 {

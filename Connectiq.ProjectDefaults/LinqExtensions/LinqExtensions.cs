@@ -7,7 +7,7 @@ public class LinqExtensions<TEntity> : ILinqExtensions<TEntity> where TEntity : 
 {
     public Expression<Func<TEntity, bool>> Build<TFilter>(TFilter filters)
     {
-        if(filters is null)
+        if (filters is null)
             return PredicateBuilder.New<TEntity>(true);
 
         var predicate = PredicateBuilder.New<TEntity>(true);
