@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Connectiq.ProjectDefaults.Repository;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -8,7 +9,7 @@ namespace Connectiq.ProjectDefaults;
 public class DbRepository<TEntity>(
     DbContext _dbContext,
     IMapper _mapper) : IRepository<TEntity>
-    where TEntity : class
+    where TEntity : class, ISoftDelete
 {
     public async Task<bool> InsertAsync(TEntity entity)
     {
@@ -21,15 +22,7 @@ public class DbRepository<TEntity>(
     public async Task<bool> UpdateAsync(TEntity entity)
     {
         var dbSet = _dbContext.Set<TEntity>();
-
-        var keyProperties = _dbContext.Model.FindEntityType(typeof(TEntity))!
-            .FindPrimaryKey()!
-            .Properties;
-
-        var keyValues = keyProperties
-            .Select(p => typeof(TEntity)
-            .GetProperty(p.Name)!.GetValue(entity)!)
-            .ToArray();
+        var keyValues = GetKeyValues(entity);
 
         var existingEntity = await dbSet.FindAsync(keyValues);
 
@@ -40,6 +33,22 @@ public class DbRepository<TEntity>(
 
         if (!_dbContext.ChangeTracker.HasChanges())
             return true;
+
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
+    }
+
+    public async Task<bool> DeleteAsync(TEntity entity) 
+    {
+        var keyValues = GetKeyValues(entity);
+
+        var dbSet = _dbContext.Set<TEntity>();
+        var existingEntity = await dbSet.FindAsync(keyValues);
+
+        if (existingEntity is null)
+            return false;
+
+        existingEntity.IsActive = false;
 
         var result = await _dbContext.SaveChangesAsync();
         return result > 0;
@@ -61,5 +70,19 @@ public class DbRepository<TEntity>(
         var entities = await query.ToListAsync();
 
         return _mapper.Map<ICollection<TOutput>>(entities);
+    }
+
+    object[] GetKeyValues(TEntity entity) 
+    {
+        var keyProperties = _dbContext.Model.FindEntityType(typeof(TEntity))!
+            .FindPrimaryKey()!
+            .Properties;
+
+        var keyValues = keyProperties
+            .Select(p => typeof(TEntity)
+            .GetProperty(p.Name)!.GetValue(entity)!)
+            .ToArray();
+
+        return keyValues;
     }
 }

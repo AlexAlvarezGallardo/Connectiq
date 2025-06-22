@@ -9,6 +9,7 @@ public class EventBusOptions
         public string Name { get; set; } = string.Empty;
         public EventSettings CreateCustomer { get; set; } = new();
         public EventSettings UpdateCustomer { get; set; } = new();
+        public EventSettings DeleteCustomer { get; set; } = new();
     }
 
     public class EventSettings

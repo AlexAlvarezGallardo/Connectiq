@@ -13,4 +13,10 @@ public class CustomerMutation
         var command = new UpdateCustomerCommand(input);
         return await sender.Send(command);
     }
+
+    public async Task<IMutationResponse<CustomerValidated>> SoftDelete(DeleteCustomerInput input, [Service] ISender sender)
+    {
+        var command = new DeleteCustomerCommand(input);
+        return await sender.Send(command);
+    }
 }

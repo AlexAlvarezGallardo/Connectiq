@@ -1,6 +1,8 @@
-﻿namespace CustomerWorker.Domain;
+﻿using Connectiq.ProjectDefaults.Repository;
 
-public class CustomerEntity
+namespace CustomerWorker.Domain;
+
+public class CustomerEntity : ISoftDelete
 {
     public Guid Id { get; set; }
     public required string Name { get; set; }

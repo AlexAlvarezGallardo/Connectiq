@@ -21,6 +21,6 @@ public class GlobalCustomerMapperProfile : Profile
             .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CustomerValidated.CreatedAt));
     }
 
-    Guid SafeParseGuid(string input) 
+    static Guid SafeParseGuid(string input) 
         =>  Guid.TryParse(input, out Guid guid) ? guid : Guid.Empty;
 }

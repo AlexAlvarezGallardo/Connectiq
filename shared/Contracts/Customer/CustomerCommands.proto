@@ -11,3 +11,7 @@ message CreateCustomerInput {
 message UpdateCustomerInput {
   customers.Customer customer = 1;
 }
+
+message DeleteCustomerInput {
+  string Id = 1;
+}

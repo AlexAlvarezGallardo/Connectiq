@@ -21,6 +21,7 @@ builder.Services.AddMassTransit(x =>
 { 
     x.AddConsumer<CreateCustomerEvent>();
     x.AddConsumer<UpdateCustomerEvent>();
+    x.AddConsumer<DeleteCustomerEvent>();
 
     x.UsingRabbitMq((ctx, cfg) => 
     { 
@@ -52,6 +53,17 @@ builder.Services.AddMassTransit(x =>
                 s.ExchangeType = ExchangeType.Topic.ToString().ToLower();
             });
             e.ConfigureConsumer<UpdateCustomerEvent>(ctx);
+        });
+
+        cfg.ReceiveEndpoint(options.Exchange.DeleteCustomer.QueueName, e =>
+        {
+            e.ConfigureConsumeTopology = false;
+            e.Bind(options.Exchange.Name, s =>
+            {
+                s.RoutingKey = options.Exchange.DeleteCustomer.RoutingKey;
+                s.ExchangeType = ExchangeType.Topic.ToString().ToLower();
+            });
+            e.ConfigureConsumer<DeleteCustomerEvent>(ctx);
         });
     });
 });
