@@ -1,6 +1,6 @@
 ﻿namespace Connectiq.API.GraphQL.Types.Customer;
 
-public class CustomerValidatedType : ObjectType<CustomerValidated>
+public class CustomerCommandType : ObjectType<CustomerValidated>
 {
     protected override void Configure(IObjectTypeDescriptor<CustomerValidated> descriptor)
     {
@@ -16,6 +16,6 @@ public class CustomerValidatedResultType : ObjectType<MutationResponse<CustomerV
 
         descriptor.Field(f => f.Success).Type<NonNullType<BooleanType>>();
         descriptor.Field(f => f.Message).Type<NonNullType<StringType>>();
-        descriptor.Field(f => f.Data).Type<CustomerValidatedType>().Description("The validated customer data.");
+        descriptor.Field(f => f.Data).Type<CustomerCommandType>().Description("The validated customer data.");
     }
 }

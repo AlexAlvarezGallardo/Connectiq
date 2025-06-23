@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using System.Net;
 
-namespace Connectiq.ProjectDefaults.Response.Factory.Mutation;
+namespace Connectiq.ProjectDefaults.Response.Mutation;
 
 public class MutationResponse : IMutationResponse
 {

@@ -1,6 +1,5 @@
 ﻿using CustomerWorker.Domain.Commands;
 using CustomerWorker.Domain.Commands.UpdateCustomerCommand;
-using FluentValidation.Validators;
 using FluentValidation.Validators.UnitTestExtension.Composer;
 using FluentValidation.Validators.UnitTestExtension.Core;
 using Xunit;

@@ -21,12 +21,12 @@ public class UpdateCustomerEvent(
 
         var validationResult = await _validator.ValidateAsync(updateCustomer);
 
-        if(!validationResult.IsValid)
+        if (!validationResult.IsValid)
         {
-            _logger.LogWarning("Validation failed for UpdateCustomer with Id: {CustomerId}. Errors: {Errors}", 
-                updateCustomer.CustomerValidated.Customer.Id, 
+            _logger.LogWarning("Validation failed for UpdateCustomer with Id: {CustomerId}. Errors: {Errors}",
+                updateCustomer.CustomerValidated.Customer.Id,
                 validationResult.Errors);
-            
+
             throw new ValidationException(validationResult.Errors);
         }
 

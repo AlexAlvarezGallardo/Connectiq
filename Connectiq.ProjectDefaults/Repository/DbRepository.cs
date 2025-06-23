@@ -38,7 +38,7 @@ public class DbRepository<TEntity>(
         return result > 0;
     }
 
-    public async Task<bool> SoftDeleteAsync(TEntity entity) 
+    public async Task<bool> SoftDeleteAsync(TEntity entity)
     {
         var keyValues = GetKeyValues(entity);
 
@@ -72,7 +72,15 @@ public class DbRepository<TEntity>(
         return _mapper.Map<ICollection<TOutput>>(entities);
     }
 
-    object[] GetKeyValues(TEntity entity) 
+    public async Task<TOutput> GetEntityById<TOutput>(Guid id)
+    {
+        var entity = await _dbContext.Set<TEntity>().AsExpandableEFCore()
+            .SingleOrDefaultAsync(e => e.Id == id);
+
+        return _mapper.Map<TOutput>(entity);
+    }
+
+    object[] GetKeyValues(TEntity entity)
     {
         var keyProperties = _dbContext.Model.FindEntityType(typeof(TEntity))!
             .FindPrimaryKey()!

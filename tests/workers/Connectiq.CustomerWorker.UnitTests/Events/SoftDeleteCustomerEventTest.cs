@@ -3,7 +3,6 @@ using Connectiq.ProjectDefaults;
 using Customers;
 using CustomerWorker.Domain;
 using CustomerWorker.Domain.Commands;
-using CustomerWorker.Domain.Commands.CreateCustomerCommand;
 using CustomerWorker.Domain.Commands.SoftDeleteCustomerCommand;
 using CustomerWorker.Events;
 using MassTransit;

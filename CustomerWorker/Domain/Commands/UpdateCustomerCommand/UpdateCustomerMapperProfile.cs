@@ -2,7 +2,7 @@
 
 public class UpdateCustomerMapperProfile : Profile
 {
-    public UpdateCustomerMapperProfile() 
+    public UpdateCustomerMapperProfile()
     {
         CreateMap<CustomerValidated, UpdateCustomer>()
                .IncludeBase<CustomerValidated, CustomerBase>();

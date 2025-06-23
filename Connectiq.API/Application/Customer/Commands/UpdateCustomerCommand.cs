@@ -1,4 +1,5 @@
 ﻿using Connectiq.ProjectDefaults.EventBus;
+using Connectiq.ProjectDefaults.Response.Mutation.Factory;
 using Microsoft.Extensions.Options;
 
 namespace Connectiq.API.Application.Customer.Commands;

@@ -7,4 +7,5 @@ import public "shared/Contracts/Customer/CustomerQueries.proto";
 
 service CustomerQueryService {
   rpc GetAllCustomers(customers.queries.GetAllFiltersInput) returns (customers.queries.GetCustomersResponse);
+  rpc GetCustomerById(customers.queries.GetCustomerByIdInput) returns (customers.queries.GetCustomerResponse);
 }

@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Connectiq.ProjectDefaults.Response.Factory.Mutation;
+namespace Connectiq.ProjectDefaults.Response.Mutation;
 
 public interface IMutationResponse
 {

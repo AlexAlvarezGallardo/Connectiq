@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
 using Connectiq.ProjectDefaults.EventBus;
-using Connectiq.ProjectDefaults.Response.Factory;
-using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+using Connectiq.ProjectDefaults.Response.Mutation;
+using Connectiq.ProjectDefaults.Response.Mutation.Factory;
 using Connectiq.Tests.Utilities;
 using Customers.Commands;
 using CustomerWorker.Domain.Commands;

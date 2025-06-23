@@ -28,7 +28,7 @@ public class UpdateCustomerEventTests
         {
             Customer = new Customers.Customer
             {
-                Details = new Customers.CustomerDetails 
+                Details = new Customers.CustomerDetails
                 {
                     Name = "Test",
                     Address = "Addr",

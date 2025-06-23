@@ -12,9 +12,13 @@ message CustomerFilters {
 }
 
 message GetAllFiltersInput {
-  CustomerFilters filters = 1;
-  int32 page = 2;
-  int32 pageSize = 3;
+	CustomerFilters filters = 1;
+	int32 page = 2;
+	int32 pageSize = 3;
+}
+
+message GetCustomerByIdInput {
+	string id = 1;
 }
 
 message CustomerDto {
@@ -24,7 +28,11 @@ message CustomerDto {
 	bool isActive = 4;
 }
 
-message GetCustomersResponse {
-  repeated CustomerDto customers = 1;
-  int32 totalCount = 2;
+message GetCustomersResponse { 
+	repeated CustomerDto customers = 1;
+	int32 totalCount = 2;
+}
+
+message GetCustomerResponse {
+	CustomerDto customerDto = 1;
 }

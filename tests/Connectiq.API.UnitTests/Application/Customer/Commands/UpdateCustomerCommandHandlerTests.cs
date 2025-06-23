@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
 using Connectiq.ProjectDefaults.EventBus;
-using Connectiq.ProjectDefaults.Response.Factory;
-using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+using Connectiq.ProjectDefaults.Response.Mutation;
+using Connectiq.ProjectDefaults.Response.Mutation.Factory;
 using Connectiq.Tests.Utilities;
 using Customers.Commands;
 using CustomerWorker.Domain.Commands;
@@ -110,9 +110,9 @@ public class UpdateCustomerCommandHandlerTests
             It.IsAny<CustomerValidated>(),
             It.IsAny<CancellationToken>()), Times.Never);
         _mutationResult.Verify(m => m.Error(
-            It.IsAny<CustomerValidated>(), 
-            It.IsAny<List<ValidationFailure>>(), 
-            It.IsAny<string>(), 
+            It.IsAny<CustomerValidated>(),
+            It.IsAny<List<ValidationFailure>>(),
+            It.IsAny<string>(),
             HttpStatusCode.BadRequest), Times.Once);
         _validatorMock.Verify(v => v.ValidateAsync(input, It.IsAny<CancellationToken>()), Times.Once);
         _mapperMock.Verify(m => m.Map<CustomerValidated>(input), Times.Once);

@@ -1,8 +1,7 @@
-﻿using Connectiq.ProjectDefaults.Response.Factory.Mutation;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using System.Net;
 
-namespace Connectiq.ProjectDefaults.Response.Factory;
+namespace Connectiq.ProjectDefaults.Response.Mutation.Factory;
 
 public interface IMutationResultFactory
 {

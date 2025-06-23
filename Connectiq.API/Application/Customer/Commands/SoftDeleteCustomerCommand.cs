@@ -1,4 +1,5 @@
 ﻿using Connectiq.ProjectDefaults.EventBus;
+using Connectiq.ProjectDefaults.Response.Mutation.Factory;
 using Microsoft.Extensions.Options;
 
 namespace Connectiq.API.Application.Customer.Commands;
@@ -26,7 +27,7 @@ public class SoftDeleteCustomerCommandHandler(
 
         await _bus.Publish(customerValidated, ctx =>
         {
-            ctx.SetRoutingKey(_options.Value.Exchange.DeleteCustomer.RoutingKey);
+            ctx.SetRoutingKey(_options.Value.Exchange.SoftDeleteCustomer.RoutingKey);
         }, cancellationToken);
 
         return _responseFactory.Ok(customerValidated);
