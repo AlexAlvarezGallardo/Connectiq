@@ -1,6 +1,5 @@
 using Connectiq.ProjectDefaults.EventBus;
 using MassTransit.Transports.Fabric;
-using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +20,7 @@ builder.Services.AddMassTransit(x =>
 { 
     x.AddConsumer<CreateCustomerEvent>();
     x.AddConsumer<UpdateCustomerEvent>();
-    x.AddConsumer<DeleteCustomerEvent>();
+    x.AddConsumer<SoftDeleteCustomerEvent>();
 
     x.UsingRabbitMq((ctx, cfg) => 
     { 
@@ -63,7 +62,7 @@ builder.Services.AddMassTransit(x =>
                 s.RoutingKey = options.Exchange.DeleteCustomer.RoutingKey;
                 s.ExchangeType = ExchangeType.Topic.ToString().ToLower();
             });
-            e.ConfigureConsumer<DeleteCustomerEvent>(ctx);
+            e.ConfigureConsumer<SoftDeleteCustomerEvent>(ctx);
         });
     });
 });

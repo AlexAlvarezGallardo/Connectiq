@@ -6,7 +6,7 @@ namespace Connectiq.Tests.Utilities;
 
 public class JsonDataLoaderTest
 {
-    readonly string _basePath = "Customers/Commands";
+    readonly string _basePath = "Customers/Commands/Input";
 
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson()

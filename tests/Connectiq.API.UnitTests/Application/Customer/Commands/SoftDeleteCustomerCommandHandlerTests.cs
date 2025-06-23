@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
 using Connectiq.ProjectDefaults.EventBus;
 using Connectiq.ProjectDefaults.Response.Factory;
@@ -17,21 +17,21 @@ using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 
-public class CreateCustomerCommandHandlerTests
+public class SoftDeleteCustomerCommandHandlerTests
 {
-    readonly Mock<IPublishEndpoint> _publishEndpointMock = new();
-    readonly Mock<IValidator<CreateCustomerInput>> _validatorMock = new();
+    readonly Mock<IBus> _busMock = new();
+    readonly Mock<IValidator<SoftDeleteCustomerInput>> _validatorMock = new();
     readonly Mock<IMapper> _mapperMock = new();
     readonly Mock<IMutationResultFactory> _mutationResult = new();
     readonly Mock<IOptions<EventBusOptions>> _optionsMock = new();
-    readonly CreateCustomerCommandHandler _handler;
+    readonly SoftDeleteCustomerCommandHandler _handler;
 
-    readonly string _basePath = "Customers/Commands";
+    readonly string _basePath = "Customers/Commands/Input";
 
-    public CreateCustomerCommandHandlerTests()
+    public SoftDeleteCustomerCommandHandlerTests()
     {
-        _handler = new CreateCustomerCommandHandler(
-            _publishEndpointMock.Object,
+        _handler = new SoftDeleteCustomerCommandHandler(
+            _busMock.Object,
             _validatorMock.Object,
             _mutationResult.Object,
             _mapperMock.Object,
@@ -42,14 +42,14 @@ public class CreateCustomerCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldReturnTrue_And_Publish_When_Validation_Succeeds()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
-        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
+        var softDeleteCustomerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/SoftDeleteCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<SoftDeleteCustomerInput>(softDeleteCustomerInputPath);
 
-        var command = new CreateCustomerCommand(input);
+        var command = new SoftDeleteCustomerCommand(input);
 
         var customerValidated = new CustomerValidated
         {
-            Customer = new Customers.Customer() { Details = input.Details },
+            Customer = new Customers.Customer() { Id = input.Id },
             CreatedAt = DateTimeOffset.UtcNow,
             IsValid = true
         };
@@ -65,21 +65,27 @@ public class CreateCustomerCommandHandlerTests
         result.Should().NotBeNull();
         result.Success.Should().BeTrue();
         result.Data.Should().BeEquivalentTo(customerValidated);
+        result.Errors.Should().BeNullOrEmpty();
+
+        _validatorMock.Verify(v => v.ValidateAsync(It.IsAny<SoftDeleteCustomerInput>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mapperMock.Verify(m => m.Map<CustomerValidated>(It.IsAny<SoftDeleteCustomerInput>()), Times.Once);
+        _mutationResult.Verify(m => m.Error(It.IsAny<CustomerValidated>(), It.IsAny<List<ValidationFailure>>(), It.IsAny<string>(), HttpStatusCode.BadRequest), Times.Never);
+        _mutationResult.Verify(m => m.Ok(It.IsAny<CustomerValidated>(), It.IsAny<string>()), Times.Once);
     }
 
     [Fact]
     public async Task Handle_ShouldReturnErrorResponse_AndNotPublish_When_Validation_Fails()
     {
-        var customerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
-        var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(customerInputPath);
+        var softDeleteCustomerInputPath = JsonDataLoader.GetDataPath($"{_basePath}/SoftDeleteCustomerInput.json");
+        var input = JsonDataLoader.LoadFromFile<SoftDeleteCustomerInput>(softDeleteCustomerInputPath);
 
-        var command = new CreateCustomerCommand(input);
+        var command = new SoftDeleteCustomerCommand(input);
 
         var customerValidated = new CustomerValidated
         {
-            Customer = new Customers.Customer() { Details = input.Details },
+            Customer = new Customers.Customer() { Id = input.Id },
             CreatedAt = DateTimeOffset.UtcNow,
-            IsValid = true
+            IsValid = false
         };
 
         var failures = new List<ValidationFailure> { new("Field", "Error") };
@@ -106,8 +112,12 @@ public class CreateCustomerCommandHandlerTests
         result.Data.Should().BeEquivalentTo(customerValidated);
         result.Errors.Should().NotBeNull().And.HaveCount(1);
 
-        _publishEndpointMock.Verify(p => p.Publish(
+        _validatorMock.Verify(v => v.ValidateAsync(It.IsAny<SoftDeleteCustomerInput>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mapperMock.Verify(m => m.Map<CustomerValidated>(It.IsAny<SoftDeleteCustomerInput>()), Times.Once);
+        _mutationResult.Verify(m => m.Error(It.IsAny<CustomerValidated>(), It.IsAny<List<ValidationFailure>>(), It.IsAny<string>(), HttpStatusCode.BadRequest), Times.Once);
+        _busMock.Verify(p => p.Publish(
             It.IsAny<CustomerValidated>(),
             It.IsAny<CancellationToken>()), Times.Never);
+        _mutationResult.Verify(m => m.Ok(It.IsAny<CustomerValidated>(), It.IsAny<string>()), Times.Never);
     }
 }

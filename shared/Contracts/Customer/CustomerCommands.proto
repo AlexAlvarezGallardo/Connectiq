@@ -12,6 +12,6 @@ message UpdateCustomerInput {
   customers.Customer customer = 1;
 }
 
-message DeleteCustomerInput {
-  string Id = 1;
+message SoftDeleteCustomerInput {
+  string id = 1;
 }

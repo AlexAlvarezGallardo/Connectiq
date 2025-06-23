@@ -3,16 +3,16 @@ using Microsoft.Extensions.Options;
 
 namespace Connectiq.API.Application.Customer.Commands;
 
-public record DeleteCustomerCommand(DeleteCustomerInput Input) : IRequest<IMutationResponse<CustomerValidated>>;
+public record SoftDeleteCustomerCommand(SoftDeleteCustomerInput Input) : IRequest<IMutationResponse<CustomerValidated>>;
 
-public class DeleteCustomerCommandHandler(
-    IPublishEndpoint _publishEndpoint,
-    IValidator<DeleteCustomerInput> _validator,
+public class SoftDeleteCustomerCommandHandler(
+    IBus _bus,
+    IValidator<SoftDeleteCustomerInput> _validator,
     IMutationResultFactory _responseFactory,
     IMapper _mapper,
-    IOptions<EventBusOptions> _options) : IRequestHandler<DeleteCustomerCommand, IMutationResponse<CustomerValidated>>
+    IOptions<EventBusOptions> _options) : IRequestHandler<SoftDeleteCustomerCommand, IMutationResponse<CustomerValidated>>
 {
-    public async Task<IMutationResponse<CustomerValidated>> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+    public async Task<IMutationResponse<CustomerValidated>> Handle(SoftDeleteCustomerCommand request, CancellationToken cancellationToken)
     {
         var validatorResult = await _validator.ValidateAsync(request.Input, cancellationToken);
 
@@ -24,7 +24,7 @@ public class DeleteCustomerCommandHandler(
             return _responseFactory.Error(invalidCustomer, validatorResult.Errors, "Validation Error");
         }
 
-        await _publishEndpoint.Publish(customerValidated, ctx =>
+        await _bus.Publish(customerValidated, ctx =>
         {
             ctx.SetRoutingKey(_options.Value.Exchange.DeleteCustomer.RoutingKey);
         }, cancellationToken);
@@ -33,9 +33,9 @@ public class DeleteCustomerCommandHandler(
     }
 }
 
-public class DeleteCustomerInputCommandValidator : AbstractValidator<DeleteCustomerInput>
+public class SoftDeleteCustomerInputCommandValidator : AbstractValidator<SoftDeleteCustomerInput>
 {
-    public DeleteCustomerInputCommandValidator()
+    public SoftDeleteCustomerInputCommandValidator()
     {
         RuleFor(c => c.Id)
             .NotEmpty()

@@ -6,7 +6,7 @@ namespace Connectiq.API.Application.Customer.Commands;
 public record CreateCustomerCommand(CreateCustomerInput Input) : IRequest<IMutationResponse<CustomerValidated>>;
 
 public class CreateCustomerCommandHandler(
-    IPublishEndpoint _publishEndpoint,
+    IBus _bus,
     IValidator<CreateCustomerInput> _validator,
     IMutationResultFactory _responseFactory,
     IMapper _mapper,
@@ -24,7 +24,7 @@ public class CreateCustomerCommandHandler(
             return _responseFactory.Error(invalidCustomer, validatorResult.Errors, "Validation Error");
         }
 
-        await _publishEndpoint.Publish(customerValidated, ctx =>
+        await _bus.Publish(customerValidated, ctx =>
         {
             ctx.SetRoutingKey(_options.Value.Exchange.CreateCustomer.RoutingKey);
         }, cancellationToken);

@@ -33,7 +33,7 @@ public class GlobalCustomerMapperProfileTest(MapperFixture fixture) : IClassFixt
     [Fact]
     public void Map_CreateCustomerInput_To_CustomerValidated_ShouldMapCorrectly()
     {
-        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/CreateCustomerInput.json");
+        var inputPath = JsonDataLoader.GetDataPath($"{_basePath}/Input/CreateCustomerInput.json");
         var input = JsonDataLoader.LoadFromFile<CreateCustomerInput>(inputPath);
         var result = _mapper.Map<CustomerValidated>(input);
 

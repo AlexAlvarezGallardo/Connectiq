@@ -38,7 +38,7 @@ public class DbRepository<TEntity>(
         return result > 0;
     }
 
-    public async Task<bool> DeleteAsync(TEntity entity) 
+    public async Task<bool> SoftDeleteAsync(TEntity entity) 
     {
         var keyValues = GetKeyValues(entity);
 
