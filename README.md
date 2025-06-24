@@ -1,4 +1,4 @@
-﻿# 🚀 Connectiq Application
+# 🚀 Connectiq Application
 
 ![✅ Build Status](https://img.shields.io/github/actions/workflow/status/AlexAlvarezGallardo/connectiq/ci.yml?branch=main)  
 ![📄 License](https://img.shields.io/github/license/AlexAlvarezGallardo/connectiq)  
@@ -8,110 +8,99 @@
 
 ## 📋 Overview
 
-Connectiq is a modular, scalable microservices application designed to manage customer data efficiently with modern architectural patterns and technologies.
+Connectiq is a modular, scalable microservices application designed to manage customer data efficiently using modern architectural patterns and technologies.
 
 ---
 
 ## 🏗 Architecture
 
-The system is built following a **microservices architecture** with clear separation of concerns:
+The system follows a **microservices architecture** with clear boundaries and responsibilities:
 
 - **🖥️ Connectiq.AppHost:**  
-  The main service acting as the application host. It integrates core components and connects to infrastructure services.
+  The main entry point that hosts and orchestrates the service configuration.
 
 - **📜 Connectiq.Contracts:**  
-  Defines the domain contracts and messages exchanged between services using **gRPC** for strongly-typed and efficient communication.
+  Defines strongly-typed domain contracts and messages using **gRPC** for inter-service communication.
 
 - **👤 CustomerWorker:**  
-  Handles customer-specific business logic including validation and processing of customer data.
+  Encapsulates customer-related business logic including validation, mapping, and event handling.
 
-- **💾 DatabaseWorker & PersistenceWorker:**  
-  Responsible for database migrations, seeding, and maintaining schema consistency automatically throughout development and deployment.
+- **💾 DatabaseWorker:**  
+  Handles database schema migrations and seeding at startup to keep the database up to date during development and deployment.
+
+> 🗑️ `PersistenceWorker` has been removed to avoid cross-service coupling and direct context dependencies. All persistence logic is now managed independently within each domain.
 
 ---
 
 ## 🔗 Communication and Messaging
 
 - **⚡ gRPC:**  
-  Used within `Connectiq.Contracts` to define service contracts and enable fast, type-safe RPC communication between services.
+  Enables fast, contract-first communication between services.
 
-- **🐰 RabbitMQ:**  
-  Manages asynchronous messaging and event-driven communication between microservices ensuring loose coupling and scalability.
+- **🐰 RabbitMQ with MassTransit:**  
+  Supports event-driven architecture and asynchronous messaging between microservices, using topic-based routing and configurable bindings.
 
 - **📐 CQRS (Command Query Responsibility Segregation):**  
-  Command and query responsibilities are separated, improving scalability and maintainability.
+  Improves maintainability and scalability by splitting commands and queries into distinct paths.
 
 - **🛠 AutoMapper:**  
-  Used to simplify object-to-object mapping across DTOs, entities, and event messages.
+  Used for mapping between domain entities, DTOs, and event messages.
 
 ---
 
 ## 🛠 Technologies Used
 
-- **🟣 .NET 8:**  
-  Modern cross-platform framework powering the services.
-
-- **🐘 PostgreSQL:**  
-  The relational database management system for persisting customer data.
-
-- **🐰 RabbitMQ:**  
-  Message broker for event-driven asynchronous communication.
-
-- **⚡ gRPC:**  
-  Protocol for efficient communication and contract definition between services.
-
-- **🛠 AutoMapper:**  
-  Simplifies mapping between domain models and DTOs.
-
-- **📩 MassTransit:**  
-  Abstraction over RabbitMQ to facilitate message handling.
-
-- **✅ FluentValidation:**  
-  For enforcing business rules and input validation on incoming data.
-
-- **⚙️ GitHub Actions:**  
-  For CI/CD workflows and ensuring code quality through tests and coverage (planned).
+- **🟣 .NET 8**  
+- **🐘 PostgreSQL** – primary relational database.  
+- **🐰 RabbitMQ** – event bus with quorum queue configuration.  
+- **📩 MassTransit** – abstraction layer for message handling.  
+- **⚡ gRPC** – cross-service contract-first communication.  
+- **✅ FluentValidation** – input validation and business rule enforcement.  
+- **⚙️ GitHub Actions** – CI/CD automation.
 
 ---
 
 ## 📈 What We've Implemented So Far
 
-- Setup of PostgreSQL and RabbitMQ for persistence and messaging.  
-- Defined domain contracts and messages with gRPC.  
-- Implemented customer management microservice (`CustomerWorker`) with validation and event handling.  
-- Automated database migrations and seeding with `DatabaseWorker` and `PersistenceWorker`.  
-- Applied CQRS pattern separating commands and queries.  
-- Configured object mapping using AutoMapper for clean DTO conversions.  
-- Established a foundation for testing and code coverage to ensure quality and performance.
+- PostgreSQL and RabbitMQ infrastructure with Aspire support.  
+- Fully configured CQRS pattern in `CustomerWorker`.  
+- gRPC-based domain contracts in `Connectiq.Contracts`.  
+- Input validation using FluentValidation for commands and queries.  
+- Automated schema migration with `DatabaseWorker`.  
+- Dynamic MassTransit configuration using custom extensions and configuration sections.  
+- Implemented soft delete and event publishing logic.  
+- Enhanced test coverage with unit and integration tests.  
+- Removed `PersistenceWorker` to enforce strict service boundaries and decoupling.
 
 ---
 
 ## 🎯 Next Steps
 
-- Implement comprehensive unit and integration tests with coverage.  
-- Add benchmark tests to measure performance.  
-- Configure branch protections and CI/CD pipelines.  
-- Extend microservices and communication contracts as needed.
+- Expand test coverage and add performance benchmarks.  
+- Improve fault-tolerance with retry policies and circuit breakers.  
+- Integrate OpenTelemetry for distributed tracing.  
+- Add support for distributed caching.  
+- Implement saga patterns for long-running workflows.
 
 ---
 
 ## 🚀 How to Run
 
-1. Make sure you have PostgreSQL and RabbitMQ services running and accessible.  
-2. The application uses **Aspire** for automatic configuration, so no manual `appsettings.json` setup is needed.  
-3. Build and run the services using `dotnet run` or via Docker containers.  
-4. Interact with the services through the provided gRPC clients or API endpoints.
+1. Run the application using Aspire (via `dotnet run` in the AppHost project).  
+2. All configuration is managed via `appsettings.*.json` and environment variables.  
+3. Interact via gRPC clients or expose additional endpoints as needed.
+4. Use GraphQL to interact with the application.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you want to help improve Connectiq:
+We welcome contributions! To get started:
 
-- Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.  
-- Open issues to discuss features or bugs.  
-- Fork the repository and submit pull requests with clear descriptions and tests.
+- Read [CONTRIBUTING.md](./CONTRIBUTING.md)  
+- Open issues to report bugs or suggest enhancements  
+- Fork the repo, create a feature branch, and open a PR with your changes
 
 ---
 
-Feel free to explore the repository and reach out for any questions or collaborations!
+Feel free to explore the repository and join the development. Let’s build something great with Connectiq!
