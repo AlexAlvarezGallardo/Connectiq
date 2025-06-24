@@ -1,13 +1,13 @@
 ﻿global using CustomerWorker.Domain;
 global using CustomerWorker.Infrastructure;
 global using DatabaseWorker.Domain.DbSeeder;
+global using DatabaseWorker.Domain.Seed;
+global using DatabaseWorker.Extensions;
 global using DatabaseWorker.Services.DbSeeder;
 global using DatabaseWorker.Services.Seed;
 global using Microsoft.AspNetCore.Hosting;
-global using System.Text.Json;
-global using DatabaseWorker.Domain.Seed;
-global using DatabaseWorker.Extensions;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Infrastructure;
-global using System.Diagnostics;
 global using Microsoft.Extensions.Options;
+global using System.Diagnostics;
+global using System.Text.Json;

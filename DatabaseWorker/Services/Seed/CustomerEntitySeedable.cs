@@ -11,7 +11,7 @@ public class CustomerEntitySeedable : ISeedableEntity<CustomerEntity>
             .RuleFor(c => c.Phone, f => Truncate(f.Phone.PhoneNumber(), 20))
             .RuleFor(c => c.Email, f => f.Internet.Email())
             .RuleFor(c => c.CreatedAt, f => f.Date.PastOffset(2).ToUniversalTime())
-            .RuleFor(c => c.IsActive, f => f.Random.Bool(0.8f)); 
+            .RuleFor(c => c.IsActive, f => f.Random.Bool(0.8f));
 
         return faker.Generate(count);
     }

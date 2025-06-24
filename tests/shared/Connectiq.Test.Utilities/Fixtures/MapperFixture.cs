@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using CustomerWorker.Domain.Commands;
+using CustomerWorker.Domain.Commands.CreateCustomerCommand;
+using CustomerWorker.Domain.Commands.UpdateCustomerCommand;
 using CustomerWorker.Domain.Queries;
 
 namespace Connectiq.Tests.Utilities.Fixtures;
@@ -12,7 +14,9 @@ public class MapperFixture
     {
         var config = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<CustomerCommandMapperProfile>();
+            cfg.AddProfile<GlobalCustomerMapperProfile>();
+            cfg.AddProfile<CreateCustomerMapperProfile>();
+            cfg.AddProfile<UpdateCustomerMapperProfile>();
             cfg.AddProfile<CustomerQueryMapperProfile>();
         });
 

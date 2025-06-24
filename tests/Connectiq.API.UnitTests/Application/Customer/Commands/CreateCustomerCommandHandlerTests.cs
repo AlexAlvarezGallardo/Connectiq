@@ -1,7 +1,8 @@
 using AutoMapper;
 using Connectiq.API.Application.Customer.Commands;
-using Connectiq.ProjectDefaults.Response.Factory;
-using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+using Connectiq.ProjectDefaults.EventBus;
+using Connectiq.ProjectDefaults.Response.Mutation;
+using Connectiq.ProjectDefaults.Response.Mutation.Factory;
 using Connectiq.Tests.Utilities;
 using Customers.Commands;
 using CustomerWorker.Domain.Commands;
@@ -9,6 +10,7 @@ using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
 using MassTransit;
+using Microsoft.Extensions.Options;
 using Moq;
 using System.Net;
 using ValidationResult = FluentValidation.Results.ValidationResult;
@@ -17,21 +19,23 @@ namespace Connectiq.API.UnitTests.Application.Customer.Commands;
 
 public class CreateCustomerCommandHandlerTests
 {
-    readonly Mock<IPublishEndpoint> _publisherMock = new();
-    readonly Mock<IValidator<CustomerValidated>> _validatorMock = new();
+    readonly Mock<IBus> _busMock = new();
+    readonly Mock<IValidator<CreateCustomerInput>> _validatorMock = new();
     readonly Mock<IMapper> _mapperMock = new();
     readonly Mock<IMutationResultFactory> _mutationResult = new();
+    readonly Mock<IOptions<EventBusOptions>> _optionsMock = new();
     readonly CreateCustomerCommandHandler _handler;
 
-    readonly string _basePath = "Customers/Commands";
+    readonly string _basePath = "Customers/Commands/Input";
 
     public CreateCustomerCommandHandlerTests()
     {
         _handler = new CreateCustomerCommandHandler(
-            _publisherMock.Object,
+            _busMock.Object,
             _validatorMock.Object,
             _mutationResult.Object,
-            _mapperMock.Object
+            _mapperMock.Object,
+            _optionsMock.Object
         );
     }
 
@@ -51,19 +55,23 @@ public class CreateCustomerCommandHandlerTests
         };
 
         _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
-        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
+        _validatorMock.Setup(v => v.ValidateAsync(input, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
-        _publisherMock.Setup(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()))
-            .Returns(Task.CompletedTask);
         _mutationResult.Setup(f => f.Ok(It.IsAny<CustomerValidated>(), It.IsAny<string>()))
             .Returns(new MutationResponse<CustomerValidated> { Success = true, Data = customerValidated, Message = string.Empty });
-        
+
         var result = await _handler.Handle(command, CancellationToken.None);
 
         result.Should().NotBeNull();
         result.Success.Should().BeTrue();
         result.Data.Should().BeEquivalentTo(customerValidated);
-        _publisherMock.Verify(p => p.Publish(customerValidated, It.IsAny<CancellationToken>()), Times.Once);
+        result.Errors.Should().BeNullOrEmpty();
+
+        _validatorMock.Verify(v => v.ValidateAsync(It.IsAny<CreateCustomerInput>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mapperMock.Verify(m => m.Map<CustomerValidated>(It.IsAny<CreateCustomerInput>()), Times.Once);
+        _mutationResult.Verify(m => m.Error(It.IsAny<CustomerValidated>(), It.IsAny<List<ValidationFailure>>(), It.IsAny<string>(), HttpStatusCode.BadRequest), Times.Never);
+        _mutationResult.Verify(m => m.Ok(It.IsAny<CustomerValidated>(), It.IsAny<string>()), Times.Once);
+
     }
 
     [Fact]
@@ -78,14 +86,14 @@ public class CreateCustomerCommandHandlerTests
         {
             Customer = new Customers.Customer() { Details = input.Details },
             CreatedAt = DateTimeOffset.UtcNow,
-            IsValid = true
+            IsValid = false
         };
 
-        var failures = new List<ValidationFailure> { new ValidationFailure("Field", "Error") };
+        var failures = new List<ValidationFailure> { new("Field", "Error") };
         var validationResult = new ValidationResult(failures);
 
         _mapperMock.Setup(m => m.Map<CustomerValidated>(input)).Returns(customerValidated);
-        _validatorMock.Setup(v => v.ValidateAsync(customerValidated, It.IsAny<CancellationToken>()))
+        _validatorMock.Setup(v => v.ValidateAsync(input, It.IsAny<CancellationToken>()))
             .ReturnsAsync(validationResult);
 
         _mutationResult.Setup(m => m.Error(It.IsAny<CustomerValidated>(), failures, It.IsAny<string>(), HttpStatusCode.BadRequest))
@@ -94,7 +102,7 @@ public class CreateCustomerCommandHandlerTests
                 Success = false,
                 Data = customerValidated,
                 Message = "Validation Error",
-                Errors = failures, 
+                Errors = failures,
                 StatusCode = HttpStatusCode.BadRequest
             });
 
@@ -104,6 +112,13 @@ public class CreateCustomerCommandHandlerTests
         result.Success.Should().BeFalse();
         result.Data.Should().BeEquivalentTo(customerValidated);
         result.Errors.Should().NotBeNull().And.HaveCount(1);
-        _publisherMock.Verify(p => p.Publish(It.IsAny<CustomerValidated>(), It.IsAny<CancellationToken>()), Times.Never);
+
+        _validatorMock.Verify(v => v.ValidateAsync(It.IsAny<CreateCustomerInput>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mapperMock.Verify(m => m.Map<CustomerValidated>(It.IsAny<CreateCustomerInput>()), Times.Once);
+        _mutationResult.Verify(m => m.Error(It.IsAny<CustomerValidated>(), It.IsAny<List<ValidationFailure>>(), It.IsAny<string>(), HttpStatusCode.BadRequest), Times.Once);
+        _busMock.Verify(p => p.Publish(
+            It.IsAny<CustomerValidated>(),
+            It.IsAny<CancellationToken>()), Times.Never);
+        _mutationResult.Verify(m => m.Ok(It.IsAny<CustomerValidated>(), It.IsAny<string>()), Times.Never);
     }
 }

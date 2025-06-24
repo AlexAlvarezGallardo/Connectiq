@@ -6,7 +6,7 @@ namespace Connectiq.Tests.Utilities;
 
 public class JsonDataLoaderTest
 {
-    readonly string _basePath = "Customers/Commands";
+    readonly string _basePath = "Customers/Commands/Input";
 
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson()
@@ -19,7 +19,7 @@ public class JsonDataLoaderTest
 
     [Fact]
     public void LoadFromFile_ShouldDeserializeJson_Throw_FileNotFoundException()
-    {   
+    {
         var path = JsonDataLoader.GetDataPath("NotExist.json");
 
         var act = () => JsonDataLoader.LoadFromFile<CreateCustomerInput>(path);

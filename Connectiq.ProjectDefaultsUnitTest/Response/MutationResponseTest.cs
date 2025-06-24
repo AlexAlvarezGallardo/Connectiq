@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Connectiq.ProjectDefaults.Response.Factory.Mutation;
+﻿using Connectiq.ProjectDefaults.Response.Mutation;
+using Connectiq.ProjectDefaults.Response.Query;
 using FluentAssertions;
 using FluentValidation.Results;
-using Xunit;
 
 namespace Connectiq.ProjectDefaultsUnitTest.Response;
 
@@ -11,34 +10,10 @@ public class MutationResponseTests
     [Fact]
     public void Should_ReturnOkSuccessTrue_AndMessage()
     {
-        var response = MutationResponse.Ok("Success!");
+        var response = QueryResponse.Ok();
 
         response.Success.Should().BeTrue();
-        response.Message.Should().Be("Success!");
-        response.Errors.Should().BeEmpty();
-    }
-
-    [Fact]
-    public void Should_ReturnErrorSuccessFalse_AndMessage_AndErrors()
-    {
-        var errors = new List<ValidationFailure>
-        {
-            new("Prop", "Error message")
-        };
-
-        var response = MutationResponse.Error(errors, "Failed!");
-
-        response.Success.Should().BeFalse();
-        response.Message.Should().Be("Failed!");
-        response.Errors.Should().BeEquivalentTo(errors);
-    }
-
-    [Fact]
-    public void Should_ReturnEmptyErrors_WhenNullPassed()
-    {
-        var response = MutationResponse.Error(null, "Failed!");
-
-        response.Errors.Should().BeEmpty();
+        response.Message.Should().BeEmpty();
     }
 }
 

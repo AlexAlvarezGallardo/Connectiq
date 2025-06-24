@@ -7,3 +7,11 @@ import "shared/Contracts/Customer/Customer.proto";
 message CreateCustomerInput {
   customers.CustomerDetails details = 1;
 }
+
+message UpdateCustomerInput {
+  customers.Customer customer = 1;
+}
+
+message SoftDeleteCustomerInput {
+  string id = 1;
+}

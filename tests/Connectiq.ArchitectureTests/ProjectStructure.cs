@@ -1,6 +1,6 @@
 ﻿namespace Connectiq.ArchitectureTests;
 
-public class ProjectStructure 
+public class ProjectStructure
 {
     static readonly string[] RequiredFolders = new[]
     {

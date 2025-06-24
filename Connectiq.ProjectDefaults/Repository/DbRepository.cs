@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Connectiq.ProjectDefaults.Repository;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -8,7 +9,7 @@ namespace Connectiq.ProjectDefaults;
 public class DbRepository<TEntity>(
     DbContext _dbContext,
     IMapper _mapper) : IRepository<TEntity>
-    where TEntity : class
+    where TEntity : class, ISoftDelete
 {
     public async Task<bool> InsertAsync(TEntity entity)
     {
@@ -18,8 +19,43 @@ public class DbRepository<TEntity>(
         return result > 0;
     }
 
+    public async Task<bool> UpdateAsync(TEntity entity)
+    {
+        var dbSet = _dbContext.Set<TEntity>();
+        var keyValues = GetKeyValues(entity);
+
+        var existingEntity = await dbSet.FindAsync(keyValues);
+
+        if (existingEntity is null)
+            return false;
+
+        _dbContext.Entry(existingEntity).CurrentValues.SetValues(entity);
+
+        if (!_dbContext.ChangeTracker.HasChanges())
+            return true;
+
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
+    }
+
+    public async Task<bool> SoftDeleteAsync(TEntity entity)
+    {
+        var keyValues = GetKeyValues(entity);
+
+        var dbSet = _dbContext.Set<TEntity>();
+        var existingEntity = await dbSet.FindAsync(keyValues);
+
+        if (existingEntity is null)
+            return false;
+
+        existingEntity.IsActive = false;
+
+        var result = await _dbContext.SaveChangesAsync();
+        return result > 0;
+    }
+
     public async Task<ICollection<TOutput>> GetAllAsync<TOutput>(
-        int? page = null, 
+        int? page = null,
         int? pageSize = null,
         Expression<Func<TEntity, bool>>? filter = null)
     {
@@ -34,5 +70,27 @@ public class DbRepository<TEntity>(
         var entities = await query.ToListAsync();
 
         return _mapper.Map<ICollection<TOutput>>(entities);
+    }
+
+    public async Task<TOutput> GetEntityById<TOutput>(Guid id)
+    {
+        var entity = await _dbContext.Set<TEntity>().AsExpandableEFCore()
+            .SingleOrDefaultAsync(e => e.Id == id);
+
+        return _mapper.Map<TOutput>(entity);
+    }
+
+    object[] GetKeyValues(TEntity entity)
+    {
+        var keyProperties = _dbContext.Model.FindEntityType(typeof(TEntity))!
+            .FindPrimaryKey()!
+            .Properties;
+
+        var keyValues = keyProperties
+            .Select(p => typeof(TEntity)
+            .GetProperty(p.Name)!.GetValue(entity)!)
+            .ToArray();
+
+        return keyValues;
     }
 }

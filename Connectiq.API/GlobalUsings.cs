@@ -1,11 +1,10 @@
 ﻿global using AutoMapper;
 global using Connectiq.API.Application.Customer.Commands;
 global using Connectiq.API.GraphQL.Customer;
+global using Connectiq.ProjectDefaults.Response.Mutation;
 global using Customers.Commands;
 global using CustomerWorker.Domain.Commands;
 global using FluentValidation;
 global using MassTransit;
 global using MediatR;
 global using System.Reflection;
-global using Connectiq.ProjectDefaults.Response.Factory.Mutation;
-global using Connectiq.ProjectDefaults.Response.Factory;
