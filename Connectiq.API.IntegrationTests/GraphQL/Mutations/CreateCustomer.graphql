@@ -1,0 +1,30 @@
+﻿mutation CreateCustomer($input: CreateCustomerInput!) {
+  createCustomer(input: $input) {
+    ... on MutationResponseOfCustomerValidated {
+      message
+      statusCode
+      success
+    }
+    errors {
+      errorCode
+      propertyName
+      severity
+      errorMessage
+    }
+    data {
+      createdAt
+      isValid
+      customer {
+        calculateSize
+        id
+        details {
+          address
+          calculateSize
+          email
+          name
+          phone
+        }
+      }
+    }
+  }
+}

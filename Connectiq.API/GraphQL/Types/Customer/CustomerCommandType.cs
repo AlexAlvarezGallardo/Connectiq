@@ -1,4 +1,6 @@
-﻿namespace Connectiq.API.GraphQL.Types.Customer;
+﻿using Customers.Queries;
+
+namespace Connectiq.API.GraphQL.Types.Customer;
 
 public class CustomerCommandType : ObjectType<CustomerValidated>
 {

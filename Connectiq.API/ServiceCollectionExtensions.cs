@@ -9,7 +9,6 @@ public static partial class ServiceCollectionExtensions
         services
             .AddGraphQLServer()
             .AddMutationType<CustomerMutation>()
-            .AddType<CustomerFiltersInputType>()
             .AddType<CustomerValidatedResultType>();
 
         return services;
@@ -21,9 +20,11 @@ public static partial class ServiceCollectionExtensions
             .AddGraphQLServer()
             .AddQueryType<CustomerQuery>()
             .AddType<CustomerType>()
+            .AddType<CustomerFiltersInputType>()
             .AddType<CustomerQueryResultType>()
             .AddType<CustomersType>()
-            .AddType<CustomersQueryResultType>();
+            .AddType<CustomersQueryResultType>()
+            .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true);
 
         return services;
     }
