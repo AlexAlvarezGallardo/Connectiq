@@ -1,12 +1,8 @@
 ﻿using Connectiq.API.IntegrationTests.Tests;
 using ConnectiqApiNS;
-using Customers;
-using CustomerWorker.Domain.Commands.CreateCustomerCommand;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Validators;
 
-namespace Connectiq.API.IntegrationTests;
+namespace Connectiq.API.IntegrationTests.Customer;
 
 public class MutationIntegrationTests(ApiFixture _fixture) : IClassFixture<ApiFixture>
 {
@@ -168,7 +164,7 @@ public class MutationIntegrationTests(ApiFixture _fixture) : IClassFixture<ApiFi
         string expectedProperty,
         string validator,
         string expectedErrorMessage)
-    {
+     {
         var graphqlClient = await _fixture.CreateConnectiqApiClientAsync();
 
         var getAllInput = new GetAllFiltersInput { Page = 1, PageSize = 1 };
@@ -212,7 +208,79 @@ public class MutationIntegrationTests(ApiFixture _fixture) : IClassFixture<ApiFi
             e.ErrorCode == validator);
 
         error.Should().NotBeNull($"porque se esperaba un error de validación en '{expectedProperty}'");
+     }
+
+    [Fact]
+    public async Task SoftDeleteCustomer_Should_Return_Success()
+    {
+        var graphqlClient = await _fixture.CreateConnectiqApiClientAsync();
+
+        var getAllInput = new GetAllFiltersInput { Page = 1, PageSize = 1 };
+
+        var getCustomersResult = await graphqlClient.GetAllCustomers.ExecuteAsync(getAllInput);
+
+        getCustomersResult.Should().NotBeNull();
+        getCustomersResult.Data.Should().NotBeNull();
+        var customerId = getCustomersResult.Data.AllCustomers!.Data!.Customers![0]!.Customer!.Id;
+        customerId.Should().NotBeNullOrWhiteSpace("porque necesitamos un ID válido para hacer el soft delete");
+
+        var softDeleteInput = new SoftDeleteCustomerInput { Id = customerId };
+
+        var deleteResult = await graphqlClient.SoftDeleteCustomer.ExecuteAsync(softDeleteInput);
+
+        deleteResult.Should().NotBeNull();
+        deleteResult.Errors.Should().BeEmpty("porque se espera que el borrado lógico sea exitoso");
+        deleteResult.Data.Should().NotBeNull();
+
+        var deleteResponse = deleteResult.Data!.SoftDelete!;
+        deleteResponse.Should().BeAssignableTo<ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated>();
+        var softDeleteCustomer = (ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated)deleteResponse!;
+
+        softDeleteCustomer.Success.Should().BeTrue();
+        softDeleteCustomer.StatusCode.Should().Be(ConnectiqApiNS.HttpStatusCode.Ok);
+        softDeleteCustomer.Message.Should().BeNullOrEmpty(); 
+
+        softDeleteCustomer.Data.Should().NotBeNull();
+        softDeleteCustomer.Data.Customer.Should().NotBeNull();
+        softDeleteCustomer.Data.Customer.Id.Should().Be(customerId);
     }
 
+    [Theory]
+    [InlineData("", "Id", "NotEmptyValidator")] 
+    public async Task SoftDeleteCustomer_WithInvalidId_Should_Return_ValidationError(
+        string invalidId,
+        string propertyName,
+        string errorCode)
+    {
+        var graphqlClient = await _fixture.CreateConnectiqApiClientAsync();
 
+        var input = new SoftDeleteCustomerInput { Id = invalidId };
+
+        var result = await graphqlClient.SoftDeleteCustomer.ExecuteAsync(input);
+
+        result.Should().NotBeNull();
+        result.Data.Should().NotBeNull();
+
+        var response = result.Data!.SoftDelete!;
+        response.Should().BeAssignableTo<ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated>();
+        var softDeleteCustomer = (ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated)response!;
+
+        softDeleteCustomer.Should().NotBeNull();
+        softDeleteCustomer.Success.Should().BeFalse("porque el id es inválido");
+        softDeleteCustomer.StatusCode.Should().Be(ConnectiqApiNS.HttpStatusCode.BadRequest);
+        softDeleteCustomer.Message.Should().Be("Validation Error");
+
+        softDeleteCustomer.Errors.Should().NotBeNullOrEmpty("porque se esperaba al menos un error de validación");
+
+        var idError = softDeleteCustomer.Errors!.FirstOrDefault(e =>
+            e.PropertyName == propertyName &&
+            e.ErrorCode == errorCode);
+
+        idError.Should().NotBeNull("porque se esperaba un error de validación sobre el campo Id");
+        idError!.ErrorMessage.Should().Be("El Id del customer es obligatorio"); 
+
+        softDeleteCustomer.Data.Should().NotBeNull();
+        softDeleteCustomer.Data.Customer.Should().NotBeNull();
+        softDeleteCustomer.Data.Customer.Id.Should().BeEmpty("porque el ID era inválido y no debe retornar un ID válido");
+    }
 }

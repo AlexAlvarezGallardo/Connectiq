@@ -539,6 +539,420 @@ namespace ConnectiqApiNS
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerResult : global::System.IEquatable<SoftDeleteCustomerResult>, ISoftDeleteCustomerResult
+    {
+        public SoftDeleteCustomerResult(global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete softDelete)
+        {
+            SoftDelete = softDelete;
+        }
+
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete SoftDelete { get; }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomerResult? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (SoftDelete.Equals(other.SoftDelete));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomerResult)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * SoftDelete.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated : global::System.IEquatable<SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated>, ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated
+    {
+        public SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated(global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data? data, global::System.String message, global::ConnectiqApiNS.HttpStatusCode statusCode, global::System.Boolean success, global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors> errors)
+        {
+            Data = data;
+            Message = message;
+            StatusCode = statusCode;
+            Success = success;
+            Errors = errors;
+        }
+
+        /// <summary>
+        /// The validated customer data.
+        /// </summary>
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data? Data { get; }
+        public global::System.String Message { get; }
+        public global::ConnectiqApiNS.HttpStatusCode StatusCode { get; }
+        public global::System.Boolean Success { get; }
+        public global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors> Errors { get; }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Data is null && other.Data is null) || Data != null && Data.Equals(other.Data))) && Message.Equals(other.Message) && StatusCode.Equals(other.StatusCode) && global::System.Object.Equals(Success, other.Success) && global::StrawberryShake.Internal.ComparisonHelper.SequenceEqual(Errors, other.Errors);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Data != null)
+                {
+                    hash ^= 397 * Data.GetHashCode();
+                }
+
+                hash ^= 397 * Message.GetHashCode();
+                hash ^= 397 * StatusCode.GetHashCode();
+                hash ^= 397 * Success.GetHashCode();
+                foreach (var Errors_elm in Errors)
+                {
+                    hash ^= 397 * Errors_elm.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomer_SoftDelete_Data_CustomerValidated : global::System.IEquatable<SoftDeleteCustomer_SoftDelete_Data_CustomerValidated>, ISoftDeleteCustomer_SoftDelete_Data_CustomerValidated
+    {
+        public SoftDeleteCustomer_SoftDelete_Data_CustomerValidated(global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data_Customer customer)
+        {
+            Customer = customer;
+        }
+
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data_Customer Customer { get; }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomer_SoftDelete_Data_CustomerValidated? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (Customer.Equals(other.Customer));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomer_SoftDelete_Data_CustomerValidated)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * Customer.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure : global::System.IEquatable<SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure>, ISoftDeleteCustomer_SoftDelete_Errors_ValidationFailure
+    {
+        public SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure(global::System.String? errorCode, global::System.String? errorMessage, global::System.String? propertyName, global::ConnectiqApiNS.Severity severity)
+        {
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
+            PropertyName = propertyName;
+            Severity = severity;
+        }
+
+        public global::System.String? ErrorCode { get; }
+        public global::System.String? ErrorMessage { get; }
+        public global::System.String? PropertyName { get; }
+        public global::ConnectiqApiNS.Severity Severity { get; }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((ErrorCode is null && other.ErrorCode is null) || ErrorCode != null && ErrorCode.Equals(other.ErrorCode))) && ((ErrorMessage is null && other.ErrorMessage is null) || ErrorMessage != null && ErrorMessage.Equals(other.ErrorMessage)) && ((PropertyName is null && other.PropertyName is null) || PropertyName != null && PropertyName.Equals(other.PropertyName)) && Severity.Equals(other.Severity);
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (ErrorCode != null)
+                {
+                    hash ^= 397 * ErrorCode.GetHashCode();
+                }
+
+                if (ErrorMessage != null)
+                {
+                    hash ^= 397 * ErrorMessage.GetHashCode();
+                }
+
+                if (PropertyName != null)
+                {
+                    hash ^= 397 * PropertyName.GetHashCode();
+                }
+
+                hash ^= 397 * Severity.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomer_SoftDelete_Data_Customer_Customer : global::System.IEquatable<SoftDeleteCustomer_SoftDelete_Data_Customer_Customer>, ISoftDeleteCustomer_SoftDelete_Data_Customer_Customer
+    {
+        public SoftDeleteCustomer_SoftDelete_Data_Customer_Customer(global::System.Int32 calculateSize, global::System.String? id)
+        {
+            CalculateSize = calculateSize;
+            Id = id;
+        }
+
+        public global::System.Int32 CalculateSize { get; }
+        public global::System.String? Id { get; }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomer_SoftDelete_Data_Customer_Customer? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (global::System.Object.Equals(CalculateSize, other.CalculateSize)) && ((Id is null && other.Id is null) || Id != null && Id.Equals(other.Id));
+        }
+
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomer_SoftDelete_Data_Customer_Customer)obj);
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * CalculateSize.GetHashCode();
+                if (Id != null)
+                {
+                    hash ^= 397 * Id.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomerResult
+    {
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete SoftDelete { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete
+    {
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data? Data { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated : ISoftDeleteCustomer_SoftDelete
+    {
+        public global::System.String Message { get; }
+        public global::ConnectiqApiNS.HttpStatusCode StatusCode { get; }
+        public global::System.Boolean Success { get; }
+        public global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors> Errors { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Data
+    {
+        public global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data_Customer Customer { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Data_CustomerValidated : ISoftDeleteCustomer_SoftDelete_Data
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Errors
+    {
+        public global::System.String? ErrorCode { get; }
+        public global::System.String? ErrorMessage { get; }
+        public global::System.String? PropertyName { get; }
+        public global::ConnectiqApiNS.Severity Severity { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Errors_ValidationFailure : ISoftDeleteCustomer_SoftDelete_Errors
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Data_Customer
+    {
+        public global::System.Int32 CalculateSize { get; }
+        public global::System.String? Id { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomer_SoftDelete_Data_Customer_Customer : ISoftDeleteCustomer_SoftDelete_Data_Customer
+    {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
     public partial class UpdateCustomerResult : global::System.IEquatable<UpdateCustomerResult>, IUpdateCustomerResult
     {
         public UpdateCustomerResult(global::ConnectiqApiNS.IUpdateCustomer_UpdateCustomer updateCustomer)
@@ -2497,6 +2911,125 @@ namespace ConnectiqApiNS
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerInputInputValueFormatter : global::StrawberryShake.Serialization.IInputObjectFormatter
+    {
+        private global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter = default !;
+        public global::System.String TypeName => "SoftDeleteCustomerInput";
+
+        public void Initialize(global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
+        }
+
+        public global::System.Object? Format(global::System.Object? runtimeValue)
+        {
+            if (runtimeValue is null)
+            {
+                return null;
+            }
+
+            var input = runtimeValue as global::ConnectiqApiNS.SoftDeleteCustomerInput;
+            var inputInfo = runtimeValue as global::ConnectiqApiNS.State.ISoftDeleteCustomerInputInfo;
+            if (input is null || inputInfo is null)
+            {
+                throw new global::System.ArgumentException(nameof(runtimeValue));
+            }
+
+            var fields = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>>();
+            if (inputInfo.IsIdSet)
+            {
+                fields.Add(new global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>("id", FormatId(input.Id)));
+            }
+
+            return fields;
+        }
+
+        private global::System.Object? FormatId(global::System.String? input)
+        {
+            if (input is null)
+            {
+                return input;
+            }
+            else
+            {
+                return _stringFormatter.Format(input);
+            }
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerInput : global::ConnectiqApiNS.State.ISoftDeleteCustomerInputInfo, global::System.IEquatable<SoftDeleteCustomerInput>
+    {
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((SoftDeleteCustomerInput)obj);
+        }
+
+        public virtual global::System.Boolean Equals(SoftDeleteCustomerInput? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (((Id is null && other.Id is null) || Id != null && Id.Equals(other.Id)));
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (Id != null)
+                {
+                    hash ^= 397 * Id.GetHashCode();
+                }
+
+                return hash;
+            }
+        }
+
+        private global::System.String? _value_id;
+        private global::System.Boolean _set_id;
+        public global::System.String? Id
+        {
+            get => _value_id;
+            set
+            {
+                _set_id = true;
+                _value_id = value;
+            }
+        }
+
+        global::System.Boolean global::ConnectiqApiNS.State.ISoftDeleteCustomerInputInfo.IsIdSet => _set_id;
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
     public partial class UpdateCustomerInputInputValueFormatter : global::StrawberryShake.Serialization.IInputObjectFormatter
     {
         private global::StrawberryShake.Serialization.IInputValueFormatter _customerInputFormatter = default !;
@@ -4061,6 +4594,551 @@ namespace ConnectiqApiNS
         global::ConnectiqApiNS.ICreateCustomerMutation WithHttpClient(global::System.Net.Http.HttpClient httpClient);
         global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<ICreateCustomerResult>> ExecuteAsync(global::ConnectiqApiNS.CreateCustomerInput input, global::System.Threading.CancellationToken cancellationToken = default);
         global::System.IObservable<global::StrawberryShake.IOperationResult<ICreateCustomerResult>> Watch(global::ConnectiqApiNS.CreateCustomerInput input, global::StrawberryShake.ExecutionStrategy? strategy = null);
+    }
+
+    /// <summary>
+    /// Represents the operation service of the SoftDeleteCustomer GraphQL operation
+    /// <code>
+    /// mutation SoftDeleteCustomer($input: SoftDeleteCustomerInput!) {
+    ///   softDelete(input: $input) {
+    ///     __typename
+    ///     data {
+    ///       __typename
+    ///       customer {
+    ///         __typename
+    ///         calculateSize
+    ///         id
+    ///         ... on Customer {
+    ///           id
+    ///         }
+    ///       }
+    ///     }
+    ///     ... on MutationResponseOfCustomerValidated {
+    ///       message
+    ///       statusCode
+    ///       success
+    ///       errors {
+    ///         __typename
+    ///         errorCode
+    ///         errorMessage
+    ///         propertyName
+    ///         severity
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerMutationDocument : global::StrawberryShake.IDocument
+    {
+        private SoftDeleteCustomerMutationDocument()
+        {
+        }
+
+        public static SoftDeleteCustomerMutationDocument Instance { get; } = new SoftDeleteCustomerMutationDocument();
+        public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Mutation;
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]
+        {
+            0x6d,
+            0x75,
+            0x74,
+            0x61,
+            0x74,
+            0x69,
+            0x6f,
+            0x6e,
+            0x20,
+            0x53,
+            0x6f,
+            0x66,
+            0x74,
+            0x44,
+            0x65,
+            0x6c,
+            0x65,
+            0x74,
+            0x65,
+            0x43,
+            0x75,
+            0x73,
+            0x74,
+            0x6f,
+            0x6d,
+            0x65,
+            0x72,
+            0x28,
+            0x24,
+            0x69,
+            0x6e,
+            0x70,
+            0x75,
+            0x74,
+            0x3a,
+            0x20,
+            0x53,
+            0x6f,
+            0x66,
+            0x74,
+            0x44,
+            0x65,
+            0x6c,
+            0x65,
+            0x74,
+            0x65,
+            0x43,
+            0x75,
+            0x73,
+            0x74,
+            0x6f,
+            0x6d,
+            0x65,
+            0x72,
+            0x49,
+            0x6e,
+            0x70,
+            0x75,
+            0x74,
+            0x21,
+            0x29,
+            0x20,
+            0x7b,
+            0x20,
+            0x73,
+            0x6f,
+            0x66,
+            0x74,
+            0x44,
+            0x65,
+            0x6c,
+            0x65,
+            0x74,
+            0x65,
+            0x28,
+            0x69,
+            0x6e,
+            0x70,
+            0x75,
+            0x74,
+            0x3a,
+            0x20,
+            0x24,
+            0x69,
+            0x6e,
+            0x70,
+            0x75,
+            0x74,
+            0x29,
+            0x20,
+            0x7b,
+            0x20,
+            0x5f,
+            0x5f,
+            0x74,
+            0x79,
+            0x70,
+            0x65,
+            0x6e,
+            0x61,
+            0x6d,
+            0x65,
+            0x20,
+            0x64,
+            0x61,
+            0x74,
+            0x61,
+            0x20,
+            0x7b,
+            0x20,
+            0x5f,
+            0x5f,
+            0x74,
+            0x79,
+            0x70,
+            0x65,
+            0x6e,
+            0x61,
+            0x6d,
+            0x65,
+            0x20,
+            0x63,
+            0x75,
+            0x73,
+            0x74,
+            0x6f,
+            0x6d,
+            0x65,
+            0x72,
+            0x20,
+            0x7b,
+            0x20,
+            0x5f,
+            0x5f,
+            0x74,
+            0x79,
+            0x70,
+            0x65,
+            0x6e,
+            0x61,
+            0x6d,
+            0x65,
+            0x20,
+            0x63,
+            0x61,
+            0x6c,
+            0x63,
+            0x75,
+            0x6c,
+            0x61,
+            0x74,
+            0x65,
+            0x53,
+            0x69,
+            0x7a,
+            0x65,
+            0x20,
+            0x69,
+            0x64,
+            0x20,
+            0x2e,
+            0x2e,
+            0x2e,
+            0x20,
+            0x6f,
+            0x6e,
+            0x20,
+            0x43,
+            0x75,
+            0x73,
+            0x74,
+            0x6f,
+            0x6d,
+            0x65,
+            0x72,
+            0x20,
+            0x7b,
+            0x20,
+            0x69,
+            0x64,
+            0x20,
+            0x7d,
+            0x20,
+            0x7d,
+            0x20,
+            0x7d,
+            0x20,
+            0x2e,
+            0x2e,
+            0x2e,
+            0x20,
+            0x6f,
+            0x6e,
+            0x20,
+            0x4d,
+            0x75,
+            0x74,
+            0x61,
+            0x74,
+            0x69,
+            0x6f,
+            0x6e,
+            0x52,
+            0x65,
+            0x73,
+            0x70,
+            0x6f,
+            0x6e,
+            0x73,
+            0x65,
+            0x4f,
+            0x66,
+            0x43,
+            0x75,
+            0x73,
+            0x74,
+            0x6f,
+            0x6d,
+            0x65,
+            0x72,
+            0x56,
+            0x61,
+            0x6c,
+            0x69,
+            0x64,
+            0x61,
+            0x74,
+            0x65,
+            0x64,
+            0x20,
+            0x7b,
+            0x20,
+            0x6d,
+            0x65,
+            0x73,
+            0x73,
+            0x61,
+            0x67,
+            0x65,
+            0x20,
+            0x73,
+            0x74,
+            0x61,
+            0x74,
+            0x75,
+            0x73,
+            0x43,
+            0x6f,
+            0x64,
+            0x65,
+            0x20,
+            0x73,
+            0x75,
+            0x63,
+            0x63,
+            0x65,
+            0x73,
+            0x73,
+            0x20,
+            0x65,
+            0x72,
+            0x72,
+            0x6f,
+            0x72,
+            0x73,
+            0x20,
+            0x7b,
+            0x20,
+            0x5f,
+            0x5f,
+            0x74,
+            0x79,
+            0x70,
+            0x65,
+            0x6e,
+            0x61,
+            0x6d,
+            0x65,
+            0x20,
+            0x65,
+            0x72,
+            0x72,
+            0x6f,
+            0x72,
+            0x43,
+            0x6f,
+            0x64,
+            0x65,
+            0x20,
+            0x65,
+            0x72,
+            0x72,
+            0x6f,
+            0x72,
+            0x4d,
+            0x65,
+            0x73,
+            0x73,
+            0x61,
+            0x67,
+            0x65,
+            0x20,
+            0x70,
+            0x72,
+            0x6f,
+            0x70,
+            0x65,
+            0x72,
+            0x74,
+            0x79,
+            0x4e,
+            0x61,
+            0x6d,
+            0x65,
+            0x20,
+            0x73,
+            0x65,
+            0x76,
+            0x65,
+            0x72,
+            0x69,
+            0x74,
+            0x79,
+            0x20,
+            0x7d,
+            0x20,
+            0x7d,
+            0x20,
+            0x7d,
+            0x20,
+            0x7d
+        };
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "aed09f396a6e1aaf10d5628f97bdc5ee");
+
+        public override global::System.String ToString()
+        {
+#if NETCOREAPP3_1_OR_GREATER
+        return global::System.Text.Encoding.UTF8.GetString(Body);
+#else
+            return global::System.Text.Encoding.UTF8.GetString(Body.ToArray());
+#endif
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the SoftDeleteCustomer GraphQL operation
+    /// <code>
+    /// mutation SoftDeleteCustomer($input: SoftDeleteCustomerInput!) {
+    ///   softDelete(input: $input) {
+    ///     __typename
+    ///     data {
+    ///       __typename
+    ///       customer {
+    ///         __typename
+    ///         calculateSize
+    ///         id
+    ///         ... on Customer {
+    ///           id
+    ///         }
+    ///       }
+    ///     }
+    ///     ... on MutationResponseOfCustomerValidated {
+    ///       message
+    ///       statusCode
+    ///       success
+    ///       errors {
+    ///         __typename
+    ///         errorCode
+    ///         errorMessage
+    ///         propertyName
+    ///         severity
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerMutation : global::ConnectiqApiNS.ISoftDeleteCustomerMutation
+    {
+        private readonly global::StrawberryShake.IOperationExecutor<ISoftDeleteCustomerResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _softDeleteCustomerInputFormatter;
+        private readonly System.Collections.Immutable.ImmutableArray<global::System.Action<global::StrawberryShake.OperationRequest>> _configure = System.Collections.Immutable.ImmutableArray<global::System.Action<global::StrawberryShake.OperationRequest>>.Empty;
+        public SoftDeleteCustomerMutation(global::StrawberryShake.IOperationExecutor<ISoftDeleteCustomerResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _softDeleteCustomerInputFormatter = serializerResolver.GetInputValueFormatter("SoftDeleteCustomerInput");
+        }
+
+        private SoftDeleteCustomerMutation(global::StrawberryShake.IOperationExecutor<ISoftDeleteCustomerResult> operationExecutor, System.Collections.Immutable.ImmutableArray<global::System.Action<global::StrawberryShake.OperationRequest>> configure, global::StrawberryShake.Serialization.IInputValueFormatter softDeleteCustomerInputFormatter)
+        {
+            _operationExecutor = operationExecutor;
+            _configure = configure;
+            _softDeleteCustomerInputFormatter = softDeleteCustomerInputFormatter;
+        }
+
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(ISoftDeleteCustomerResult);
+
+        public global::ConnectiqApiNS.ISoftDeleteCustomerMutation With(global::System.Action<global::StrawberryShake.OperationRequest> configure)
+        {
+            return new global::ConnectiqApiNS.SoftDeleteCustomerMutation(_operationExecutor, _configure.Add(configure), _softDeleteCustomerInputFormatter);
+        }
+
+        public global::ConnectiqApiNS.ISoftDeleteCustomerMutation WithRequestUri(global::System.Uri requestUri)
+        {
+            return With(r => r.ContextData["StrawberryShake.Transport.Http.HttpConnection.RequestUri"] = requestUri);
+        }
+
+        public global::ConnectiqApiNS.ISoftDeleteCustomerMutation WithHttpClient(global::System.Net.Http.HttpClient httpClient)
+        {
+            return With(r => r.ContextData["StrawberryShake.Transport.Http.HttpConnection.HttpClient"] = httpClient);
+        }
+
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<ISoftDeleteCustomerResult>> ExecuteAsync(global::ConnectiqApiNS.SoftDeleteCustomerInput input, global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var request = CreateRequest(input);
+            foreach (var configure in _configure)
+            {
+                configure(request);
+            }
+
+            return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<ISoftDeleteCustomerResult>> Watch(global::ConnectiqApiNS.SoftDeleteCustomerInput input, global::StrawberryShake.ExecutionStrategy? strategy = null)
+        {
+            var request = CreateRequest(input);
+            return _operationExecutor.Watch(request, strategy);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::ConnectiqApiNS.SoftDeleteCustomerInput input)
+        {
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("input", FormatInput(input));
+            return CreateRequest(variables);
+        }
+
+        private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return new global::StrawberryShake.OperationRequest(id: SoftDeleteCustomerMutationDocument.Instance.Hash.Value, name: "SoftDeleteCustomer", document: SoftDeleteCustomerMutationDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatInput(global::ConnectiqApiNS.SoftDeleteCustomerInput value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _softDeleteCustomerInputFormatter.Format(value);
+        }
+
+        global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
+        {
+            return CreateRequest(variables!);
+        }
+    }
+
+    /// <summary>
+    /// Represents the operation service of the SoftDeleteCustomer GraphQL operation
+    /// <code>
+    /// mutation SoftDeleteCustomer($input: SoftDeleteCustomerInput!) {
+    ///   softDelete(input: $input) {
+    ///     __typename
+    ///     data {
+    ///       __typename
+    ///       customer {
+    ///         __typename
+    ///         calculateSize
+    ///         id
+    ///         ... on Customer {
+    ///           id
+    ///         }
+    ///       }
+    ///     }
+    ///     ... on MutationResponseOfCustomerValidated {
+    ///       message
+    ///       statusCode
+    ///       success
+    ///       errors {
+    ///         __typename
+    ///         errorCode
+    ///         errorMessage
+    ///         propertyName
+    ///         severity
+    ///       }
+    ///     }
+    ///   }
+    /// }
+    /// </code>
+    /// </summary>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial interface ISoftDeleteCustomerMutation : global::StrawberryShake.IOperationRequestFactory
+    {
+        global::ConnectiqApiNS.ISoftDeleteCustomerMutation With(global::System.Action<global::StrawberryShake.OperationRequest> configure);
+        global::ConnectiqApiNS.ISoftDeleteCustomerMutation WithRequestUri(global::System.Uri requestUri);
+        global::ConnectiqApiNS.ISoftDeleteCustomerMutation WithHttpClient(global::System.Net.Http.HttpClient httpClient);
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<ISoftDeleteCustomerResult>> ExecuteAsync(global::ConnectiqApiNS.SoftDeleteCustomerInput input, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<ISoftDeleteCustomerResult>> Watch(global::ConnectiqApiNS.SoftDeleteCustomerInput input, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     /// <summary>
@@ -6292,12 +7370,14 @@ namespace ConnectiqApiNS
     public partial class ConnectiqApi : global::ConnectiqApiNS.IConnectiqApi
     {
         private readonly global::ConnectiqApiNS.ICreateCustomerMutation _createCustomer;
+        private readonly global::ConnectiqApiNS.ISoftDeleteCustomerMutation _softDeleteCustomer;
         private readonly global::ConnectiqApiNS.IUpdateCustomerMutation _updateCustomer;
         private readonly global::ConnectiqApiNS.IGetAllCustomersQuery _getAllCustomers;
         private readonly global::ConnectiqApiNS.IGetCustomerByIdQuery _getCustomerById;
-        public ConnectiqApi(global::ConnectiqApiNS.ICreateCustomerMutation createCustomer, global::ConnectiqApiNS.IUpdateCustomerMutation updateCustomer, global::ConnectiqApiNS.IGetAllCustomersQuery getAllCustomers, global::ConnectiqApiNS.IGetCustomerByIdQuery getCustomerById)
+        public ConnectiqApi(global::ConnectiqApiNS.ICreateCustomerMutation createCustomer, global::ConnectiqApiNS.ISoftDeleteCustomerMutation softDeleteCustomer, global::ConnectiqApiNS.IUpdateCustomerMutation updateCustomer, global::ConnectiqApiNS.IGetAllCustomersQuery getAllCustomers, global::ConnectiqApiNS.IGetCustomerByIdQuery getCustomerById)
         {
             _createCustomer = createCustomer ?? throw new global::System.ArgumentNullException(nameof(createCustomer));
+            _softDeleteCustomer = softDeleteCustomer ?? throw new global::System.ArgumentNullException(nameof(softDeleteCustomer));
             _updateCustomer = updateCustomer ?? throw new global::System.ArgumentNullException(nameof(updateCustomer));
             _getAllCustomers = getAllCustomers ?? throw new global::System.ArgumentNullException(nameof(getAllCustomers));
             _getCustomerById = getCustomerById ?? throw new global::System.ArgumentNullException(nameof(getCustomerById));
@@ -6305,6 +7385,7 @@ namespace ConnectiqApiNS
 
         public static global::System.String ClientName => "ConnectiqApi";
         public global::ConnectiqApiNS.ICreateCustomerMutation CreateCustomer => _createCustomer;
+        public global::ConnectiqApiNS.ISoftDeleteCustomerMutation SoftDeleteCustomer => _softDeleteCustomer;
         public global::ConnectiqApiNS.IUpdateCustomerMutation UpdateCustomer => _updateCustomer;
         public global::ConnectiqApiNS.IGetAllCustomersQuery GetAllCustomers => _getAllCustomers;
         public global::ConnectiqApiNS.IGetCustomerByIdQuery GetCustomerById => _getCustomerById;
@@ -6317,6 +7398,8 @@ namespace ConnectiqApiNS
     public partial interface IConnectiqApi
     {
         global::ConnectiqApiNS.ICreateCustomerMutation CreateCustomer { get; }
+
+        global::ConnectiqApiNS.ISoftDeleteCustomerMutation SoftDeleteCustomer { get; }
 
         global::ConnectiqApiNS.IUpdateCustomerMutation UpdateCustomer { get; }
 
@@ -6502,6 +7585,148 @@ namespace ConnectiqApiNS.State
         public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
         {
             return new CreateCustomerResultInfo(CreateCustomer, _entityIds, version);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.SoftDeleteCustomerResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, SoftDeleteCustomer_SoftDelete_Data_Customer_Customer> _softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper;
+        public SoftDeleteCustomerResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, SoftDeleteCustomer_SoftDelete_Data_Customer_Customer> softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper = softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper ?? throw new global::System.ArgumentNullException(nameof(softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper));
+        }
+
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::ConnectiqApiNS.ISoftDeleteCustomerResult);
+
+        public SoftDeleteCustomerResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            if (dataInfo is SoftDeleteCustomerResultInfo info)
+            {
+                return new SoftDeleteCustomerResult(MapNonNullableISoftDeleteCustomer_SoftDelete(info.SoftDelete, snapshot));
+            }
+
+            throw new global::System.ArgumentException("SoftDeleteCustomerResultInfo expected.");
+        }
+
+        private global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete MapNonNullableISoftDeleteCustomer_SoftDelete(global::ConnectiqApiNS.State.IIMutationResponseOfCustomerValidatedData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            ISoftDeleteCustomer_SoftDelete? returnValue;
+            if (data is global::ConnectiqApiNS.State.MutationResponseOfCustomerValidatedData mutationResponseOfCustomerValidated)
+            {
+                if (!mutationResponseOfCustomerValidated.StatusCode.HasValue)
+                {
+                    throw new global::System.ArgumentNullException();
+                }
+
+                if (!mutationResponseOfCustomerValidated.Success.HasValue)
+                {
+                    throw new global::System.ArgumentNullException();
+                }
+
+                returnValue = new global::ConnectiqApiNS.SoftDeleteCustomer_SoftDelete_MutationResponseOfCustomerValidated(MapISoftDeleteCustomer_SoftDelete_Data(mutationResponseOfCustomerValidated.Data, snapshot), mutationResponseOfCustomerValidated.Message ?? throw new global::System.ArgumentNullException(), mutationResponseOfCustomerValidated.StatusCode!.Value, mutationResponseOfCustomerValidated.Success!.Value, MapNonNullableISoftDeleteCustomer_SoftDelete_ErrorsNonNullableArray(mutationResponseOfCustomerValidated.Errors, snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data? MapISoftDeleteCustomer_SoftDelete_Data(global::ConnectiqApiNS.State.CustomerValidatedData? data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (data is null)
+            {
+                return null;
+            }
+
+            ISoftDeleteCustomer_SoftDelete_Data returnValue = default !;
+            if (data?.__typename.Equals("CustomerValidated", global::System.StringComparison.Ordinal) ?? false)
+            {
+                returnValue = new SoftDeleteCustomer_SoftDelete_Data_CustomerValidated(MapNonNullableISoftDeleteCustomer_SoftDelete_Data_Customer(data.Customer ?? throw new global::System.ArgumentNullException(), snapshot));
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        private global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Data_Customer MapNonNullableISoftDeleteCustomer_SoftDelete_Data_Customer(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (entityId.Name.Equals("Customer", global::System.StringComparison.Ordinal))
+            {
+                return _softDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper.Map(snapshot.GetEntity<global::ConnectiqApiNS.State.CustomerEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors> MapNonNullableISoftDeleteCustomer_SoftDelete_ErrorsNonNullableArray(global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.State.ValidationFailureData>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            if (list is null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var validationFailures = new global::System.Collections.Generic.List<global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors>();
+            foreach (global::ConnectiqApiNS.State.ValidationFailureData child in list)
+            {
+                validationFailures.Add(MapNonNullableISoftDeleteCustomer_SoftDelete_Errors(child, snapshot));
+            }
+
+            return validationFailures;
+        }
+
+        private global::ConnectiqApiNS.ISoftDeleteCustomer_SoftDelete_Errors MapNonNullableISoftDeleteCustomer_SoftDelete_Errors(global::ConnectiqApiNS.State.ValidationFailureData data, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        {
+            ISoftDeleteCustomer_SoftDelete_Errors returnValue = default !;
+            if (data.__typename.Equals("ValidationFailure", global::System.StringComparison.Ordinal))
+            {
+                returnValue = new SoftDeleteCustomer_SoftDelete_Errors_ValidationFailure(data.ErrorCode, data.ErrorMessage, data.PropertyName, data.Severity ?? throw new global::System.ArgumentNullException());
+            }
+            else
+            {
+                throw new global::System.NotSupportedException();
+            }
+
+            return returnValue;
+        }
+
+        global::System.Object global::StrawberryShake.IOperationResultDataFactory.Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot)
+        {
+            return Create(dataInfo, snapshot);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    {
+        private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
+        private readonly global::System.UInt64 _version;
+        public SoftDeleteCustomerResultInfo(global::ConnectiqApiNS.State.IIMutationResponseOfCustomerValidatedData softDelete, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        {
+            SoftDelete = softDelete;
+            _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
+            _version = version;
+        }
+
+        public global::ConnectiqApiNS.State.IIMutationResponseOfCustomerValidatedData SoftDelete { get; }
+        public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
+        public global::System.UInt64 Version => _version;
+
+        public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
+        {
+            return new SoftDeleteCustomerResultInfo(SoftDelete, _entityIds, version);
         }
     }
 
@@ -7014,6 +8239,12 @@ namespace ConnectiqApiNS.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    internal interface ISoftDeleteCustomerInputInfo
+    {
+        global::System.Boolean IsIdSet { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
     internal interface IUpdateCustomerInputInfo
     {
         global::System.Boolean IsCustomerSet { get; }
@@ -7327,6 +8558,249 @@ namespace ConnectiqApiNS.State
             }
 
             throw new global::System.NotSupportedException();
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomerBuilder : global::StrawberryShake.OperationResultBuilder<global::ConnectiqApiNS.ISoftDeleteCustomerResult>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::ConnectiqApiNS.HttpStatusCode> _httpStatusCodeParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::ConnectiqApiNS.Severity> _severityParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Boolean, global::System.Boolean> _booleanParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        public SoftDeleteCustomerBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.ISoftDeleteCustomerResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+            _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
+            ResultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
+            _httpStatusCodeParser = serializerResolver.GetLeafValueParser<global::System.String, global::ConnectiqApiNS.HttpStatusCode>("HttpStatusCode") ?? throw new global::System.ArgumentException("No serializer for type `HttpStatusCode` found.");
+            _severityParser = serializerResolver.GetLeafValueParser<global::System.String, global::ConnectiqApiNS.Severity>("Severity") ?? throw new global::System.ArgumentException("No serializer for type `Severity` found.");
+            _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _booleanParser = serializerResolver.GetLeafValueParser<global::System.Boolean, global::System.Boolean>("Boolean") ?? throw new global::System.ArgumentException("No serializer for type `Boolean` found.");
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
+        }
+
+        protected override global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.ISoftDeleteCustomerResult> ResultDataFactory { get; }
+
+        protected override global::StrawberryShake.IOperationResultDataInfo BuildData(global::System.Text.Json.JsonElement obj)
+        {
+            var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
+            global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
+            global::ConnectiqApiNS.State.IIMutationResponseOfCustomerValidatedData softDeleteId = default !;
+            _entityStore.Update(session =>
+            {
+                softDeleteId = Deserialize_NonNullableISoftDeleteCustomer_SoftDelete(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "softDelete"), entityIds);
+                snapshot = session.CurrentSnapshot;
+            });
+            return new SoftDeleteCustomerResultInfo(softDeleteId, entityIds, snapshot.Version);
+        }
+
+        private global::ConnectiqApiNS.State.IIMutationResponseOfCustomerValidatedData Deserialize_NonNullableISoftDeleteCustomer_SoftDelete(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("MutationResponseOfCustomerValidated", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::ConnectiqApiNS.State.MutationResponseOfCustomerValidatedData(typename, data: Deserialize_ISoftDeleteCustomer_SoftDelete_Data(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "data"), entityIds), message: Deserialize_NonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "message")), statusCode: Deserialize_NonNullableHttpStatusCode(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "statusCode")), success: Deserialize_NonNullableBoolean(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "success")), errors: Deserialize_NonNullableISoftDeleteCustomer_SoftDelete_ErrorsNonNullableArray(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "errors")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::ConnectiqApiNS.State.CustomerValidatedData? Deserialize_ISoftDeleteCustomer_SoftDelete_Data(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("CustomerValidated", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::ConnectiqApiNS.State.CustomerValidatedData(typename, customer: Update_NonNullableISoftDeleteCustomer_SoftDelete_Data_CustomerEntity(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "customer"), entityIds));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::StrawberryShake.EntityId Update_NonNullableISoftDeleteCustomer_SoftDelete_Data_CustomerEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
+            entityIds.Add(entityId);
+            if (entityId.Name.Equals("Customer", global::System.StringComparison.Ordinal))
+            {
+                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::ConnectiqApiNS.State.CustomerEntity? entity))
+                {
+                    session.SetEntity(entityId, new global::ConnectiqApiNS.State.CustomerEntity(Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "calculateSize")), Deserialize_String(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), entity.Details));
+                }
+                else
+                {
+                    session.SetEntity(entityId, new global::ConnectiqApiNS.State.CustomerEntity(Deserialize_NonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "calculateSize")), Deserialize_String(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), default !));
+                }
+
+                return entityId;
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::System.Int32 Deserialize_NonNullableInt32(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _intParser.Parse(obj.Value.GetInt32()!);
+        }
+
+        private global::System.String? Deserialize_String(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                return null;
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                return null;
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.String Deserialize_NonNullableString(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _stringParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::ConnectiqApiNS.HttpStatusCode Deserialize_NonNullableHttpStatusCode(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _httpStatusCodeParser.Parse(obj.Value.GetString()!);
+        }
+
+        private global::System.Boolean Deserialize_NonNullableBoolean(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _booleanParser.Parse(obj.Value.GetBoolean()!);
+        }
+
+        private global::System.Collections.Generic.IReadOnlyList<global::ConnectiqApiNS.State.ValidationFailureData> Deserialize_NonNullableISoftDeleteCustomer_SoftDelete_ErrorsNonNullableArray(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var validationFailures = new global::System.Collections.Generic.List<global::ConnectiqApiNS.State.ValidationFailureData>();
+            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
+            {
+                validationFailures.Add(Deserialize_NonNullableISoftDeleteCustomer_SoftDelete_Errors(child));
+            }
+
+            return validationFailures;
+        }
+
+        private global::ConnectiqApiNS.State.ValidationFailureData Deserialize_NonNullableISoftDeleteCustomer_SoftDelete_Errors(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            var typename = obj.Value.GetProperty("__typename").GetString();
+            if (typename?.Equals("ValidationFailure", global::System.StringComparison.Ordinal) ?? false)
+            {
+                return new global::ConnectiqApiNS.State.ValidationFailureData(typename, errorCode: Deserialize_String(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "errorCode")), errorMessage: Deserialize_String(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "errorMessage")), propertyName: Deserialize_String(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "propertyName")), severity: Deserialize_NonNullableSeverity(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "severity")));
+            }
+
+            throw new global::System.NotSupportedException();
+        }
+
+        private global::ConnectiqApiNS.Severity Deserialize_NonNullableSeverity(global::System.Text.Json.JsonElement? obj)
+        {
+            if (!obj.HasValue)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            if (obj.Value.ValueKind == global::System.Text.Json.JsonValueKind.Null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+
+            return _severityParser.Parse(obj.Value.GetString()!);
         }
     }
 
@@ -8285,6 +9759,26 @@ namespace ConnectiqApiNS.State
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
+    public partial class SoftDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper : global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, SoftDeleteCustomer_SoftDelete_Data_Customer_Customer>
+    {
+        private readonly global::StrawberryShake.IEntityStore _entityStore;
+        public SoftDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper(global::StrawberryShake.IEntityStore entityStore)
+        {
+            _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
+        }
+
+        public SoftDeleteCustomer_SoftDelete_Data_Customer_Customer Map(global::ConnectiqApiNS.State.CustomerEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        {
+            if (snapshot is null)
+            {
+                snapshot = _entityStore.CurrentSnapshot;
+            }
+
+            return new SoftDeleteCustomer_SoftDelete_Data_Customer_Customer(entity.CalculateSize, entity.Id);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "15.1.6.0")]
     public partial class UpdateCustomer_UpdateCustomer_Data_Customer_CustomerFromCustomerEntityMapper : global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, UpdateCustomer_UpdateCustomer_Data_Customer_Customer>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
@@ -8470,6 +9964,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::ConnectiqApiNS.State.ConnectiqApiStoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.CreateCustomerMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.SoftDeleteCustomerMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.UpdateCustomerMutation>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.GetAllCustomersQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.GetCustomerByIdQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
@@ -8488,6 +9983,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new global::StrawberryShake.Transport.Http.HttpConnection(() => clientFactory.CreateClient("ConnectiqApi"));
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, global::ConnectiqApiNS.CreateCustomer_CreateCustomer_Data_Customer_Customer>, global::ConnectiqApiNS.State.CreateCustomer_CreateCustomer_Data_Customer_CustomerFromCustomerEntityMapper>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, global::ConnectiqApiNS.SoftDeleteCustomer_SoftDelete_Data_Customer_Customer>, global::ConnectiqApiNS.State.SoftDeleteCustomer_SoftDelete_Data_Customer_CustomerFromCustomerEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, global::ConnectiqApiNS.UpdateCustomer_UpdateCustomer_Data_Customer_Customer>, global::ConnectiqApiNS.State.UpdateCustomer_UpdateCustomer_Data_Customer_CustomerFromCustomerEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, global::ConnectiqApiNS.GetAllCustomers_AllCustomers_Data_Customers_Customer_Customer>, global::ConnectiqApiNS.State.GetAllCustomers_AllCustomers_Data_Customers_Customer_CustomerFromCustomerEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::ConnectiqApiNS.State.CustomerEntity, global::ConnectiqApiNS.GetCustomerById_CustomerById_Data_CustomerDto_Customer_Customer>, global::ConnectiqApiNS.State.GetCustomerById_CustomerById_Data_CustomerDto_Customer_CustomerFromCustomerEntityMapper>(services);
@@ -8514,6 +10010,7 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.CreateCustomerInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.CustomerDetailsInputInputValueFormatter>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.SoftDeleteCustomerInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.UpdateCustomerInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.CustomerInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::ConnectiqApiNS.GetAllFiltersInputInputValueFormatter>(services);
@@ -8527,6 +10024,14 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IResultPatcher<global::System.Text.Json.JsonDocument>, global::StrawberryShake.Json.JsonResultPatcher>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::ConnectiqApiNS.CreateCustomerMutation>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::ConnectiqApiNS.ICreateCustomerMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.CreateCustomerMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.ISoftDeleteCustomerResult>, global::ConnectiqApiNS.State.SoftDeleteCustomerResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.ISoftDeleteCustomerResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.ISoftDeleteCustomerMutation>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::ConnectiqApiNS.ISoftDeleteCustomerResult>, global::ConnectiqApiNS.State.SoftDeleteCustomerBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::ConnectiqApiNS.ISoftDeleteCustomerResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::ConnectiqApiNS.ISoftDeleteCustomerResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::ConnectiqApiNS.ISoftDeleteCustomerResult>>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IResultPatcher<global::System.Text.Json.JsonDocument>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IResultPatcher<global::System.Text.Json.JsonDocument>, global::StrawberryShake.Json.JsonResultPatcher>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::ConnectiqApiNS.SoftDeleteCustomerMutation>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::ConnectiqApiNS.ISoftDeleteCustomerMutation>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.SoftDeleteCustomerMutation>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.IUpdateCustomerResult>, global::ConnectiqApiNS.State.UpdateCustomerResultFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::ConnectiqApiNS.IUpdateCustomerResult>>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::ConnectiqApiNS.IUpdateCustomerMutation>(sp));

@@ -1,0 +1,21 @@
+﻿mutation SoftDeleteCustomer($input: SoftDeleteCustomerInput!) {
+  softDelete(input: $input) {
+    data {
+      customer {
+        calculateSize
+        id
+      }
+    }
+    ... on MutationResponseOfCustomerValidated {
+      message
+      statusCode
+      success
+      errors {
+        errorCode
+        errorMessage
+        propertyName
+        severity
+      }
+    }
+  }
+}

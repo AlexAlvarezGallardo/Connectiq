@@ -57,6 +57,7 @@ public class ApiFixture : IAsyncLifetime
 
         _graphQLClient!.CreateCustomer.WithRequestUri(_app.GetEndpoint("connectiq-api"));
         _graphQLClient!.UpdateCustomer.WithRequestUri(_app.GetEndpoint("connectiq-api"));
+        _graphQLClient!.SoftDeleteCustomer.WithRequestUri(_app.GetEndpoint("connectiq-api"));
 
         return _graphQLClient;
     }

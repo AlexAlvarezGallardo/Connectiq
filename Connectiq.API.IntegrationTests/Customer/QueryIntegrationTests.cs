@@ -3,7 +3,7 @@ using ConnectiqApiNS;
 using FluentAssertions;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
-namespace Connectiq.API.IntegrationTests;
+namespace Connectiq.API.IntegrationTests.Customer;
 
 public class QueryIntegrationTests(ApiFixture _fixture) : IClassFixture<ApiFixture> 
 {
