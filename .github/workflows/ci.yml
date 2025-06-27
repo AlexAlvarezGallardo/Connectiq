@@ -44,7 +44,7 @@ jobs:
         sudo cp localhost.crt /usr/local/share/ca-certificates/localhost.crt
         sudo update-ca-certificates
         ls -l /usr/local/share/ca-certificates/localhost.crt
-        ls -lt /etc/ssl/certs | head -20
+        ls -lt /etc/ssl/certs | head -20 || true
       shell: bash
 
     - name: List installed certificates
