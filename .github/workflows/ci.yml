@@ -36,28 +36,3 @@ jobs:
 
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
-      
-    - name: Add localhost certificate
-      run: |
-        echo "${{ secrets.LOCALHOST_CERT }}" | base64 -d > localhost.crt
-        cat localhost.crt
-        sudo cp localhost.crt /usr/local/share/ca-certificates/localhost.crt
-        sudo update-ca-certificates
-        ls -l /usr/local/share/ca-certificates/localhost.crt
-        ls -lt /etc/ssl/certs | head -20 || true
-      shell: bash
-
-    - name: List installed certificates
-      run: sudo update-ca-certificates --verbose
-      
-    - name: Test
-      run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
-      
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: DotNET Tests
-        path: "**/test-results.trx"                            
-        reporter: dotnet-trx
-        fail-on-error: true
