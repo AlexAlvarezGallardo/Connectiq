@@ -41,7 +41,10 @@ jobs:
         sudo cp localhost.crt /usr/local/share/ca-certificates/localhost.crt
         sudo update-ca-certificates
       shell: bash
-
+      
+    - name: List installed certificates
+      run: sudo update-ca-certificates --verbose
+      
     - name: Test
       run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
       
