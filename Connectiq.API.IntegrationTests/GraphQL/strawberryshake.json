@@ -1,0 +1,6 @@
+﻿{
+  "schema": "GraphQL/schema.graphql",
+  "documents": "GraphQL/queries/**/*.graphql",
+  "namespace": "Connectiq.GraphQL",
+  "outputDirectoryName": "GraphQL/GeneratedClient"
+}

@@ -1,0 +1,30 @@
+﻿mutation UpdateCustomer($input: UpdateCustomerInput!) {
+  updateCustomer(input: $input) {
+    ... on MutationResponseOfCustomerValidated {
+      message
+      statusCode
+      success
+      errors {
+        errorCode
+        errorMessage
+        propertyName
+        severity
+      }
+    }
+    data {
+      createdAt
+      isValid
+      customer {
+        calculateSize
+        id
+        details {
+          address
+          calculateSize
+          email
+          name
+          phone
+        }
+      }
+    }
+  }
+}

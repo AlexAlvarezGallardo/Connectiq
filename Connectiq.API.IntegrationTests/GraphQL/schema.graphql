@@ -1,0 +1,226 @@
+schema {
+  query: CustomerQuery
+  mutation: CustomerMutation
+}
+
+input CustomerFiltersInput {
+  name: String = ""
+  address: String = ""
+  email: String = ""
+  phone: String = ""
+}
+
+type MutationResponseOfCustomerValidated implements IMutationResponseOfCustomerValidated {
+  success: Boolean!
+  message: String!
+  "The validated customer data."
+  data: CustomerValidated
+  errors: [ValidationFailure!]!
+  statusCode: HttpStatusCode!
+}
+
+type GetCustomerResponse {
+  clone: GetCustomerResponse
+  calculateSize: Int!
+  customerDto: CustomerDto
+}
+
+type QueryResponseOfGetCustomerResponse implements IQueryResponseOfGetCustomerResponse {
+  success: Boolean!
+  message: String
+  "The validated customer data."
+  data: GetCustomerResponse
+  statusCode: HttpStatusCode!
+}
+
+type GetCustomersResponse {
+  clone: GetCustomersResponse
+  calculateSize: Int!
+  customers: [CustomerDto]
+  totalCount: Int!
+}
+
+type QueryResponseOfGetCustomersResponse implements IQueryResponseOfGetCustomersResponse {
+  success: Boolean!
+  message: String
+  "The customer data."
+  data: GetCustomersResponse
+  statusCode: HttpStatusCode!
+}
+
+interface IMutationResponseOfCustomerValidated {
+  data: CustomerValidated
+  errors: [ValidationFailure!]!
+}
+
+type CustomerValidated {
+  customer: Customer!
+  createdAt: DateTime!
+  isValid: Boolean!
+}
+
+interface IQueryResponseOfGetCustomerResponse {
+  data: GetCustomerResponse
+}
+
+interface IQueryResponseOfGetCustomersResponse {
+  data: GetCustomersResponse
+}
+
+type CustomerMutation {
+  createCustomer(input: CreateCustomerInput!): IMutationResponseOfCustomerValidated!
+  updateCustomer(input: UpdateCustomerInput!): IMutationResponseOfCustomerValidated!
+  softDelete(input: SoftDeleteCustomerInput!): IMutationResponseOfCustomerValidated!
+}
+
+type CustomerQuery {
+  allCustomers(input: GetAllFiltersInput!): IQueryResponseOfGetCustomersResponse!
+  customerById(input: GetCustomerByIdInput!): IQueryResponseOfGetCustomerResponse!
+}
+
+type ValidationFailure {
+  propertyName: String
+  errorMessage: String
+  severity: Severity!
+  errorCode: String
+  formattedMessagePlaceholderValues: [KeyValuePairOfStringAndObject!]
+}
+
+enum HttpStatusCode {
+  CONTINUE
+  SWITCHING_PROTOCOLS
+  PROCESSING
+  EARLY_HINTS
+  OK
+  CREATED
+  ACCEPTED
+  NON_AUTHORITATIVE_INFORMATION
+  NO_CONTENT
+  RESET_CONTENT
+  PARTIAL_CONTENT
+  MULTI_STATUS
+  ALREADY_REPORTED
+  IM_USED
+  MULTIPLE_CHOICES
+  MOVED_PERMANENTLY
+  FOUND
+  SEE_OTHER
+  NOT_MODIFIED
+  USE_PROXY
+  UNUSED
+  REDIRECT_KEEP_VERB
+  PERMANENT_REDIRECT
+  BAD_REQUEST
+  UNAUTHORIZED
+  PAYMENT_REQUIRED
+  FORBIDDEN
+  NOT_FOUND
+  METHOD_NOT_ALLOWED
+  NOT_ACCEPTABLE
+  PROXY_AUTHENTICATION_REQUIRED
+  REQUEST_TIMEOUT
+  CONFLICT
+  GONE
+  LENGTH_REQUIRED
+  PRECONDITION_FAILED
+  REQUEST_ENTITY_TOO_LARGE
+  REQUEST_URI_TOO_LONG
+  UNSUPPORTED_MEDIA_TYPE
+  REQUESTED_RANGE_NOT_SATISFIABLE
+  EXPECTATION_FAILED
+  MISDIRECTED_REQUEST
+  UNPROCESSABLE_ENTITY
+  LOCKED
+  FAILED_DEPENDENCY
+  UPGRADE_REQUIRED
+  PRECONDITION_REQUIRED
+  TOO_MANY_REQUESTS
+  REQUEST_HEADER_FIELDS_TOO_LARGE
+  UNAVAILABLE_FOR_LEGAL_REASONS
+  INTERNAL_SERVER_ERROR
+  NOT_IMPLEMENTED
+  BAD_GATEWAY
+  SERVICE_UNAVAILABLE
+  GATEWAY_TIMEOUT
+  HTTP_VERSION_NOT_SUPPORTED
+  VARIANT_ALSO_NEGOTIATES
+  INSUFFICIENT_STORAGE
+  LOOP_DETECTED
+  NOT_EXTENDED
+  NETWORK_AUTHENTICATION_REQUIRED
+}
+
+type CustomerDto {
+  clone: CustomerDto
+  calculateSize: Int!
+  customer: Customer
+  createdAt: String
+  eventId: String
+  isActive: Boolean!
+}
+
+type Customer {
+  clone: Customer
+  calculateSize: Int!
+  id: String
+  details: CustomerDetails
+}
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
+
+type CustomerDetails {
+  clone: CustomerDetails
+  calculateSize: Int!
+  name: String
+  address: String
+  phone: String
+  email: String
+}
+
+type KeyValuePairOfStringAndObject {
+  key: String!
+}
+
+enum Severity {
+  ERROR
+  WARNING
+  INFO
+}
+
+input GetCustomerByIdInput {
+  id: String
+}
+
+input GetAllFiltersInput {
+  filters: CustomerFiltersInput
+  page: Int!
+  pageSize: Int!
+}
+
+input SoftDeleteCustomerInput {
+  id: String
+}
+
+input UpdateCustomerInput {
+  customer: CustomerInput
+}
+
+input CreateCustomerInput {
+  details: CustomerDetailsInput
+}
+
+input CustomerDetailsInput {
+  name: String
+  address: String
+  phone: String
+  email: String
+}
+
+input CustomerInput {
+  id: String
+  details: CustomerDetailsInput
+}
+
+"The purpose of the `cost` directive is to define a `weight` for GraphQL types, fields, and arguments. Static analysis can use these weights when calculating the overall cost of a query or response."
+directive @cost("The `weight` argument defines what value to add to the overall cost for every appearance, or possible appearance, of a type, field, argument, etc." weight: String!) on SCALAR | OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | ENUM | INPUT_FIELD_DEFINITION

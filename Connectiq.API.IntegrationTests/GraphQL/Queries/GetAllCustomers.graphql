@@ -1,0 +1,49 @@
+﻿query GetAllCustomers($input: GetAllFiltersInput!) {
+  allCustomers(input: $input) {
+    data {
+      calculateSize
+      totalCount
+      customers {
+        calculateSize
+        createdAt
+        eventId
+        isActive
+        customer {
+          calculateSize
+          id
+          details {
+            address
+            calculateSize
+            email
+            name
+            phone
+          }
+        }
+      }
+    }
+    ... on QueryResponseOfGetCustomersResponse {
+      message
+      statusCode
+      success
+      data {
+        customers {
+          calculateSize
+          createdAt
+          eventId
+          isActive
+          customer {
+            calculateSize
+            id
+            details {
+              address
+              calculateSize
+              email
+              name
+              phone
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+﻿query GetCustomerById($id: String!) {
+  customerById(input: { id: $id }) {
+    data {
+      calculateSize
+      customerDto {
+        calculateSize
+        createdAt
+        eventId
+        isActive
+        customer {
+          calculateSize
+          id
+          details {
+            address
+            calculateSize
+            email
+            name
+            phone
+          }
+        }
+      }
+    }
+    ... on QueryResponseOfGetCustomerResponse {
+      message
+      statusCode
+      success
+    }
+  }
+}
