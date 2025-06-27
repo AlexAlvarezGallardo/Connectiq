@@ -10,7 +10,9 @@ on:
     
 jobs:
   build_and_test:
-
+  
+    environment: development
+    
     env:
       BUILD_CONFIG: 'Release'
       SOLUTION: 'Connectiq.sln'
