@@ -37,7 +37,7 @@ jobs:
       
     - name: Add localhost certificate
       run: |
-        echo "${{ secrets.LOCALHOST_CERT }}" > localhost.crt
+        echo "${{ secrets.LOCALHOST_CERT }}" | base64 -d > localhost.crt
         sudo cp localhost.crt /usr/local/share/ca-certificates/localhost.crt
         sudo update-ca-certificates
       shell: bash
