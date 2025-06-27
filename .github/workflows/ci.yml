@@ -41,6 +41,7 @@ jobs:
         cat localhost.crt           # <-- este paso muestra el contenido para verificar
         sudo cp localhost.crt /usr/local/share/ca-certificates/localhost.crt
         sudo update-ca-certificates
+        ls -l /etc/ssl/certs/localhost.crt
       shell: bash
       
     - name: List installed certificates
