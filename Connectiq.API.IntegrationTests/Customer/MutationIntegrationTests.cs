@@ -131,7 +131,7 @@ public class MutationIntegrationTests(ApiFixture _fixture) : IClassFixture<ApiFi
         };
 
         var result = await graphqlClient.UpdateCustomer.ExecuteAsync(updateInput);
-        var customerUpdate = result!.Data.UpdateCustomer;
+        var customerUpdate = result!.Data!.UpdateCustomer;
 
         customerUpdate.Should().BeAssignableTo<IUpdateCustomer_UpdateCustomer_MutationResponseOfCustomerValidated>();
         var updatedCustomer = (IUpdateCustomer_UpdateCustomer_MutationResponseOfCustomerValidated)customerUpdate!;
