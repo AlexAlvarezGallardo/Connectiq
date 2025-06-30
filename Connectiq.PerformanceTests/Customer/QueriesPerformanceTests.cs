@@ -1,50 +1,31 @@
-using Connectiq.API.IntegrationTests.Tests;
 using ConnectiqApiNS;
 using NBomber.Contracts;
-using NBomber.Contracts.Stats;
 using NBomber.CSharp;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
 namespace Connectiq.PerformanceTests.Customer;
 
-public class QueriesPerformanceTests(ApiFixture _fixture): IClassFixture<ApiFixture>
+public class QueriesPerformanceTests
 {
-    public static Threshold[] Thres = new[]
-        {
-            Threshold.Create(
-                checkScenario: stats => stats.Fail.Request.Count == 0,
-                abortWhenErrorCount: 10,
-                startCheckAfter: TimeSpan.FromSeconds(5)
-            ),
-            Threshold.Create(
-                checkScenario: stats => stats.Ok.Request.RPS >= 10,
-                startCheckAfter: TimeSpan.FromSeconds(5)
-            ),
-            Threshold.Create(
-                checkScenario: stats => stats.Ok.StatusCodes.Get(HttpStatusCode.OK.ToString()).Percent > 90,
-                startCheckAfter: TimeSpan.FromSeconds(5)
-            )
-        };
-
-    private ScenarioProps CreateScenario(IConnectiqApi client, int rate, int durationSeconds)
+    public static Threshold[] DefaultThresholds = new[]
     {
-        var thresholds = new[]
-        {
-            Threshold.Create(
-                checkScenario: stats => stats.Fail.Request.Count == 0,
-                abortWhenErrorCount: 10, 
-                startCheckAfter: TimeSpan.FromSeconds(5) 
-            ),
-            Threshold.Create(
-                checkScenario: stats => stats.Ok.Request.RPS >= 10,
-                startCheckAfter: TimeSpan.FromSeconds(5)
-            ),
-            Threshold.Create(
-                checkScenario: stats => stats.Ok.StatusCodes.Get(HttpStatusCode.OK.ToString()).Percent > 90,
-                startCheckAfter: TimeSpan.FromSeconds(5)
-            )
-        };
+        Threshold.Create(
+            checkScenario: stats => stats.Fail.Request.Count == 0,
+            abortWhenErrorCount: 10,
+            startCheckAfter: TimeSpan.FromSeconds(5)
+        ),
+        Threshold.Create(
+            checkScenario: stats => stats.Ok.Request.RPS >= 10,
+            startCheckAfter: TimeSpan.FromSeconds(5)
+        ),
+        Threshold.Create(
+            checkScenario: stats => stats.Ok.StatusCodes.Get(HttpStatusCode.OK.ToString()).Percent > 90,
+            startCheckAfter: TimeSpan.FromSeconds(5)
+        )
+    };
 
+    public static ScenarioProps GetAllCustomersScenario(IConnectiqApi client, int rate, int durationSeconds)
+    {
         return Scenario.Create("get_all_customers", async context =>
         {
             var page = (int)(context.InvocationNumber % 3) + 1;
@@ -76,30 +57,39 @@ public class QueriesPerformanceTests(ApiFixture _fixture): IClassFixture<ApiFixt
         })
         .WithWarmUpDuration(TimeSpan.FromSeconds(5))
         .WithLoadSimulations(Simulation.Inject(rate: rate, interval: TimeSpan.FromSeconds(1), during: TimeSpan.FromSeconds(durationSeconds)))
-        .WithThresholds(thresholds);
+        .WithThresholds(DefaultThresholds);
     }
 
-    [Theory]
-    [InlineData(10, 30)]
-    [InlineData(20, 30)]
-    [InlineData(40, 30)]
-    [InlineData(40, 60)]
-    public async Task LoadTest_GetAllCustomersAsync(int rate, int durationSeconds)
+    public static ScenarioProps GetCustomerByIdScenario(IConnectiqApi client, int rate, int durationSeconds)
     {
-        var client = await _fixture.CreateConnectiqApiClientAsync();
-        var scenario = CreateScenario(client, rate, durationSeconds);
+        return Scenario.Create("get_customer_by_id", async context =>
+        {
+            var getAllCustomers = await client.GetAllCustomers.ExecuteAsync(new GetAllFiltersInput
+            {
+                Page = 1,
+                PageSize = 2000
+            });
 
-        var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-        var reportFolder = Path.Combine("nbomber-reports", "customers", "get_all", $"{timestamp}_{rate}_{durationSeconds}");
+            var index = (int)(context.InvocationNumber % 2500) + 1;
 
-        NBomberRunner
-            .RegisterScenarios(scenario)
-            .WithTestSuite("Connectiq Customers Performance Tests")
-            .WithTestName($"Customers_rate_{rate}_duration_{durationSeconds}")
-            .WithReportFileName($"customers_query_performance_{rate}rps_{durationSeconds}s")
-            .WithReportFolder(reportFolder)
-            .WithReportFormats(ReportFormat.Txt, ReportFormat.Html)
-            .Run();
+            var id = getAllCustomers.Data?.AllCustomers?.Data?.Customers?[index]?.Customer!.Id ?? Guid.NewGuid().ToString();
 
+            try
+            {
+                var response = await client.GetCustomerById.ExecuteAsync(id);
+                if (response.Data is not null)
+                {
+                    return Response.Ok(statusCode: HttpStatusCode.OK.ToString());
+                }
+                return Response.Fail(statusCode: "404", message: String.Join(";", response.Errors));
+            }
+            catch (Exception ex)
+            {
+                return Response.Fail(statusCode: "500", ex.Message);
+            }
+        })
+        .WithWarmUpDuration(TimeSpan.FromSeconds(5))
+        .WithLoadSimulations(Simulation.Inject(rate: rate, interval: TimeSpan.FromSeconds(1), during: TimeSpan.FromSeconds(durationSeconds)))
+        .WithThresholds(DefaultThresholds);
     }
 }
