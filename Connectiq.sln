@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.ProjectDefaultsUn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.API.IntegrationTests", "Connectiq.API.IntegrationTests\Connectiq.API.IntegrationTests.csproj", "{2A563ABA-7D22-4995-A353-DC14A9E1CC12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connectiq.PerformanceTestss", "Connectiq.PerformanceTests\Connectiq.PerformanceTestss.csproj", "{051E7114-0CAE-41EA-A2E1-2991374FB51D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,10 @@ Global
 		{2A563ABA-7D22-4995-A353-DC14A9E1CC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A563ABA-7D22-4995-A353-DC14A9E1CC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A563ABA-7D22-4995-A353-DC14A9E1CC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{051E7114-0CAE-41EA-A2E1-2991374FB51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{051E7114-0CAE-41EA-A2E1-2991374FB51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{051E7114-0CAE-41EA-A2E1-2991374FB51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{051E7114-0CAE-41EA-A2E1-2991374FB51D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{CC8D2D3B-4BBC-4CA1-B58D-FA962F19CFB5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{7F52E0BD-A2D1-4615-9E41-B25E2230AB5A} = {9C9F40AE-F011-48EF-B192-B4BA1574E53B}
 		{2A563ABA-7D22-4995-A353-DC14A9E1CC12} = {943C1A0B-48D0-4A86-9F3E-8DFEF5405D1B}
+		{051E7114-0CAE-41EA-A2E1-2991374FB51D} = {943C1A0B-48D0-4A86-9F3E-8DFEF5405D1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53A7E3C7-3F03-4DD5-8D64-FF05E316E7D7}
