@@ -1,6 +1,7 @@
 using ConnectiqApiNS;
 using NBomber.Contracts;
 using NBomber.CSharp;
+using StrawberryShake;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
 namespace Connectiq.PerformanceTests.Customer;
@@ -62,16 +63,11 @@ public class QueriesPerformanceTests
         .WithThresholds(DefaultThresholds);
     }
 
-    public static ScenarioProps GetCustomerByIdScenario(IConnectiqApi client, int rate, int durationSeconds)
+    public static ScenarioProps GetCustomerByIdScenario(IConnectiqApi client, int rate, int durationSeconds, IOperationResult<IGetAllCustomersResult> getAllCustomers)
     {
         return Scenario.Create("get_customer_by_id", async context =>
         {
-            var getAllCustomers = await client.GetAllCustomers.ExecuteAsync(new GetAllFiltersInput
-            {
-                Page = 1,
-                PageSize = 2000
-            });
-
+            
             var index = (int)(context.InvocationNumber % 2100) + 1;
 
             var id = getAllCustomers.Data?.AllCustomers?.Data?.Customers?[index]?.Customer!.Id ?? Guid.NewGuid().ToString();
