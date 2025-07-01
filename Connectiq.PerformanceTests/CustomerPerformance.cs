@@ -1,22 +1,24 @@
 ﻿using Connectiq.API.IntegrationTests.Tests;
 using Connectiq.PerformanceTests.Customer;
 using Connectiq.PerformanceTestss.Customer;
+using ConnectiqApiNS;
 using NBomber.Contracts.Stats;
 using NBomber.CSharp;
 
-namespace Connectiq.PerformanceTestss;
+namespace Connectiq.PerformanceTests;
 
 public class CustomerPerformance(ApiFixture _fixture) : IClassFixture<ApiFixture>
 {
     [Theory(Skip = "Should Run Manually")]
-    [InlineData(10, 30)]
+    [InlineData(15, 30)]
     [InlineData(20, 30)]
-    [InlineData(25, 30)]
+    [InlineData(40, 30)]
     public async Task Customers_Queries_Should_Pass(int rate, int durationSeconds)
     {
         var client = await _fixture.CreateConnectiqApiClientAsync();
         var getAllCustomersScenario = QueriesPerformanceTests.GetAllCustomersScenario(client, rate, durationSeconds);
-        var getCustomerByIdScenario = QueriesPerformanceTests.GetCustomerByIdScenario(client, rate, durationSeconds);
+        var getAllCustomers = await client.GetAllCustomers.ExecuteAsync(new GetAllFiltersInput { Page = 1, PageSize = 2000 });
+        var getCustomerByIdScenario = QueriesPerformanceTests.GetCustomerByIdScenario(client, rate, durationSeconds, getAllCustomers);
 
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         var reportFolder = Path.Combine("nbomber-reports", "customers", "queries", $"{timestamp}_{rate}_{durationSeconds}");
