@@ -7,8 +7,10 @@ namespace Connectiq.PerformanceTests.Customer;
 
 public class QueriesPerformanceTests
 {
-    public static Threshold[] DefaultThresholds = new[]
-    {
+    static readonly Random _random = new ();
+
+    public static Threshold[] DefaultThresholds =
+    [
         Threshold.Create(
             checkScenario: stats => stats.Fail.Request.Count == 0,
             abortWhenErrorCount: 10,
@@ -22,14 +24,14 @@ public class QueriesPerformanceTests
             checkScenario: stats => stats.Ok.StatusCodes.Get(HttpStatusCode.OK.ToString()).Percent > 90,
             startCheckAfter: TimeSpan.FromSeconds(5)
         )
-    };
+    ];
 
     public static ScenarioProps GetAllCustomersScenario(IConnectiqApi client, int rate, int durationSeconds)
     {
         return Scenario.Create("get_all_customers", async context =>
         {
             var page = (int)(context.InvocationNumber % 3) + 1;
-            var pageSize = 200;
+            var pageSize = _random.Next(200, 2001);
 
             var input = new GetAllFiltersInput
             {
@@ -70,7 +72,7 @@ public class QueriesPerformanceTests
                 PageSize = 2000
             });
 
-            var index = (int)(context.InvocationNumber % 2500) + 1;
+            var index = (int)(context.InvocationNumber % 2100) + 1;
 
             var id = getAllCustomers.Data?.AllCustomers?.Data?.Customers?[index]?.Customer!.Id ?? Guid.NewGuid().ToString();
 
